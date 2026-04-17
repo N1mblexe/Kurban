@@ -4974,6 +4974,7 @@ GameObject:
   - component: {fileID: 1356776904}
   - component: {fileID: 1356776905}
   - component: {fileID: 1356776906}
+  - component: {fileID: 1356776907}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -5204,9 +5205,9 @@ MonoBehaviour:
   - {fileID: 187369124}
   - {fileID: 1749242652}
   knifeModel: {fileID: 322318417}
-  attackPositionOffset: {x: 0.5, y: 0, z: 0}
-  attackRotationOffset: {x: 0, y: 0, z: 120}
-  animationSpeed: 12
+  attackPositionOffset: {x: 1, y: 0, z: 0}
+  attackRotationOffset: {x: 60, y: 50, z: 0}
+  animationSpeed: 20
 --- !u!114 &1356776902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5363,6 +5364,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1356776907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356776891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f68e23370d301203a6ebe29bf992610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimeController
+  globalVolume: {fileID: 832575518}
+  maxVignetteIntensity: 0.45
+  maxLensDistortionIntensity: -0.5
 --- !u!1 &1365749645
 GameObject:
   m_ObjectHideFlags: 0

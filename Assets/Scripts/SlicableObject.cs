@@ -74,9 +74,9 @@ public class SliceableObject : MonoBehaviour
     {
         if (CurrentVolume < KnifeController.Instance.currentStats.minSliceVolume)
         {
-            Debug.Log($"Bu bıçakla daha küçük kesemezsin! Hacim: {CurrentVolume}");
             return; 
         }
+
         if (TryGetComponent(out Outline outline))
         {
             outline.enabled = false;
@@ -94,6 +94,11 @@ public class SliceableObject : MonoBehaviour
 
         if (result.Item1 != null && result.Item2 != null)
         {
+            if (isOriginalBody)
+            {
+                TimeController.Instance.ModifyTimeWithEffects(0.2f, 0.3f, 0.1f);
+            }
+
             Vector3 pushDirection = Vector3.Cross(Camera.main.transform.forward, sliceLine).normalized;
 
             SetupSlicedPiece(result.Item1, pushDirection);
