@@ -1,6 +1,6 @@
 using UnityEngine;
 using System;
-using DG.Tweening; 
+using DG.Tweening;
 
 public class Health : MonoBehaviour
 {
@@ -13,12 +13,12 @@ public class Health : MonoBehaviour
     private Renderer rend;
     private Color originalColor;
 
-    public float MaxHealth => maxHealth; 
+    public float MaxHealth => maxHealth;
 
     private void Awake()
     {
         currentHealth = maxHealth;
-        
+
         rend = GetComponent<Renderer>();
         if (rend != null)
         {
@@ -34,10 +34,15 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage, Vector3 hitPoint, Vector3 mouseDirection)
     {
-        if (isDead) return;
-
+        if (isDead)
+        {
+            Die(hitPoint, mouseDirection);
+            return;
+        }
         currentHealth -= damage;
-        
+        Debug.Log($"Hasar Verildi! Kalan Can: {currentHealth}");
+
+
         if (currentHealth <= 0f)
         {
             Die(hitPoint, mouseDirection);
@@ -55,13 +60,15 @@ public class Health : MonoBehaviour
             rend.material.DOKill();
             rend.material.color = originalColor;
 
-            rend.material.DOColor(Color.red, "_BaseColor", 0.1f).SetLoops(2, LoopType.Yoyo);        
+            rend.material.DOColor(Color.red, "_BaseColor", 0.1f).SetLoops(2, LoopType.Yoyo);
         }
     }
 
     private void Die(Vector3 hitPoint, Vector3 mouseDirection)
     {
         isDead = true;
-        OnDeathWithCutInfo?.Invoke(hitPoint, mouseDirection);
+        GetComponent<SliceableObject>().HandleDeath(hitPoint, mouseDirection);
+
+
     }
 }

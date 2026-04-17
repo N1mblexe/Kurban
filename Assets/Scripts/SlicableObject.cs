@@ -44,7 +44,7 @@ public class SliceableObject : MonoBehaviour
         }
     }
 
-    private void HandleDeath(Vector3 hitPoint, Vector3 mouseDirection)
+    public void HandleDeath(Vector3 hitPoint, Vector3 mouseDirection)
     {
         Slice(hitPoint, mouseDirection);
     }
