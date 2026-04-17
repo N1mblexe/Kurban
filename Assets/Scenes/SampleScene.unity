@@ -957,6 +957,7 @@ MonoBehaviour:
     economyMultiplier: 2
     minSliceVolume: 0.1
     visualIndex: 3
+    slashEffect: {fileID: 666730832697330428, guid: ea664eb6e5374444592347742b107aec, type: 3}
   rotateSpeed: 45
   bobHeight: 0.2
   bobDuration: 1.5
@@ -4812,6 +4813,7 @@ MonoBehaviour:
     economyMultiplier: 1.2
     minSliceVolume: 0.1
     visualIndex: 1
+    slashEffect: {fileID: 666730832697330428, guid: ea664eb6e5374444592347742b107aec, type: 3}
   rotateSpeed: 45
   bobHeight: 0.2
   bobDuration: 1.5
@@ -5197,6 +5199,7 @@ MonoBehaviour:
     economyMultiplier: 1
     minSliceVolume: 0.5
     visualIndex: 0
+    slashEffect: {fileID: 0}
   inputManager: {fileID: 1356776894}
   playerCamera: {fileID: 330585545}
   knifeVisualModels:
@@ -5208,6 +5211,7 @@ MonoBehaviour:
   attackPositionOffset: {x: 1, y: 0, z: 0}
   attackRotationOffset: {x: 60, y: 50, z: 0}
   animationSpeed: 20
+  defaultSlash: {fileID: 666730832697330428, guid: ea664eb6e5374444592347742b107aec, type: 3}
 --- !u!114 &1356776902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6642,6 +6646,7 @@ MonoBehaviour:
     economyMultiplier: 1.5
     minSliceVolume: 0.1
     visualIndex: 2
+    slashEffect: {fileID: 666730832697330428, guid: ea664eb6e5374444592347742b107aec, type: 3}
   rotateSpeed: 45
   bobHeight: 0.2
   bobDuration: 1.5
