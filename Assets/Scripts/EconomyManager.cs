@@ -24,11 +24,9 @@ public class EconomyManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.K))
         {
-<<<<<<< HEAD
-            AddGold(10000);
-=======
+
             AddGold(2000);
->>>>>>> main
+
         }
     }
 
