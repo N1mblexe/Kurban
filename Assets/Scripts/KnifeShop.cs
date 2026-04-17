@@ -15,6 +15,10 @@ public class KnifeShop : MonoBehaviour, IInteractable
     [SerializeField] private float bobHeight = 0.2f;  
     [SerializeField] private float bobDuration = 1.5f; 
 
+    [SerializeField] private bool rotateToZAxis = false;
+
+    [SerializeField] private GameObject holder;
+
     private bool isBought = false;
 
     private void Start()
@@ -24,11 +28,16 @@ public class KnifeShop : MonoBehaviour, IInteractable
 
     private void StartIdleAnimations()
     {
-        transform.DORotate(new Vector3(0, 360, 0), 360f / rotateSpeed, RotateMode.FastBeyond360)
+        if(holder == null)
+            return;
+
+        Vector3 rotation = (rotateToZAxis)? new Vector3(0, 0, 360): new Vector3(0, 360, 0);
+
+        holder.transform.DORotate(rotation, 360f / rotateSpeed, RotateMode.FastBeyond360)
             .SetEase(Ease.Linear)
             .SetLoops(-1, LoopType.Incremental);
 
-        transform.DOMoveY(transform.position.y + bobHeight, bobDuration)
+        holder.transform.DOMoveY(transform.position.y + bobHeight, bobDuration)
             .SetEase(Ease.InOutSine)
                 .SetLoops(-1, LoopType.Yoyo);
     }

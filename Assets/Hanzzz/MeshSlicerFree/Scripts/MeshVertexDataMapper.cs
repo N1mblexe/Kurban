@@ -19,6 +19,7 @@ public class MeshVertexDataMapper
     private bool m_hasColor;
     private bool[] m_hasUV;
     private bool m_hasBoneWeight;
+    private BoneWeightLerp m_boneWeightLerp = new BoneWeightLerp();
 
     private List<Vector3> m_targetPositions;
     private List<Color32> m_targetColors;
