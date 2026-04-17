@@ -9,6 +9,8 @@ public class FpsLook : MonoBehaviour
     private InputManager inputManager;
     private float xRotation = 0f;
 
+    public float XRotation => xRotation;
+
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();

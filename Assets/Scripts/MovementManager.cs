@@ -13,7 +13,6 @@ public class MovementManager : MonoBehaviour
     private InputManager inputManager;
     private Vector3 velocity;
     
-    // Bunu Public yaptık ki Kamera Efektleri karakterin gerçekten yerde olup olmadığını net bilsin
     public bool IsGrounded { get; private set; } 
 
     private void Awake()
@@ -24,19 +23,6 @@ public class MovementManager : MonoBehaviour
 
     private void Update()
     {
-        HandleMovement();
-        HandleGravityAndJump();
-    }
-
-    private void HandleMovement()
-    {
-        float currentSpeed = inputManager.SprintInput ? sprintSpeed : walkSpeed;
-        Vector3 move = transform.right * inputManager.MoveInput.x + transform.forward * inputManager.MoveInput.y;
-        controller.Move(move.normalized * currentSpeed * Time.deltaTime);
-    }
-
-    private void HandleGravityAndJump()
-    {
         IsGrounded = controller.isGrounded;
 
         if (IsGrounded && velocity.y < 0)
@@ -44,20 +30,23 @@ public class MovementManager : MonoBehaviour
             velocity.y = -2f; 
         }
 
-        // Eğer zıplama isteği gelmişse
+        float currentSpeed = inputManager.SprintInput ? sprintSpeed : walkSpeed;
+        Vector3 moveInput = transform.right * inputManager.MoveInput.x + transform.forward * inputManager.MoveInput.y;
+        
+        Vector3 horizontalMove = Vector3.ClampMagnitude(moveInput, 1f) * currentSpeed;
+
         if (inputManager.JumpInput)
         {
-            // Ve karakter yerdeyse zıpla
             if (IsGrounded)
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
-            
-            // Zıplama isteğini tüket (Havada basıldıysa bile sıfırla ki yere inince kendi kendine zıplamasın)
             inputManager.JumpInput = false; 
         }
 
         velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+
+        Vector3 finalMovement = horizontalMove + velocity;
+        controller.Move(finalMovement * Time.deltaTime);
     }
 }
