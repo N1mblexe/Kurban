@@ -13,11 +13,11 @@ public class SliceableObject : MonoBehaviour
     [SerializeField] private float horizontalTiltMultiplier = 0.3f;
 
     [Header("Sağlık ve Kesim Ayarları")]
-    public bool isOriginalBody = true; 
-    
+    public bool isOriginalBody = true;
+
     [Header("Hacim ve Envanter")]
-    [SerializeField] private float minVolumeToSlice = 0.05f; 
-    
+    [SerializeField] private float minVolumeToSlice = 0.05f;
+
     public AnimalManager manager;
 
     [SerializeField] private float liveTime = 10f;
@@ -53,7 +53,7 @@ public class SliceableObject : MonoBehaviour
     {
         CalculateVolume();
 
-        if(!isOriginalBody)
+        if (!isOriginalBody)
             StartCoroutine(DieAfterTime(liveTime));
     }
 
@@ -74,7 +74,7 @@ public class SliceableObject : MonoBehaviour
     {
         if (CurrentVolume < KnifeController.Instance.currentStats.minSliceVolume)
         {
-            return; 
+            return;
         }
 
         if (TryGetComponent(out Outline outline))
@@ -83,7 +83,7 @@ public class SliceableObject : MonoBehaviour
         }
 
         Vector3 p1 = hitPoint;
-        Vector3 p2 = hitPoint + Camera.main.transform.forward; 
+        Vector3 p2 = hitPoint + Camera.main.transform.forward;
         Vector3 baseDirection = Camera.main.transform.up;
         Vector3 tiltOffset = Camera.main.transform.right * (mouseDirection.x * horizontalTiltMultiplier);
         Vector3 sliceLine = (baseDirection + tiltOffset).normalized;
@@ -94,18 +94,31 @@ public class SliceableObject : MonoBehaviour
 
         if (result.Item1 != null && result.Item2 != null)
         {
+            ParticleSystem temp = KnifeController.Instance.currentStats.slashEffect;
             if (isOriginalBody)
             {
-                TimeController.Instance.ModifyTimeWithEffects(0.2f, 0.3f, 0.1f);
+                TimeController.Instance.ModifyTimeWithEffects(0.05f, 0.4f, 0.1f);
+
+                if (temp != null)
+                {
+                    Quaternion particleRotation = Quaternion.LookRotation(Camera.main.transform.forward, sliceLine);
+
+                    ParticleSystem slashEffect = Instantiate(temp, hitPoint, particleRotation);
+
+                    float destroyTime = slashEffect.main.duration + slashEffect.main.startLifetime.constantMax;
+                    Destroy(slashEffect.gameObject, destroyTime);
+                }
             }
+
+
 
             Vector3 pushDirection = Vector3.Cross(Camera.main.transform.forward, sliceLine).normalized;
 
             SetupSlicedPiece(result.Item1, pushDirection);
-            SetupSlicedPiece(result.Item2, -pushDirection); 
+            SetupSlicedPiece(result.Item2, -pushDirection);
 
             if (manager != null) manager.RemoveAnimal(this.gameObject);
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
     }
 
@@ -118,7 +131,7 @@ public class SliceableObject : MonoBehaviour
         }
 
         MeshCollider newMeshCollider = piece.AddComponent<MeshCollider>();
-        newMeshCollider.convex = true; 
+        newMeshCollider.convex = true;
 
         MeshFilter meshFilter = piece.GetComponent<MeshFilter>();
         if (meshFilter != null)
@@ -126,7 +139,7 @@ public class SliceableObject : MonoBehaviour
             newMeshCollider.sharedMesh = meshFilter.sharedMesh;
         }
 
-        
+
         if (!piece.TryGetComponent(out Rigidbody rb))
         {
             rb = piece.AddComponent<Rigidbody>();
@@ -136,11 +149,11 @@ public class SliceableObject : MonoBehaviour
         {
             newSliceable = piece.AddComponent<SliceableObject>();
         }
-        
+
         newSliceable.GetComponent<SliceableObject>().isOriginalBody = false;
-        
-        if(isOriginalBody)
-            newSliceable.GetComponent<Health>().InitializeHealth(health.MaxHealth/2);
+
+        if (isOriginalBody)
+            newSliceable.GetComponent<Health>().InitializeHealth(health.MaxHealth / 2);
         else
             newSliceable.GetComponent<Health>().InitializeHealth(health.MaxHealth);
 
@@ -148,7 +161,7 @@ public class SliceableObject : MonoBehaviour
         newSliceable.separationForce = this.separationForce;
         newSliceable.horizontalTiltMultiplier = this.horizontalTiltMultiplier;
         newSliceable.minVolumeToSlice = this.minVolumeToSlice;
-        newSliceable.manager = this.manager; 
+        newSliceable.manager = this.manager;
 
         if (piece.TryGetComponent(out AnimalWalk animalWalk)) animalWalk.enabled = false;
         if (piece.TryGetComponent(out Animator animator)) animator.enabled = false;
@@ -157,7 +170,7 @@ public class SliceableObject : MonoBehaviour
         {
             piece.AddComponent<Interactable>();
         }
-        
+
         Vector3 finalForce = (forceDirection + (Camera.main.transform.forward * 0.5f)).normalized * separationForce;
         rb.AddForce(finalForce);
     }
@@ -173,10 +186,11 @@ public class SliceableObject : MonoBehaviour
 
         dieSequence.Append(transform.DOScale(Vector3.zero, shrinkDuration).SetEase(Ease.InQuad));
 
-        dieSequence.OnComplete(() => {
+        dieSequence.OnComplete(() =>
+        {
             Destroy(this.gameObject);
         });
 
-        yield return null; 
+        yield return null;
     }
 }

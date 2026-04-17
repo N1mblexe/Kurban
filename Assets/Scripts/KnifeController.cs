@@ -10,7 +10,8 @@ public class WeaponStats
     
     public float economyMultiplier = 1.0f; 
     public float minSliceVolume = 0.5f;    
-    public int visualIndex = 0;
+    public int visualIndex = 0; 
+    public ParticleSystem slashEffect;
 }
 
 public class KnifeController : MonoBehaviour
@@ -30,6 +31,7 @@ public class KnifeController : MonoBehaviour
     [SerializeField] private Vector3 attackPositionOffset = new Vector3(1f, 0f, 0f); 
     [SerializeField] private Vector3 attackRotationOffset = new Vector3(55f, 0f, 180f); 
     [SerializeField] private float animationSpeed = 20f;
+    [SerializeField] private ParticleSystem defaultSlash;
 
     private float nextAttackTime = 0f;
     private Vector3 defaultPosition;
@@ -49,6 +51,7 @@ public class KnifeController : MonoBehaviour
             currentStats.attackRange = 4; 
             currentStats.attackSpeed = 1.1f;
             currentStats.minSliceVolume = .1f;
+            currentStats.slashEffect = defaultSlash;
         }
     }
 
