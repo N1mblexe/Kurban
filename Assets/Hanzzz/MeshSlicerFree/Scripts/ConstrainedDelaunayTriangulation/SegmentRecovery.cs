@@ -1,5 +1,6 @@
 #define CHECK_VERTEX_ON_EDGE // considerably slows triangulation, uncomment if previously crashed or not terminating
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Hanzzz.MeshSlicerFree
 {
@@ -18,7 +19,7 @@ public partial class ConstrainedDelaunayTriangulation
             }
 
             #if CHECK_VERTEX_ON_EDGE
-            // add e0->e1 to constraints only if no vertecis lie on it
+            // add e0->e1 to constraints only if no vertices lie on it
             for(int j=3; j <m_vertices.Count; j++)
             {
                 if(e0 == j || e1 == j)
@@ -107,8 +108,20 @@ public partial class ConstrainedDelaunayTriangulation
 
                 t = GetNeighbor(p1,p2,t);
                 OrientTriangle(t,p1,p2);
+
+                // FIX BUG: guard the while(true) loop — if geometry is degenerate this
+                // can spin forever. Limit iterations to a safe upper bound.
+                int edgeWalkLimit = m_triangles.Count + 1;
+                int edgeWalkIter  = 0;
                 while(true)
                 {
+                    if(++edgeWalkIter > edgeWalkLimit)
+                    {
+                        Debug.LogWarning("[MeshSlicer] SegmentRecovery: edge-walk limit reached, skipping constraint. Mesh may have degenerate geometry near the cut plane.");
+                        m_intersectEdges.Clear();
+                        break;
+                    }
+
                     int p0 = m_triangles[3*t+0];
                     p1 = m_triangles[3*t+1];
                     p2 = m_triangles[3*t+2];
@@ -135,7 +148,14 @@ public partial class ConstrainedDelaunayTriangulation
                 }
             }
             
+            // FIX BUG 1: The primary freeze source.
+            // When ALL edges left in m_intersectEdges form non-convex quads (due to
+            // floating-point precision), none can be flipped and the loop rotates them
+            // endlessly. We detect a full cycle with no progress and break out safely.
             {
+                int noProgressLimit = m_intersectEdges.Count + 1; // full rotation = no progress
+                int noProgressCount = 0;
+
                 while(0 != m_intersectEdges.Count)
                 {
                     int p1 = m_intersectEdges[0].Item1;
@@ -155,10 +175,26 @@ public partial class ConstrainedDelaunayTriangulation
                     int o023 = Orient2D(p0,p2,p3);
                     if(!((-1 == o013 && 1 == o023) || (1 == o013 && -1 == o023)))
                     {
+                        // Edge cannot be flipped yet — move to back and track how many
+                        // consecutive non-flippable edges we have seen.
                         m_intersectEdges.Add(m_intersectEdges[0]);
                         m_intersectEdges.RemoveAt(0);
+                        noProgressCount++;
+
+                        if(noProgressCount >= noProgressLimit)
+                        {
+                            // Completed a full cycle with zero flips: all remaining edges
+                            // are stuck. This is caused by near-degenerate geometry.
+                            // Discard them to avoid an infinite loop.
+                            Debug.LogWarning($"[MeshSlicer] SegmentRecovery: {m_intersectEdges.Count} edge(s) could not be flipped (degenerate geometry). Discarding to prevent freeze.");
+                            m_intersectEdges.Clear();
+                        }
                         continue;
                     }
+
+                    // A flip succeeded — reset the no-progress counter and update the limit.
+                    noProgressCount = 0;
+                    noProgressLimit = m_intersectEdges.Count; // recompute after list shrinks
 
                     m_intersectEdges.RemoveAt(0);
                     FlipDiagonal(t0,t1);
@@ -178,8 +214,14 @@ public partial class ConstrainedDelaunayTriangulation
                 }
             }
 
+            // FIX BUG 2: The secondary freeze source.
+            // In theory the Lawson-flip restore always terminates, but with floating-point
+            // precision issues the same diagonal can keep appearing as an InCircle violator,
+            // cycling forever. Cap iterations to a safe upper bound.
             {
                 bool hasSwap;
+                int swapLimit = m_newEdges.Count * m_newEdges.Count + 1;
+                int swapIter  = 0;
                 do
                 {
                     hasSwap = false;
@@ -211,6 +253,12 @@ public partial class ConstrainedDelaunayTriangulation
                         hasSwap = true;
                         FlipDiagonal(t0,t1);
                         m_newEdges[i] = (p0, p3);
+                    }
+
+                    if(++swapIter > swapLimit)
+                    {
+                        Debug.LogWarning("[MeshSlicer] SegmentRecovery: Delaunay restore loop hit iteration limit (degenerate geometry). Aborting restore pass.");
+                        break;
                     }
                 }
                 while(hasSwap);

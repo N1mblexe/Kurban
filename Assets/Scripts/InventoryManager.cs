@@ -49,6 +49,14 @@ public class InventoryManager : MonoBehaviour
         return currBackpack;
     }
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            currBackpack.InsertItem(10);
+        }
+    }
+
     public float GetMaxItemSize() { return currBackpack.capacity; }
 
     private void Awake()
@@ -103,5 +111,17 @@ public class InventoryManager : MonoBehaviour
         float weight = currBackpack.weight;
         currBackpack.weight = 0;
         return weight;
+    }
+
+    public bool RemoveMeat(float amount)
+    {
+        if(amount <= currBackpack.weight)
+        {
+            currBackpack.weight -= amount;
+            InventoryUI.Instance.UpdateWeightDisplay(currBackpack.weight , currBackpack.capacity);
+            return true;
+        }
+
+        return false;
     }
 }

@@ -9,6 +9,7 @@ public class CameraEffects : MonoBehaviour
     
     private MovementManager movement;
     private InputManager inputManager;
+    private FpsLook fpsLook; // Kameranın tam X rotasyonunu almak için (To get perfect X rotation)
 
     [Header("Head Bobbing")]
     [SerializeField] private float bobFrequency = 14f;
@@ -24,7 +25,7 @@ public class CameraEffects : MonoBehaviour
     [SerializeField] private float fovSmoothness = 10f;
 
     [Header("Ayak Sesleri")]
-    [SerializeField] private float stepThreshold = 0.5f;
+    [SerializeField] private float stepThreshold = -0.5f; 
     private bool stepTaken = false;
 
     [Header("Leaning")]
@@ -36,6 +37,7 @@ public class CameraEffects : MonoBehaviour
     {
         movement = GetComponent<MovementManager>();
         inputManager = GetComponent<InputManager>();
+        fpsLook = GetComponent<FpsLook>(); 
     }
 
     private void Start()
@@ -70,6 +72,7 @@ public class CameraEffects : MonoBehaviour
         bool isMoving = (groundedBuffer > 0f) && inputManager.MoveInput.magnitude > 0.1f;
         float targetIntensity = isMoving ? 1f : 0f;
 
+        // Bob şiddetini yumuşakça artır/azalt (Smoothly lerp bob intensity)
         bobIntensity = Mathf.Lerp(bobIntensity, targetIntensity, Time.deltaTime * 10f);
 
         if (isMoving)
@@ -77,8 +80,10 @@ public class CameraEffects : MonoBehaviour
             float speedMultiplier = inputManager.SprintInput ? 1.5f : 1f;
             bobTimer += Time.deltaTime * bobFrequency * speedMultiplier;
 
+            // Dalga değerini Sin ile hesapla ki sıfırdan başlasın (Use Sin so it starts at 0 naturally)
             float waveValue = Mathf.Sin(bobTimer);
-            if (waveValue < -stepThreshold && !stepTaken)
+            
+            if (waveValue < stepThreshold && !stepTaken)
             {
                 PlayFootstepSound();
                 stepTaken = true;
@@ -88,9 +93,16 @@ public class CameraEffects : MonoBehaviour
                 stepTaken = false;
             }
         }
+        else if (bobIntensity < 0.01f)
+        {
+            // Kamera tamamen durduğunda zamanlayıcıyı sıfırla ki bir sonraki hareket pürüzsüz başlasın
+            // (Reset timer only when fully stopped to prevent snapping)
+            bobTimer = 0f;
+        }
 
-        float bobY = Mathf.Cos(bobTimer) * bobAmplitude * bobIntensity;
-        float bobX = Mathf.Sin(bobTimer / 2f) * (bobAmplitude / 2f) * bobIntensity;
+        // Y ekseni için Cos yerine Sin kullandık (Swapped Cos for Sin on Y axis for stability)
+        float bobY = Mathf.Sin(bobTimer) * bobAmplitude * bobIntensity;
+        float bobX = Mathf.Cos(bobTimer / 2f) * (bobAmplitude / 2f) * bobIntensity;
 
         playerCamera.transform.localPosition = new Vector3(
             cameraDefaultLocalPos.x + bobX,
@@ -110,8 +122,11 @@ public class CameraEffects : MonoBehaviour
         float targetLean = -inputManager.MoveInput.x * leanAngle;
         currentLean = Mathf.Lerp(currentLean, targetLean, Time.deltaTime * leanSmoothness);
 
-        Vector3 currentEuler = playerCamera.transform.localEulerAngles;
-        playerCamera.transform.localRotation = Quaternion.Euler(currentEuler.x, currentEuler.y, currentLean);
+        // Titremeyi önlemek için localEulerAngles yerine doğrudan FpsLook'tan rotasyonu alıyoruz
+        // (Getting exact rotation directly from FpsLook to prevent Unity Euler jitter)
+        float currentXRotation = fpsLook != null ? fpsLook.XRotation : playerCamera.transform.localEulerAngles.x;
+
+        playerCamera.transform.localRotation = Quaternion.Euler(currentXRotation, 0f, currentLean);
     }
 
     private void PlayFootstepSound()

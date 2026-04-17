@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using DG.Tweening;
 using Hanzzz.MeshSlicerFree;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -17,6 +19,8 @@ public class SliceableObject : MonoBehaviour
     [SerializeField] private float minVolumeToSlice = 0.05f; 
     
     public AnimalManager manager;
+
+    [SerializeField] private float liveTime = 10f;
 
     public float CurrentVolume { get; private set; }
 
@@ -40,7 +44,7 @@ public class SliceableObject : MonoBehaviour
         }
     }
 
-    private void HandleDeath(Vector3 hitPoint, Vector3 mouseDirection)
+    public void HandleDeath(Vector3 hitPoint, Vector3 mouseDirection)
     {
         Slice(hitPoint, mouseDirection);
     }
@@ -48,6 +52,9 @@ public class SliceableObject : MonoBehaviour
     private void Start()
     {
         CalculateVolume();
+
+        if(!isOriginalBody)
+            StartCoroutine(DieAfterTime(liveTime));
     }
 
     public void CalculateVolume()
@@ -148,5 +155,23 @@ public class SliceableObject : MonoBehaviour
         
         Vector3 finalForce = (forceDirection + (Camera.main.transform.forward * 0.5f)).normalized * separationForce;
         rb.AddForce(finalForce);
+    }
+
+    private IEnumerator DieAfterTime(float time)
+    {
+        float waitDuration = time / 2f;
+        float shrinkDuration = time / 2f;
+
+        DG.Tweening.Sequence dieSequence = DOTween.Sequence();
+
+        dieSequence.AppendInterval(waitDuration);
+
+        dieSequence.Append(transform.DOScale(Vector3.zero, shrinkDuration).SetEase(Ease.InQuad));
+
+        dieSequence.OnComplete(() => {
+            Destroy(this.gameObject);
+        });
+
+        yield return null; 
     }
 }

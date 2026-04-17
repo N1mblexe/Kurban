@@ -106,7 +106,6 @@ public class KnifeController : MonoBehaviour
         if (hit.collider.TryGetComponent(out Health health))
         {
             health.TakeDamage(currentStats.damage, hit.point, inputManager.LookInput);
-            Debug.Log($"Hasar Verildi! Kalan Can: {health.MaxHealth}");
         }
     }
 }

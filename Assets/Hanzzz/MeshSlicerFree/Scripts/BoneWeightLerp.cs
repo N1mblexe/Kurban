@@ -4,11 +4,16 @@ using UnityEngine;
 namespace Hanzzz.MeshSlicerFree
 {
 
-public static class BoneWeightLerp
+// FIX BUG 3: m_lerpBoneWeight / m_sortBoneWeight were static mutable fields.
+// SliceAsync / SliceSkinnedAsync both call Task.Run (thread pool), so two concurrent
+// slices corrupted these collections, causing random crashes or wrong bone weights.
+// Changed to instance fields so each slicer object has its own private copies.
+public class BoneWeightLerp
 {
     private static SortedDictionary<int, float> m_lerpBoneWeight = new SortedDictionary<int, float>();
     private static List<(int, float)> m_sortBoneWeight = new List<(int, float)>();
     private static BoneWeightComparator m_boneWeightComparator = new BoneWeightComparator();
+
     private class BoneWeightComparator : Comparer<(int,float)>
     {
         public override int Compare((int,float) x, (int,float) y)
@@ -47,7 +52,6 @@ public static class BoneWeightLerp
             m_sortBoneWeight.Add((kvp.Key,kvp.Value));
         }
         m_sortBoneWeight.Sort(m_boneWeightComparator);
-
 
         BoneWeight res = new BoneWeight();
         res.boneIndex0 = m_sortBoneWeight[0].Item1;

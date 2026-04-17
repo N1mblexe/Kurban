@@ -1,7 +1,7 @@
 using System.Collections;
-using NUnit.Framework;
 using UnityEngine;
 
+//TODO: maybe redo the walking system for better control
 public class AnimalWalk : MonoBehaviour
 {
     public GameObject centerObj;
@@ -87,7 +87,7 @@ public class AnimalWalk : MonoBehaviour
             isWalking = true;
             anim.SetTrigger("Walk");
             transform.Rotate(0, Random.Range(0, 360), 0, Space.World);
-            
+   
         }
     }
 }
