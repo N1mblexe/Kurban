@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CameraEffects : MonoBehaviour
 {
+    public static CameraEffects Instance;
+
     [Header("Referanslar")]
     [SerializeField] private Camera playerCamera;
     [SerializeField] private AudioSource footstepAudioSource;
@@ -9,7 +11,7 @@ public class CameraEffects : MonoBehaviour
     
     private MovementManager movement;
     private InputManager inputManager;
-    private FpsLook fpsLook; // Kameranın tam X rotasyonunu almak için (To get perfect X rotation)
+    private FpsLook fpsLook; 
 
     [Header("Head Bobbing")]
     [SerializeField] private float bobFrequency = 14f;
@@ -33,11 +35,19 @@ public class CameraEffects : MonoBehaviour
     [SerializeField] private float leanSmoothness = 8f;
     private float currentLean = 0f;
 
+    [Header("Camera Shake")]
+    private float shakeTimer = 0f;
+    private float shakeDuration = 0f;
+    private float shakeMagnitude = 0f;
+    private Vector3 shakePosOffset = Vector3.zero;
+    private Vector3 shakeRotOffset = Vector3.zero;
+
     private void Awake()
     {
         movement = GetComponent<MovementManager>();
         inputManager = GetComponent<InputManager>();
         fpsLook = GetComponent<FpsLook>(); 
+        Instance = this;
     }
 
     private void Start()
@@ -53,9 +63,36 @@ public class CameraEffects : MonoBehaviour
     {
         if (playerCamera == null) return;
 
+        HandleShake();
         HandleHeadBob();
         HandleDynamicFOV();
         HandleLean();
+    }
+
+    public void TriggerShake(float magnitude, float duration)
+    {
+        shakeMagnitude = magnitude;
+        shakeDuration = duration;
+        shakeTimer = duration;
+    }
+
+    private void HandleShake()
+    {
+        if (shakeTimer > 0)
+        {
+            float fadeOut = shakeTimer / shakeDuration;
+            float currentMag = shakeMagnitude * fadeOut;
+
+            shakePosOffset = Random.insideUnitSphere * currentMag;
+            shakeRotOffset = Random.insideUnitSphere * (currentMag * 10f);
+
+            shakeTimer -= Time.deltaTime;
+        }
+        else
+        {
+            shakePosOffset = Vector3.zero;
+            shakeRotOffset = Vector3.zero;
+        }
     }
 
     private void HandleHeadBob()
@@ -72,7 +109,6 @@ public class CameraEffects : MonoBehaviour
         bool isMoving = (groundedBuffer > 0f) && inputManager.MoveInput.magnitude > 0.1f;
         float targetIntensity = isMoving ? 1f : 0f;
 
-        // Bob şiddetini yumuşakça artır/azalt (Smoothly lerp bob intensity)
         bobIntensity = Mathf.Lerp(bobIntensity, targetIntensity, Time.deltaTime * 10f);
 
         if (isMoving)
@@ -80,7 +116,6 @@ public class CameraEffects : MonoBehaviour
             float speedMultiplier = inputManager.SprintInput ? 1.5f : 1f;
             bobTimer += Time.deltaTime * bobFrequency * speedMultiplier;
 
-            // Dalga değerini Sin ile hesapla ki sıfırdan başlasın (Use Sin so it starts at 0 naturally)
             float waveValue = Mathf.Sin(bobTimer);
             
             if (waveValue < stepThreshold && !stepTaken)
@@ -95,12 +130,9 @@ public class CameraEffects : MonoBehaviour
         }
         else if (bobIntensity < 0.01f)
         {
-            // Kamera tamamen durduğunda zamanlayıcıyı sıfırla ki bir sonraki hareket pürüzsüz başlasın
-            // (Reset timer only when fully stopped to prevent snapping)
             bobTimer = 0f;
         }
 
-        // Y ekseni için Cos yerine Sin kullandık (Swapped Cos for Sin on Y axis for stability)
         float bobY = Mathf.Sin(bobTimer) * bobAmplitude * bobIntensity;
         float bobX = Mathf.Cos(bobTimer / 2f) * (bobAmplitude / 2f) * bobIntensity;
 
@@ -108,7 +140,7 @@ public class CameraEffects : MonoBehaviour
             cameraDefaultLocalPos.x + bobX,
             cameraDefaultLocalPos.y + bobY,
             cameraDefaultLocalPos.z
-        );
+        ) + shakePosOffset;
     }
 
     private void HandleDynamicFOV()
@@ -122,11 +154,13 @@ public class CameraEffects : MonoBehaviour
         float targetLean = -inputManager.MoveInput.x * leanAngle;
         currentLean = Mathf.Lerp(currentLean, targetLean, Time.deltaTime * leanSmoothness);
 
-        // Titremeyi önlemek için localEulerAngles yerine doğrudan FpsLook'tan rotasyonu alıyoruz
-        // (Getting exact rotation directly from FpsLook to prevent Unity Euler jitter)
         float currentXRotation = fpsLook != null ? fpsLook.XRotation : playerCamera.transform.localEulerAngles.x;
 
-        playerCamera.transform.localRotation = Quaternion.Euler(currentXRotation, 0f, currentLean);
+        playerCamera.transform.localRotation = Quaternion.Euler(
+            currentXRotation + shakeRotOffset.x, 
+            shakeRotOffset.y, 
+            currentLean + shakeRotOffset.z
+        );
     }
 
     private void PlayFootstepSound()
