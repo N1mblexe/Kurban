@@ -1372,6 +1372,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 22dc21eec3aab4c79b134ff4b44ca618, type: 3}
+--- !u!114 &227830914 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8532610137102585869, guid: 0091295679b26a21e953a441c5190158, type: 3}
+  m_PrefabInstance: {fileID: 1333720296}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &250879371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4349,9 +4360,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b08a014194cef1b2583534f5509c49fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 724255881}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b08a014194cef1b2583534f5509c49fd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 724255880}
   m_SourcePrefab: {fileID: 100100000, guid: b08a014194cef1b2583534f5509c49fd, type: 3}
 --- !u!4 &724255878 stripped
 Transform:
@@ -4363,26 +4371,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b08a014194cef1b2583534f5509c49fd, type: 3}
   m_PrefabInstance: {fileID: 724255877}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &724255880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724255879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 241f237036384c8809362c106af57df1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KnifeShop
-  weapons: []
-  currentWeapon: 0
-  rotateSpeed: 45
-  bobHeight: 0.2
-  bobDuration: 1.5
-  rotateToZAxis: 0
-  holder: {fileID: 0}
-  price_text: {fileID: 0}
 --- !u!65 &724255881
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4979,6 +4967,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1619c1055061b545925aff97b4ca22d, type: 3}
+--- !u!114 &783404251 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3016504156608213491, guid: 0091295679b26a21e953a441c5190158, type: 3}
+  m_PrefabInstance: {fileID: 1333720296}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!4 &811118022 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6908562968782335448, guid: 46b5ee2ab4f0c284cbd6da1011d358ef, type: 3}
@@ -5274,9 +5273,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 092744780a51b20f2b0998bc223b8c89, type: 3}
       insertIndex: -1
       addedObject: {fileID: 882863811}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 092744780a51b20f2b0998bc223b8c89, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 882863810}
   m_SourcePrefab: {fileID: 100100000, guid: 092744780a51b20f2b0998bc223b8c89, type: 3}
 --- !u!4 &882863808 stripped
 Transform:
@@ -5288,26 +5284,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 092744780a51b20f2b0998bc223b8c89, type: 3}
   m_PrefabInstance: {fileID: 882863807}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &882863810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882863809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 241f237036384c8809362c106af57df1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KnifeShop
-  weapons: []
-  currentWeapon: 0
-  rotateSpeed: 45
-  bobHeight: 0.2
-  bobDuration: 1.5
-  rotateToZAxis: 0
-  holder: {fileID: 0}
-  price_text: {fileID: 0}
 --- !u!65 &882863811
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5556,6 +5532,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000010825367482, guid: cd89d42d1f4ee4776baffddf076c3958, type: 3}
   m_PrefabInstance: {fileID: 898307029}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &905254756 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7726380897513217111, guid: 0091295679b26a21e953a441c5190158, type: 3}
+  m_PrefabInstance: {fileID: 1333720296}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &906323409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5631,9 +5618,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2b5754732861c6a7093217bdf91a5c66, type: 3}
       insertIndex: -1
       addedObject: {fileID: 906323413}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2b5754732861c6a7093217bdf91a5c66, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 906323412}
   m_SourcePrefab: {fileID: 100100000, guid: 2b5754732861c6a7093217bdf91a5c66, type: 3}
 --- !u!4 &906323410 stripped
 Transform:
@@ -5645,56 +5629,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2b5754732861c6a7093217bdf91a5c66, type: 3}
   m_PrefabInstance: {fileID: 906323409}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &906323412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906323411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 241f237036384c8809362c106af57df1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KnifeShop
-  weapons:
-  - stats:
-      damage: 0
-      attackRange: 0
-      attackSpeed: 0
-      economyMultiplier: 0
-      minSliceVolume: 0
-      visualIndex: 0
-      slashEffect: {fileID: 0}
-    shopPrefab: {fileID: 0}
-    price: 0
-  - stats:
-      damage: 0
-      attackRange: 0
-      attackSpeed: 0
-      economyMultiplier: 0
-      minSliceVolume: 0
-      visualIndex: 0
-      slashEffect: {fileID: 0}
-    shopPrefab: {fileID: 0}
-    price: 0
-  - stats:
-      damage: 0
-      attackRange: 0
-      attackSpeed: 0
-      economyMultiplier: 0
-      minSliceVolume: 0
-      visualIndex: 0
-      slashEffect: {fileID: 0}
-    shopPrefab: {fileID: 0}
-    price: 0
-  currentWeapon: 0
-  rotateSpeed: 45
-  bobHeight: 0.2
-  bobDuration: 1.5
-  rotateToZAxis: 0
-  holder: {fileID: 0}
-  price_text: {fileID: 0}
 --- !u!65 &906323413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7371,6 +7305,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: goldTextUI
+      value: 
+      objectReference: {fileID: 905254756}
+    - target: {fileID: 5445083296933350947, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: weightText
+      value: 
+      objectReference: {fileID: 783404251}
+    - target: {fileID: 7576233026200236097, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: infoTextUI
+      value: 
+      objectReference: {fileID: 227830914}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8064,6 +8010,103 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000012421277066, guid: 32b8c252e7144d242bd93e3e280fda74, type: 3}
   m_PrefabInstance: {fileID: 17708460}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1333720296
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1079897030905814554, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_Name
+      value: DefaultUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096791397655118046, guid: 0091295679b26a21e953a441c5190158, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0091295679b26a21e953a441c5190158, type: 3}
 --- !u!1 &1365749645
 GameObject:
   m_ObjectHideFlags: 0
@@ -13362,3 +13405,4 @@ SceneRoots:
   - {fileID: 1667438068}
   - {fileID: 1164154514}
   - {fileID: 471620910}
+  - {fileID: 1333720296}
