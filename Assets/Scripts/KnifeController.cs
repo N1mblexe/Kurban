@@ -123,6 +123,7 @@ public class KnifeController : MonoBehaviour
             if (hit.collider.TryGetComponent(out Health health))
             {
                 health.TakeDamage(currentStats.damage, hit.point, knifeModel.transform.eulerAngles);
+                CameraEffects.Instance.TriggerShake(.05f , .25f);
                 Debug.Log($"Hasar Verildi! Kalan Can: {health.MaxHealth}");
             }
         }
