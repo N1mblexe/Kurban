@@ -3,7 +3,8 @@
 
 
 
-Keci Prefabi ekledim animasyonlari var. ama kullanmayadabilirsin kafana gore
+Keci Prefabi ekledim animasyonlari var. ama kullanmayadabilirsin kafana gore (kullanmayacaksan kaldir animasyonlari)
+=> Assets > Prefab > Goat parent
 
 yapilacaklar listesi:
 
