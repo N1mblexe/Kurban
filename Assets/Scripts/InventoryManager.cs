@@ -53,7 +53,7 @@ public class InventoryManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.L))
         {
-            currBackpack.InsertItem(9);
+            currBackpack.InsertItem(10);
         }
     }
 

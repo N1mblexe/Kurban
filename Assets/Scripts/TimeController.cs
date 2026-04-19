@@ -38,7 +38,6 @@ public class TimeController : MonoBehaviour
 
     public void ModifyTimeWithEffects(float targetScale, float duration, float transition = 0.2f)
     {
-        CameraEffects.Instance.TriggerShake(.1f , 0.2f);
         timeSequence?.Kill();
         timeSequence = DOTween.Sequence().SetUpdate(true);
 

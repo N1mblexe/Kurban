@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Runtime.InteropServices;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -12,10 +7,10 @@ public class WeaponStats
     public float damage = 1f;
     public float attackRange = 4f;
     public float attackSpeed = .7f;
-
-    public float economyMultiplier = 1.0f;
-    public float minSliceVolume = 0.5f;
-    public int visualIndex = 0;
+    
+    public float economyMultiplier = 1.0f; 
+    public float minSliceVolume = 0.5f;    
+    public int visualIndex = 0; 
     public ParticleSystem slashEffect;
 }
 
@@ -32,9 +27,10 @@ public class KnifeController : MonoBehaviour
     [SerializeField] private GameObject[] knifeVisualModels;
     [SerializeField] private Transform knifeModel;
 
-    [Header("Animation")]
-    [SerializeField] private Animator animator;
-    [SerializeField] private int comboCounter = 0;
+    [Header("Animasyon Ayarları (Dikey Kesme)")]
+    [SerializeField] private Vector3 attackPositionOffset = new Vector3(1f, 0f, 0f); 
+    [SerializeField] private Vector3 attackRotationOffset = new Vector3(55f, 0f, 180f); 
+    [SerializeField] private float animationSpeed = 20f;
     [SerializeField] private ParticleSystem defaultSlash;
 
     private float nextAttackTime = 0f;
@@ -48,13 +44,11 @@ public class KnifeController : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
-        animator = knifeModel.gameObject.GetComponent<Animator>();
-
         //Default knife
-        if (currentStats.visualIndex == 0)
+        if(currentStats.visualIndex == 0)
         {
             currentStats.damage = 1;
-            currentStats.attackRange = 4;
+            currentStats.attackRange = 4; 
             currentStats.attackSpeed = 1.1f;
             currentStats.minSliceVolume = .1f;
             currentStats.slashEffect = defaultSlash;
@@ -73,17 +67,9 @@ public class KnifeController : MonoBehaviour
     private void Update()
     {
         HandleAttackInput();
-        //HandleProceduralAnimation();
+        HandleProceduralAnimation();
 
         EquipKnife(currentStats);
-    }
-
-    enum AnimState { idle, slash1}
-    AnimState state = AnimState.idle;
-    private void HandleAnimation()
-    {
-        animator.Play("Slash1");
-        
     }
 
     public void EquipKnife(WeaponStats newStats)
@@ -103,32 +89,50 @@ public class KnifeController : MonoBehaviour
     {
         if (inputManager.AttackInput && Time.time >= nextAttackTime)
         {
-            HandleAnimation();
-            Invoke("PerformAttack" , 0.1f);
+            PerformAttack();
             nextAttackTime = Time.time + (1f / currentStats.attackSpeed);
         }
-
+        
         inputManager.AttackInput = false;
     }
 
     private void PerformAttack()
+{
+    isAttacking = true;
+    attackTimer = 0f;
+
+    Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+    RaycastHit hit;
+
+    if (Physics.Raycast(ray, out hit, currentStats.attackRange))
     {
-        isAttacking = true;
-        attackTimer = 0f;
-
-        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, currentStats.attackRange))
+        if (hit.collider.TryGetComponent(out Health health))
         {
-            if (hit.collider.TryGetComponent(out Health health))
+            health.TakeDamage(currentStats.damage, hit.point, inputManager.LookInput);
+            Debug.Log($"Hasar Verildi! Kalan Can: {health.MaxHealth}");
+        }
+    }
+}
+    private void HandleProceduralAnimation()
+    {
+        if (knifeModel == null) return;
+
+        if (isAttacking)
+        {
+            attackTimer += Time.deltaTime * animationSpeed;
+            
+            knifeModel.localPosition = Vector3.Lerp(knifeModel.localPosition, defaultPosition + attackPositionOffset, Time.deltaTime * animationSpeed);
+            knifeModel.localRotation = Quaternion.Lerp(knifeModel.localRotation, defaultRotation * Quaternion.Euler(attackRotationOffset), Time.deltaTime * animationSpeed);
+
+            if (attackTimer > 1f)
             {
-                health.TakeDamage(currentStats.damage, hit.point, knifeModel.transform.eulerAngles);
-                CameraEffects.Instance.TriggerShake(.05f , .25f);
-                Debug.Log($"Hasar Verildi! Kalan Can: {health.MaxHealth}");
+                isAttacking = false;
             }
         }
-
+        else
+        {
+            knifeModel.localPosition = Vector3.Lerp(knifeModel.localPosition, defaultPosition, Time.deltaTime * (animationSpeed / 2.5f));
+            knifeModel.localRotation = Quaternion.Lerp(knifeModel.localRotation, defaultRotation, Time.deltaTime * (animationSpeed / 2.5f));
+        }
     }
-
 }
