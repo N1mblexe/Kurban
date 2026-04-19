@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal; // HDRP kullanıyorsanız uygun namespace'i ekleyin
+using UnityEngine.Rendering.Universal; 
 using DG.Tweening;
 
 public class TimeController : MonoBehaviour

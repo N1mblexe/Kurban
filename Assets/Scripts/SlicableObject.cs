@@ -97,7 +97,7 @@ public class SliceableObject : MonoBehaviour
             ParticleSystem temp = KnifeController.Instance.currentStats.slashEffect;
             if (isOriginalBody)
             {
-                TimeController.Instance.ModifyTimeWithEffects(0.05f, 0.4f, 0.1f);
+                TimeController.Instance.ModifyTimeWithEffects(0.05f, 0.2f, 0.1f);
 
                 if (temp != null)
                 {
@@ -163,7 +163,6 @@ public class SliceableObject : MonoBehaviour
         newSliceable.minVolumeToSlice = this.minVolumeToSlice;
         newSliceable.manager = this.manager;
 
-        if (piece.TryGetComponent(out AnimalWalk animalWalk)) animalWalk.enabled = false;
         if (piece.TryGetComponent(out Animator animator)) animator.enabled = false;
 
         if (!piece.TryGetComponent(out Interactable interactable))

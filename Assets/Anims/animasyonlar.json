@@ -1,0 +1,189 @@
+{
+  "animations": [
+    {
+      "name": "cusdeve",
+      "position": [
+        {
+          "timeStamp": 0.0,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 0.167,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 0.217,
+          "value": {
+            "x": -0.25,
+            "y": 0.25,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 0.383,
+          "value": {
+            "x": -0.25,
+            "y": 0.25,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 0.417,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 0.583,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 0.633,
+          "value": {
+            "x": 0.25,
+            "y": 0.25,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 0.8,
+          "value": {
+            "x": 0.25,
+            "y": 0.25,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 0.833,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 1.0,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        }
+      ],
+      "rotation": [
+        {
+          "timeStamp": 0.0,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 0.167,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 0.217,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 15.0
+          }
+        },
+        {
+          "timeStamp": 0.383,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 15.0
+          }
+        },
+        {
+          "timeStamp": 0.417,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 0.583,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 0.633,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -15.0
+          }
+        },
+        {
+          "timeStamp": 0.8,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -15.0
+          }
+        },
+        {
+          "timeStamp": 0.833,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 1.0,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        }
+      ],
+      "events": [
+        {
+          "timeStamp": 0.167,
+          "functionName": "Step"
+        },
+        {
+          "timeStamp": 0.417,
+          "functionName": "Step"
+        },
+        {
+          "timeStamp": 0.583,
+          "functionName": "Step"
+        },
+        {
+          "timeStamp": 0.833,
+          "functionName": "Step"
+        }
+      ]
+    }
+  ]
+}
