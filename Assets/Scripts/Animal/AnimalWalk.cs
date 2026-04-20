@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI; // Required for NavMesh
 
-// 1. THE STATE INTERFACE
 public interface IAnimalState
 {
     void EnterState();
@@ -9,14 +8,13 @@ public interface IAnimalState
     void ExitState();
 }
 
-// 2. THE MAIN CONTROLLER
 [RequireComponent(typeof(NavMeshAgent))]
 public class AnimalWalk : MonoBehaviour
 {
     [Header("Animation Info")]
-    public TransformAnimator customAnimator; // TransformAnimator referansı
-    public string idleAnimName = "idle";     // Bekleme animasyonunun JSON'daki adı
-    public string walkAnimName = "cusdeve";  // Yürüme animasyonunun JSON'daki adı
+    public TransformAnimator customAnimator; 
+    public string idleAnimName = "idle";     
+    public string walkAnimName = "cusdeve";  
 
     [Header("Pathfind Limits")]
     public Transform centerObj;
@@ -71,32 +69,23 @@ public class AnimalWalk : MonoBehaviour
         currentState.EnterState();
     }
 
-    // --- ANIMATION EVENT ---
-    // Make sure your Walk animation calls this method when the foot hits the ground
     public void Step()
     {
-        // Only step forward if we are actually in the walking state
         if (currentState == WalkState)
         {
-            // Calculate where the step will land
             Vector3 targetPosition = transform.position + transform.forward * stepDistance;
             
-            // Sample the NavMesh to ensure we don't step through a wall or off a cliff
             NavMeshHit hit;
             if (NavMesh.SamplePosition(targetPosition, out hit, stepDistance * 2f, NavMesh.AllAreas))
             {
                 transform.position = hit.position;
                 
-                // Tell the invisible NavMeshAgent that we physically moved, so it updates its path logic
                 agent.nextPosition = transform.position; 
             }
         }
     }
 }
 
-// 3. CONCRETE STATES
-
-// --- IDLE STATE ---
 public class AnimalIdleState : IAnimalState
 {
     private AnimalWalk animal;
@@ -132,11 +121,10 @@ public class AnimalIdleState : IAnimalState
 
     public void ExitState()
     {
-        // Clean up when leaving Idle
+        
     }
 }
 
-// --- WALK STATE ---
 public class AnimalWalkState : IAnimalState
 {
     private AnimalWalk animal;
@@ -149,20 +137,28 @@ public class AnimalWalkState : IAnimalState
     public void EnterState()
     {
         animal.agent.isStopped = false;
+        
         FindNewTargetPosition();
 
-        // TODO YERİNE BURA GELECEK:
         if (animal.customAnimator != null)
         {
-            // Yürüme animasyonunu döngülü (loop = true) oynat
             animal.customAnimator.Play(animal.walkAnimName, true);
         }
     }
 
     public void UpdateState()
     {
-        // Check if the agent has reached its destination
-        // (pathPending ensures we don't trigger this before the path is calculated)
+        Vector3 centerPos = animal.centerObj.position;
+        centerPos.y = animal.transform.position.y; 
+        
+        float distanceToCenter = Vector3.Distance(animal.transform.position, centerPos);
+
+        if (distanceToCenter > animal.upperDistance)
+        {
+            FindNewTargetPosition(); 
+            return;
+        }
+
         if (!animal.agent.pathPending && animal.agent.remainingDistance <= animal.agent.stoppingDistance)
         {
             animal.ChangeState(animal.IdleState);
@@ -171,28 +167,38 @@ public class AnimalWalkState : IAnimalState
 
     public void ExitState()
     {
-        // Clean up when leaving Walk
     }
 
     private void FindNewTargetPosition()
     {
-        // 1. Pick a random 2D direction and distance based on your upper/lower limits
-        Vector2 randomCircle = Random.insideUnitCircle.normalized;
+        float randomAngle = Random.Range(0f, 360f);
+        Vector3 randomDirection = Quaternion.Euler(0, randomAngle, 0) * Vector3.forward;
+
         float randomDistance = Random.Range(animal.lowerDistance, animal.upperDistance);
 
-        // 2. Convert it to a 3D point relative to the center object
-        Vector3 targetPoint = animal.centerObj.position + new Vector3(randomCircle.x, 0, randomCircle.y) * randomDistance;
+        Vector3 targetPoint = animal.centerObj.position + (randomDirection * randomDistance);
 
-        // 3. Ensure the point is actually walkable on the NavMesh
         NavMeshHit hit;
         if (NavMesh.SamplePosition(targetPoint, out hit, animal.upperDistance, NavMesh.AllAreas))
         {
             animal.agent.SetDestination(hit.position);
+            RotateTowardsTarget(hit.position); 
         }
         else
         {
-            // If the random point was off the map, just walk back to the center object as a fallback
             animal.agent.SetDestination(animal.centerObj.position);
+            RotateTowardsTarget(animal.centerObj.position);
+        }
+    }
+
+    private void RotateTowardsTarget(Vector3 targetPos)
+    {
+        Vector3 direction = targetPos - animal.transform.position;
+        direction.y = 0f;
+
+        if (direction.sqrMagnitude > 0.1f)
+        {
+            animal.transform.rotation = Quaternion.LookRotation(direction.normalized);
         }
     }
 }

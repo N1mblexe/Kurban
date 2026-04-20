@@ -49,7 +49,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -73,12 +73,12 @@ MonoBehaviour:
   idleAnimName: idle
   walkAnimName: cusdeve
   centerObj: {fileID: 0}
-  lowerDistance: 3
-  upperDistance: 15
-  stepDistance: 1
+  lowerDistance: 5
+  upperDistance: 7
+  stepDistance: 0.5
   rotationSpeed: 5
-  minIdleTime: 2
-  maxIdleTime: 5
+  minIdleTime: 5
+  maxIdleTime: 30
   agent: {fileID: 0}
 --- !u!114 &2998865279424654010
 MonoBehaviour:
@@ -148,6 +148,18 @@ MonoBehaviour:
         timeStamp: 0.583
       - functionName: Step
         timeStamp: 0.833
+    - name: "id\u015Fe"
+      position:
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 0
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 1
+      rotation:
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 0
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 1
+      events: []
   jsonFile: {fileID: 4900000, guid: ffb1f841f91987a9a8a2066e8f6089b3, type: 3}
   loadJsonNow: 0
   playAnim: 0

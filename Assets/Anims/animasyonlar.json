@@ -184,6 +184,44 @@
           "functionName": "Step"
         }
       ]
+    },
+    {
+      "name": "idle",
+      "position": [
+        {
+          "timeStamp": 0.0,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 1.0,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        }],
+        "rotation": [
+        {
+          "timeStamp": 0.0,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "timeStamp": 1.0,
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        }],
+        "events":[]
     }
   ]
 }

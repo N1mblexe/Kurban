@@ -166,24 +166,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba81d58f0b73fcadbab7c586e24a351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackpackShop
-  backpacks:
-  - backpackName: Sack
-    shopPrefab: {fileID: 1485264189}
-    price: 3000
-    newCapacity: 100
-    newMaxVolumePerItem: 5
-  - backpackName: Backpack
-    shopPrefab: {fileID: 1662479101}
-    price: 10000
-    newCapacity: 250
-    newMaxVolumePerItem: 10
+  backpacks: []
   currentBackpack: 0
   rotateSpeed: 45
   bobHeight: 0.2
   bobDuration: 1.5
   rotateToZAxis: 0
-  holder: {fileID: 1892421406}
-  price_text: {fileID: 1300301737}
+  holder: {fileID: 0}
+  price_text: {fileID: 0}
 --- !u!65 &2079847
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1000,9 +990,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c3d10e541ee774fa4c21f7e231e627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
-  prefab: {fileID: 8967714763868876073, guid: 85e8a72c9a3763ab29f1b2a23a3c5489, type: 3}
-  radius: 15
-  minAmount: 25
+  prefab: {fileID: 1541857744054102045, guid: 5ebb07a5e2326df92b11b2b6907f6893, type: 3}
+  radius: 22
+  minAmount: 10
 --- !u!65 &300253802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4055,37 +4045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241f237036384c8809362c106af57df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KnifeShop
-  weapons:
-  - stats:
-      damage: 0
-      attackRange: 0
-      attackSpeed: 0
-      economyMultiplier: 0
-      minSliceVolume: 0
-      visualIndex: 0
-      slashEffect: {fileID: 0}
-    shopPrefab: {fileID: 0}
-    price: 0
-  - stats:
-      damage: 0
-      attackRange: 0
-      attackSpeed: 0
-      economyMultiplier: 0
-      minSliceVolume: 0
-      visualIndex: 0
-      slashEffect: {fileID: 0}
-    shopPrefab: {fileID: 0}
-    price: 0
-  - stats:
-      damage: 0
-      attackRange: 0
-      attackSpeed: 0
-      economyMultiplier: 0
-      minSliceVolume: 0
-      visualIndex: 0
-      slashEffect: {fileID: 0}
-    shopPrefab: {fileID: 0}
-    price: 0
+  weapons: []
   currentWeapon: 0
   rotateSpeed: 45
   bobHeight: 0.2
@@ -5490,11 +5450,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e62e0186653dd4593a0d1f0028ef5c50, type: 3}
   m_PrefabInstance: {fileID: 1662479099}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1662479101 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e62e0186653dd4593a0d1f0028ef5c50, type: 3}
-  m_PrefabInstance: {fileID: 1662479099}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1663571631
 GameObject:
   m_ObjectHideFlags: 0
@@ -5542,44 +5497,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241f237036384c8809362c106af57df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KnifeShop
-  weapons:
-  - stats:
-      damage: 3
-      attackRange: 5
-      attackSpeed: 1.5
-      economyMultiplier: 1.2
-      minSliceVolume: 0.1
-      visualIndex: 1
-      slashEffect: {fileID: 0}
-    shopPrefab: {fileID: 1283243687}
-    price: 300
-  - stats:
-      damage: 7
-      attackRange: 5
-      attackSpeed: 2
-      economyMultiplier: 1.5
-      minSliceVolume: 0.1
-      visualIndex: 2
-      slashEffect: {fileID: 0}
-    shopPrefab: {fileID: 980483151}
-    price: 1700
-  - stats:
-      damage: 21
-      attackRange: 6
-      attackSpeed: 2.7
-      economyMultiplier: 2
-      minSliceVolume: 0.1
-      visualIndex: 3
-      slashEffect: {fileID: 0}
-    shopPrefab: {fileID: 678204809}
-    price: 7000
+  weapons: []
   currentWeapon: 0
   rotateSpeed: 45
   bobHeight: 0.2
   bobDuration: 1.5
   rotateToZAxis: 0
   holder: {fileID: 1917691159}
-  price_text: {fileID: 1340255639}
+  price_text: {fileID: 0}
 --- !u!65 &1663571634
 BoxCollider:
   m_ObjectHideFlags: 0

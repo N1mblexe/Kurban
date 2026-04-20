@@ -43,7 +43,10 @@ public class AnimalManager : MonoBehaviour
         temp.transform.position = randomPoint;
         temp.transform.eulerAngles = new Vector3(0 , Random.Range(0 , 360) , 0);
 
-        temp.GetComponent<AnimalWalk>().centerObj = this.transform;
+        AnimalWalk walkScript = temp.GetComponent<AnimalWalk>();
+        walkScript.centerObj = this.transform;
+        walkScript.upperDistance = radius; 
+        
         temp.GetComponentInChildren<SliceableObject>().manager = this;
         
         animals.Add(temp);
