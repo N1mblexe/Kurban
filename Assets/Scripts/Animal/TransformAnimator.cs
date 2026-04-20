@@ -48,9 +48,17 @@ public class TransformAnimator : MonoBehaviour
         [Tooltip("Event fonksiyonlarının aranacağı scriptlerin bulunduğu obje (Genelde Root/Ana Objedir). Boş bırakılırsa body objesinde arar.")]
         [SerializeField] private GameObject eventTarget;
 
+        [Tooltip("Aktifse, animasyon objenin başlangıçtaki local pozisyon ve rotasyonu üzerine eklenerek oynatılır.")]
+        [SerializeField] private bool applyRelative = true;
+
         public List<Animation> animations = new List<Animation>();
 
         private Sequence currentSequence;
+        
+        // Objenin ilk baştaki konumunu tutacak değişkenler
+        private Vector3 startLocalPosition;
+        private Vector3 startLocalRotation;
+        private bool isStartTransformCached = false;
 
         public void LoadFromJson(string jsonText)
         {
@@ -71,9 +79,21 @@ public class TransformAnimator : MonoBehaviour
             }
         }
 
+
         public void PlayAnimation(Animation animation, bool loop = false)
         {
             if (body == null) return;
+
+            if (applyRelative && !isStartTransformCached)
+            {
+                startLocalPosition = body.transform.localPosition;
+                startLocalRotation = body.transform.localEulerAngles;
+                isStartTransformCached = true;
+            }
+
+            // Relative ayarı açıksa base koordinatları kullan, kapalıysa sıfırdan başla
+            Vector3 basePos = applyRelative ? startLocalPosition : Vector3.zero;
+            Vector3 baseRot = applyRelative ? startLocalRotation : Vector3.zero;
 
             currentSequence?.Kill();
             currentSequence = DOTween.Sequence();
@@ -85,7 +105,10 @@ public class TransformAnimator : MonoBehaviour
                 float startTime = (i == 0) ? 0f : animation.position[i - 1].timeStamp;
                 float duration = frame.timeStamp - startTime;
 
-                Tween posTween = body.transform.DOLocalMove(frame.value, duration).SetEase(Ease.Linear);
+                // Frame değerine objenin başlangıç offsetini ekle
+                Vector3 targetPos = frame.value + basePos;
+
+                Tween posTween = body.transform.DOLocalMove(targetPos, duration).SetEase(Ease.Linear);
                 currentSequence.Insert(startTime, posTween);
             }
 
@@ -96,23 +119,23 @@ public class TransformAnimator : MonoBehaviour
                 float startTime = (i == 0) ? 0f : animation.rotation[i - 1].timeStamp;
                 float duration = frame.timeStamp - startTime;
 
-                Tween rotTween = body.transform.DOLocalRotate(frame.value, duration).SetEase(Ease.Linear);
+                // Frame değerine objenin başlangıç offsetini ekle
+                Vector3 targetRot = frame.value + baseRot;
+
+                Tween rotTween = body.transform.DOLocalRotate(targetRot, duration).SetEase(Ease.Linear);
                 currentSequence.Insert(startTime, rotTween);
             }
 
-            // --- 3. YENİ: EVENTLERİ EKLE ---
+            // --- 3. EVENTLERİ EKLE ---
             GameObject targetObject = eventTarget != null ? eventTarget : body;
 
             for (int i = 0; i < animation.events.Count; i++)
             {
                 var animEvent = animation.events[i];
-                string funcName = animEvent.functionName; // Kapanış (closure) için değişkeni kopyalıyoruz
+                string funcName = animEvent.functionName;
 
-                // DOTween'in timeline'ına belirlenen saniyede çalışacak bir fonksiyon ekliyoruz
                 currentSequence.InsertCallback(animEvent.timeStamp, () =>
                 {
-                    // Unity'nin kendi Event mantığı gibi, ismi verilen fonksiyonu çağır
-                    // DontRequireReceiver: Eğer fonksiyon bulunamazsa hata verme, sessizce geç
                     targetObject.SendMessage(funcName, SendMessageOptions.DontRequireReceiver);
                 });
             }
@@ -165,7 +188,6 @@ public class TransformAnimator : MonoBehaviour
         }
     }
 
-    // TransformAnimator.cs içine eklenecek:
     public void Play(string animationName, bool loop = false)
     {
         animator.PlayAnimation(animationName, loop);

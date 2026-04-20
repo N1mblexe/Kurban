@@ -1,6 +1,7 @@
 using UnityEngine;
-using UnityEngine.AI; // Required for NavMesh
+using UnityEngine.AI;
 
+// 1. THE STATE INTERFACE
 public interface IAnimalState
 {
     void EnterState();
@@ -8,22 +9,19 @@ public interface IAnimalState
     void ExitState();
 }
 
+// 2. THE MAIN CONTROLLER
 [RequireComponent(typeof(NavMeshAgent))]
 public class AnimalWalk : MonoBehaviour
 {
     [Header("Animation Info")]
-    public TransformAnimator customAnimator; 
-    public string idleAnimName = "idle";     
-    public string walkAnimName = "cusdeve";  
+    public TransformAnimator customAnimator;
+    public string idleAnimName = "idle";
+    public string walkAnimName = "cusdeve";
 
     [Header("Pathfind Limits")]
     public Transform centerObj;
-    public float lowerDistance = 3f;
-    public float upperDistance = 15f;
-
-    [Header("Movement & Animation")]
-    public float stepDistance = 1f;
-    public float rotationSpeed = 5f;
+    public float centerRadius;
+    public float wanderRadius = 5f;
 
     [Header("State Durations")]
     public float minIdleTime = 2f;
@@ -38,9 +36,9 @@ public class AnimalWalk : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        
-        agent.updatePosition = false;
-        agent.updateRotation = false;
+
+        agent.updatePosition = true;
+        agent.updateRotation = true;
     }
 
     private void Start()
@@ -69,23 +67,17 @@ public class AnimalWalk : MonoBehaviour
         currentState.EnterState();
     }
 
+    // Step fonksiyonunun içini boşalttık. 
+    // Unity'nin kendi Event'i arayıp hata vermemesi için metodun ismi kalabilir ama içi boş olmalı.
     public void Step()
     {
-        if (currentState == WalkState)
-        {
-            Vector3 targetPosition = transform.position + transform.forward * stepDistance;
-            
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(targetPosition, out hit, stepDistance * 2f, NavMesh.AllAreas))
-            {
-                transform.position = hit.position;
-                
-                agent.nextPosition = transform.position; 
-            }
-        }
+        // Şimdilik boş. NavMesh kendisi yürüyor.
     }
 }
 
+// 3. CONCRETE STATES
+
+// --- IDLE STATE ---
 public class AnimalIdleState : IAnimalState
 {
     private AnimalWalk animal;
@@ -101,11 +93,12 @@ public class AnimalIdleState : IAnimalState
     {
         idleTimer = 0f;
         targetIdleDuration = Random.Range(animal.minIdleTime, animal.maxIdleTime);
+
         animal.agent.isStopped = true;
 
         if (animal.customAnimator != null)
         {
-            animal.customAnimator.Play(animal.idleAnimName, true); 
+            animal.customAnimator.Play(animal.idleAnimName, true);
         }
     }
 
@@ -121,10 +114,10 @@ public class AnimalIdleState : IAnimalState
 
     public void ExitState()
     {
-        
     }
 }
 
+// --- WALK STATE ---
 public class AnimalWalkState : IAnimalState
 {
     private AnimalWalk animal;
@@ -137,9 +130,11 @@ public class AnimalWalkState : IAnimalState
     public void EnterState()
     {
         animal.agent.isStopped = false;
-        
+
+        // 1. Hedef belirle ve NavMesh'i oraya gönder
         FindNewTargetPosition();
 
+        // 2. Yürüme animasyonunu oynat
         if (animal.customAnimator != null)
         {
             animal.customAnimator.Play(animal.walkAnimName, true);
@@ -148,17 +143,6 @@ public class AnimalWalkState : IAnimalState
 
     public void UpdateState()
     {
-        Vector3 centerPos = animal.centerObj.position;
-        centerPos.y = animal.transform.position.y; 
-        
-        float distanceToCenter = Vector3.Distance(animal.transform.position, centerPos);
-
-        if (distanceToCenter > animal.upperDistance)
-        {
-            FindNewTargetPosition(); 
-            return;
-        }
-
         if (!animal.agent.pathPending && animal.agent.remainingDistance <= animal.agent.stoppingDistance)
         {
             animal.ChangeState(animal.IdleState);
@@ -168,37 +152,28 @@ public class AnimalWalkState : IAnimalState
     public void ExitState()
     {
     }
-
     private void FindNewTargetPosition()
     {
-        float randomAngle = Random.Range(0f, 360f);
-        Vector3 randomDirection = Quaternion.Euler(0, randomAngle, 0) * Vector3.forward;
 
-        float randomDistance = Random.Range(animal.lowerDistance, animal.upperDistance);
+        Vector2 randomOffset = Random.insideUnitCircle * animal.wanderRadius;
+        Vector3 potentialTarget = animal.transform.position + new Vector3(randomOffset.x, 0, randomOffset.y);
 
-        Vector3 targetPoint = animal.centerObj.position + (randomDirection * randomDistance);
+        float distanceToCenter = Vector3.Distance(potentialTarget, animal.centerObj.position);
 
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(targetPoint, out hit, animal.upperDistance, NavMesh.AllAreas))
+        if (distanceToCenter <= animal.centerRadius)
         {
-            animal.agent.SetDestination(hit.position);
-            RotateTowardsTarget(hit.position); 
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(potentialTarget, out hit, 2.0f, NavMesh.AllAreas))
+            {
+                animal.agent.SetDestination(hit.position);
+            }
         }
         else
         {
-            animal.agent.SetDestination(animal.centerObj.position);
-            RotateTowardsTarget(animal.centerObj.position);
-        }
-    }
+            Vector3 directionToCenter = (animal.centerObj.position - animal.transform.position).normalized;
+            Vector3 moveBackPoint = animal.transform.position + (directionToCenter * animal.wanderRadius);
 
-    private void RotateTowardsTarget(Vector3 targetPos)
-    {
-        Vector3 direction = targetPos - animal.transform.position;
-        direction.y = 0f;
-
-        if (direction.sqrMagnitude > 0.1f)
-        {
-            animal.transform.rotation = Quaternion.LookRotation(direction.normalized);
+            animal.agent.SetDestination(moveBackPoint);
         }
     }
 }

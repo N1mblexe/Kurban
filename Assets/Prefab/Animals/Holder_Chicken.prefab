@@ -1,0 +1,232 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1541857744054102045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 267827246148365482}
+  - component: {fileID: -8621163093597103751}
+  - component: {fileID: 8930088441016512653}
+  - component: {fileID: 2998865279424654010}
+  m_Layer: 0
+  m_Name: Holder_Chicken
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &267827246148365482
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541857744054102045}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3793978794444996277}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &-8621163093597103751
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541857744054102045}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.32
+  m_Speed: 3
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 240
+  m_StoppingDistance: 0.1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.83
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &8930088441016512653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541857744054102045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 356cebb2c294eebbdb8cfe79d72dce0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalWalk
+  customAnimator: {fileID: 2998865279424654010}
+  idleAnimName: idle
+  walkAnimName: cusdeve
+  centerObj: {fileID: 0}
+  centerRadius: 0
+  wanderRadius: 10
+  minIdleTime: 1
+  maxIdleTime: 20
+  agent: {fileID: 0}
+--- !u!114 &2998865279424654010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541857744054102045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe27bf4264686de0bc3b24c161ac06b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TransformAnimator
+  animator:
+    body: {fileID: 4606403071800665103}
+    eventTarget: {fileID: 1541857744054102045}
+    applyRelative: 1
+    animations:
+    - name: cusdeve
+      position:
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 0
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 0.167
+      - value: {x: -0.25, y: 0.25, z: 0}
+        timeStamp: 0.217
+      - value: {x: -0.25, y: 0.25, z: 0}
+        timeStamp: 0.383
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 0.417
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 0.583
+      - value: {x: 0.25, y: 0.25, z: 0}
+        timeStamp: 0.633
+      - value: {x: 0.25, y: 0.25, z: 0}
+        timeStamp: 0.8
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 0.833
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 1
+      rotation:
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 0
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 0.167
+      - value: {x: 0, y: 0, z: 15}
+        timeStamp: 0.217
+      - value: {x: 0, y: 0, z: 15}
+        timeStamp: 0.383
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 0.417
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 0.583
+      - value: {x: 0, y: 0, z: -15}
+        timeStamp: 0.633
+      - value: {x: 0, y: 0, z: -15}
+        timeStamp: 0.8
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 0.833
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 1
+      events:
+      - functionName: Step
+        timeStamp: 0.167
+      - functionName: Step
+        timeStamp: 0.417
+      - functionName: Step
+        timeStamp: 0.583
+      - functionName: Step
+        timeStamp: 0.833
+    - name: "id\u015Fe"
+      position:
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 0
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 1
+      rotation:
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 0
+      - value: {x: 0, y: 0, z: 0}
+        timeStamp: 1
+      events: []
+  jsonFile: {fileID: 4900000, guid: ffb1f841f91987a9a8a2066e8f6089b3, type: 3}
+  loadJsonNow: 0
+  playAnim: 0
+  animName: cusdeve
+--- !u!1001 &4872474923791829286
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 267827246148365482}
+    m_Modifications:
+    - target: {fileID: 8590732545549563795, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590732545549563795, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590732545549563795, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590732545549563795, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590732545549563795, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590732545549563795, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590732545549563795, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590732545549563795, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590732545549563795, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590732545549563795, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967714763868876073, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
+      propertyPath: m_Name
+      value: Chicken
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
+--- !u!4 &3793978794444996277 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8590732545549563795, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
+  m_PrefabInstance: {fileID: 4872474923791829286}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4606403071800665103 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8967714763868876073, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
+  m_PrefabInstance: {fileID: 4872474923791829286}
+  m_PrefabAsset: {fileID: 0}

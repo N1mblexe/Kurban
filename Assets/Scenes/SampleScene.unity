@@ -992,7 +992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: 5ebb07a5e2326df92b11b2b6907f6893, type: 3}
   radius: 22
-  minAmount: 10
+  minAmount: 25
 --- !u!65 &300253802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5793,7 +5793,7 @@ Transform:
   m_GameObject: {fileID: 1714719464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3881125, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5811,8 +5811,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c3d10e541ee774fa4c21f7e231e627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
-  prefab: {fileID: 8967714763868876073, guid: 831fa767d97b093bfac33187eb91ca09, type: 3}
-  radius: 15
+  prefab: {fileID: 1541857744054102045, guid: dd0da6a544a8da3d99cd29f60a30a8ff, type: 3}
+  radius: 22
   minAmount: 25
 --- !u!1 &1721245883
 GameObject:
@@ -6426,8 +6426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c3d10e541ee774fa4c21f7e231e627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
-  prefab: {fileID: 8967714763868876073, guid: e85c3aef8e0c18b9798933d0d15b3cc0, type: 3}
-  radius: 15
+  prefab: {fileID: 1541857744054102045, guid: 27b7aa9173d3f8b6498b98977a31eec5, type: 3}
+  radius: 22
   minAmount: 25
 --- !u!65 &1854481374
 BoxCollider:
@@ -6516,7 +6516,7 @@ Transform:
   m_GameObject: {fileID: 1854481372}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3989148, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7306,8 +7306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c3d10e541ee774fa4c21f7e231e627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
-  prefab: {fileID: 8967714763868876073, guid: 7ea1c5a3739c8190baf22ce0f9b43c42, type: 3}
-  radius: 15
+  prefab: {fileID: 1541857744054102045, guid: a0598efe615e5675497007a32dbfcd0c, type: 3}
+  radius: 22
   minAmount: 10
 --- !u!65 &2099827458
 BoxCollider:
@@ -7396,7 +7396,7 @@ Transform:
   m_GameObject: {fileID: 2099827456}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.557399, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

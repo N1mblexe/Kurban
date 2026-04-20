@@ -40,14 +40,12 @@ public class AnimalManager : MonoBehaviour
             transform.position.z + randomCirclePoint.y  
         );
         
-        temp.transform.position = randomPoint;
-        temp.transform.eulerAngles = new Vector3(0 , Random.Range(0 , 360) , 0);
-
         AnimalWalk walkScript = temp.GetComponent<AnimalWalk>();
+        walkScript.agent.Warp(randomPoint); // NavMesh ajanı güvenli bir şekilde ışınlar
         walkScript.centerObj = this.transform;
-        walkScript.upperDistance = radius; 
         
         temp.GetComponentInChildren<SliceableObject>().manager = this;
+        temp.GetComponent<AnimalWalk>().centerRadius = radius;
         
         animals.Add(temp);
     }

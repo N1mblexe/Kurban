@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using DG.Tweening;
 using Hanzzz.MeshSlicerFree;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SliceableObject : MonoBehaviour
 {
@@ -26,6 +26,11 @@ public class SliceableObject : MonoBehaviour
 
     private Health health;
 
+    //TODO if its original body and it gets cutted disable walking nav mesh and slice it after
+    //[SerializeField] private GameObject parent;
+    //private AnimalWalk fsm;
+    //private NavMeshAgent ai;
+
     private void Awake()
     {
         health = GetComponent<Health>();
@@ -34,6 +39,9 @@ public class SliceableObject : MonoBehaviour
             health.OnDeathWithCutInfo += HandleDeath;
         }
         CalculateVolume();
+
+        //fsm = parent.GetComponent<AnimalWalk>();
+        //ai = parent.GetComponent<NavMeshAgent>();
     }
 
     private void OnDestroy()
@@ -99,6 +107,8 @@ public class SliceableObject : MonoBehaviour
             {
                 TimeController.Instance.ModifyTimeWithEffects(0.05f, 0.2f, 0.1f);
 
+                transform.SetParent(null);
+
                 if (temp != null)
                 {
                     Quaternion particleRotation = Quaternion.LookRotation(Camera.main.transform.forward, sliceLine);
@@ -109,8 +119,6 @@ public class SliceableObject : MonoBehaviour
                     Destroy(slashEffect.gameObject, destroyTime);
                 }
             }
-
-
 
             Vector3 pushDirection = Vector3.Cross(Camera.main.transform.forward, sliceLine).normalized;
 
