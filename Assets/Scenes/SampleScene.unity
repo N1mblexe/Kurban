@@ -842,7 +842,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: 5ebb07a5e2326df92b11b2b6907f6893, type: 3}
   radius: 22
-  minAmount: 25
+  animals: []
+  maxLimit: 10
+  fastestSpawnDelay: 0.5
+  slowestSpawnDelay: 3
 --- !u!65 &300253802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4684,7 +4687,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: dd0da6a544a8da3d99cd29f60a30a8ff, type: 3}
   radius: 22
-  minAmount: 25
+  animals: []
+  maxLimit: 20
+  fastestSpawnDelay: 0.5
+  slowestSpawnDelay: 5
 --- !u!1 &1721245883
 GameObject:
   m_ObjectHideFlags: 0
@@ -5299,7 +5305,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: 27b7aa9173d3f8b6498b98977a31eec5, type: 3}
   radius: 22
-  minAmount: 25
+  animals: []
+  maxLimit: 10
+  fastestSpawnDelay: 0.5
+  slowestSpawnDelay: 3
 --- !u!65 &1854481374
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6112,7 +6121,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: a0598efe615e5675497007a32dbfcd0c, type: 3}
   radius: 22
-  minAmount: 10
+  animals: []
+  maxLimit: 10
+  fastestSpawnDelay: 0.5
+  slowestSpawnDelay: 3
 --- !u!65 &2099827458
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using DG.Tweening;
-using Hanzzz.MeshSlicerFree;
+using Hanzzz.MeshSlicerFree; 
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,19 +17,15 @@ public class SliceableObject : MonoBehaviour
 
     [Header("Hacim ve Envanter")]
     [SerializeField] private float minVolumeToSlice = 0.05f;
-
-    public AnimalManager manager;
-
     [SerializeField] private float liveTime = 10f;
 
+    [Header("Animasyon Ayarları")]
+    [SerializeField] private float spawnScaleDuration = 0.5f; // Büyüme süresi
+
     public float CurrentVolume { get; private set; }
-
     private Health health;
-
-    //TODO if its original body and it gets cutted disable walking nav mesh and slice it after
-    //[SerializeField] private GameObject parent;
-    //private AnimalWalk fsm;
-    //private NavMeshAgent ai;
+    
+    public AnimalManager manager; 
 
     private void Awake()
     {
@@ -38,10 +34,6 @@ public class SliceableObject : MonoBehaviour
         {
             health.OnDeathWithCutInfo += HandleDeath;
         }
-        CalculateVolume();
-
-        //fsm = parent.GetComponent<AnimalWalk>();
-        //ai = parent.GetComponent<NavMeshAgent>();
     }
 
     private void OnDestroy()
@@ -52,17 +44,23 @@ public class SliceableObject : MonoBehaviour
         }
     }
 
-    public void HandleDeath(Vector3 hitPoint, Vector3 mouseDirection)
-    {
-        Slice(hitPoint, mouseDirection);
-    }
-
     private void Start()
     {
+        // 1. ÖNCE HACMİ HESAPLA (Boyut henüz sıfırlanmadığı için doğru hesaplayacak)
         CalculateVolume();
 
-        if (!isOriginalBody)
+        if (isOriginalBody)
+        {
+            // 2. HACİM HESAPLANDIKTAN SONRA BOYUTU SIFIRLA VE BÜYÜT
+            Vector3 originalScale = transform.localScale;
+            transform.localScale = Vector3.zero;
+            transform.DOScale(originalScale, spawnScaleDuration).SetEase(Ease.OutBack);
+        }
+        else
+        {
+            // Orijinal beden değilse (kesilen parçaysa) belli bir süre sonra yok ol
             StartCoroutine(DieAfterTime(liveTime));
+        }
     }
 
     public void CalculateVolume()
@@ -78,33 +76,32 @@ public class SliceableObject : MonoBehaviour
         }
     }
 
+    public void HandleDeath(Vector3 hitPoint, Vector3 mouseDirection)
+    {
+        Slice(hitPoint, mouseDirection);
+    }
+
     public void Slice(Vector3 hitPoint, Vector3 mouseDirection)
     {
         if (CurrentVolume < KnifeController.Instance.currentStats.minSliceVolume) return;
 
         if (TryGetComponent(out Outline outline)) outline.enabled = false;
 
-        // --- DÜZELTME BAŞLANGICI ---
         if (isOriginalBody && transform.parent != null)
         {
             Transform parent = transform.parent;
-            // Eğer varsa AI ve Animasyonları burada durdurmalısın
             if (parent.TryGetComponent(out Animator anim)) anim.enabled = false;
             if (parent.TryGetComponent(out NavMeshAgent agent)) agent.enabled = false;
             
-            // Önce dünya pozisyonunu bir değişkene hapsediyoruz
             Vector3 worldPos = transform.position;
             Quaternion worldRot = transform.rotation;
 
-            // Parent'tan ayırırken 'worldPositionStays' parametresini true (varsayılan) bırakıyoruz
             transform.SetParent(null);
             Destroy(parent.gameObject);
 
-            // Pozisyonu garantiye alıyoruz
             transform.position = worldPos;
             transform.rotation = worldRot;
         }
-        // --- DÜZELTME BİTİŞİ ---
 
         Vector3 p1 = hitPoint;
         Vector3 p2 = hitPoint + Camera.main.transform.forward;
@@ -118,11 +115,9 @@ public class SliceableObject : MonoBehaviour
 
         if (result.Item1 != null && result.Item2 != null)
         {
-            // Efekt işlemleri...
             if (isOriginalBody)
             {
                 TimeController.Instance.ModifyTimeWithEffects(0.05f, 0.2f, 0.1f);
-                // Parçacık efekti kodların buraya gelecek...
             }
 
             Vector3 pushDirection = Vector3.Cross(Camera.main.transform.forward, sliceLine).normalized;
@@ -130,10 +125,10 @@ public class SliceableObject : MonoBehaviour
             SetupSlicedPiece(result.Item1, pushDirection);
             SetupSlicedPiece(result.Item2, -pushDirection);
 
-            if (manager != null) manager.RemoveAnimal(this.gameObject);
             Destroy(gameObject);
         }
     }
+
     private void SetupSlicedPiece(GameObject piece, Vector3 forceDirection)
     {
         Collider[] oldColliders = piece.GetComponents<Collider>();
@@ -151,7 +146,6 @@ public class SliceableObject : MonoBehaviour
             newMeshCollider.sharedMesh = meshFilter.sharedMesh;
         }
 
-
         if (!piece.TryGetComponent(out Rigidbody rb))
         {
             rb = piece.AddComponent<Rigidbody>();
@@ -161,19 +155,23 @@ public class SliceableObject : MonoBehaviour
         {
             newSliceable = piece.AddComponent<SliceableObject>();
         }
+        
+        if (!piece.TryGetComponent(out Health newHealth))
+        {
+            newHealth = piece.AddComponent<Health>();
+        }
 
-        newSliceable.GetComponent<SliceableObject>().isOriginalBody = false;
+        newSliceable.isOriginalBody = false;
 
         if (isOriginalBody)
-            newSliceable.GetComponent<Health>().InitializeHealth(health.MaxHealth / 2);
+            newHealth.InitializeHealth(health.MaxHealth / 2);
         else
-            newSliceable.GetComponent<Health>().InitializeHealth(health.MaxHealth);
+            newHealth.InitializeHealth(health.MaxHealth);
 
         newSliceable.crossSectionMaterial = this.crossSectionMaterial;
         newSliceable.separationForce = this.separationForce;
         newSliceable.horizontalTiltMultiplier = this.horizontalTiltMultiplier;
         newSliceable.minVolumeToSlice = this.minVolumeToSlice;
-        newSliceable.manager = this.manager;
 
         if (piece.TryGetComponent(out Animator animator)) animator.enabled = false;
 
@@ -191,12 +189,10 @@ public class SliceableObject : MonoBehaviour
         float waitDuration = time / 2f;
         float shrinkDuration = time / 2f;
 
-        DG.Tweening.Sequence dieSequence = DOTween.Sequence();
+        Sequence dieSequence = DOTween.Sequence();
 
         dieSequence.AppendInterval(waitDuration);
-
         dieSequence.Append(transform.DOScale(Vector3.zero, shrinkDuration).SetEase(Ease.InQuad));
-
         dieSequence.OnComplete(() =>
         {
             Destroy(this.gameObject);

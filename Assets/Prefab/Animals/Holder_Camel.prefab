@@ -44,7 +44,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1541857744054102045}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.6
+  m_Radius: 1.24
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -53,7 +53,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1.58
+  m_Height: 3.13
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -73,10 +73,8 @@ MonoBehaviour:
   idleAnimName: idle
   walkAnimName: cusdeve
   centerObj: {fileID: 0}
-  lowerDistance: 5
-  upperDistance: 7
-  stepDistance: 1
-  rotationSpeed: 5
+  centerRadius: 0
+  wanderRadius: 5
   minIdleTime: 2
   maxIdleTime: 5
   agent: {fileID: 0}
