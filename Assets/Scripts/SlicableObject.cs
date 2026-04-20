@@ -80,15 +80,31 @@ public class SliceableObject : MonoBehaviour
 
     public void Slice(Vector3 hitPoint, Vector3 mouseDirection)
     {
-        if (CurrentVolume < KnifeController.Instance.currentStats.minSliceVolume)
-        {
-            return;
-        }
+        if (CurrentVolume < KnifeController.Instance.currentStats.minSliceVolume) return;
 
-        if (TryGetComponent(out Outline outline))
+        if (TryGetComponent(out Outline outline)) outline.enabled = false;
+
+        // --- DÜZELTME BAŞLANGICI ---
+        if (isOriginalBody && transform.parent != null)
         {
-            outline.enabled = false;
+            Transform parent = transform.parent;
+            // Eğer varsa AI ve Animasyonları burada durdurmalısın
+            if (parent.TryGetComponent(out Animator anim)) anim.enabled = false;
+            if (parent.TryGetComponent(out NavMeshAgent agent)) agent.enabled = false;
+            
+            // Önce dünya pozisyonunu bir değişkene hapsediyoruz
+            Vector3 worldPos = transform.position;
+            Quaternion worldRot = transform.rotation;
+
+            // Parent'tan ayırırken 'worldPositionStays' parametresini true (varsayılan) bırakıyoruz
+            transform.SetParent(null);
+            Destroy(parent.gameObject);
+
+            // Pozisyonu garantiye alıyoruz
+            transform.position = worldPos;
+            transform.rotation = worldRot;
         }
+        // --- DÜZELTME BİTİŞİ ---
 
         Vector3 p1 = hitPoint;
         Vector3 p2 = hitPoint + Camera.main.transform.forward;
@@ -102,22 +118,11 @@ public class SliceableObject : MonoBehaviour
 
         if (result.Item1 != null && result.Item2 != null)
         {
-            ParticleSystem temp = KnifeController.Instance.currentStats.slashEffect;
+            // Efekt işlemleri...
             if (isOriginalBody)
             {
                 TimeController.Instance.ModifyTimeWithEffects(0.05f, 0.2f, 0.1f);
-
-                transform.SetParent(null);
-
-                if (temp != null)
-                {
-                    Quaternion particleRotation = Quaternion.LookRotation(Camera.main.transform.forward, sliceLine);
-
-                    ParticleSystem slashEffect = Instantiate(temp, hitPoint, particleRotation);
-
-                    float destroyTime = slashEffect.main.duration + slashEffect.main.startLifetime.constantMax;
-                    Destroy(slashEffect.gameObject, destroyTime);
-                }
+                // Parçacık efekti kodların buraya gelecek...
             }
 
             Vector3 pushDirection = Vector3.Cross(Camera.main.transform.forward, sliceLine).normalized;
@@ -129,7 +134,6 @@ public class SliceableObject : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     private void SetupSlicedPiece(GameObject piece, Vector3 forceDirection)
     {
         Collider[] oldColliders = piece.GetComponents<Collider>();
