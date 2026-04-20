@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1966351876045852388}
   - component: {fileID: -3078347501263753883}
   - component: {fileID: 2576299499403560335}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Holder_Goat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,6 +209,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 382224095092679573, guid: 6643f196ebbfabc61a2f49bad4aa9856, type: 3}
+    - target: {fileID: 7606279796366724521, guid: e85c3aef8e0c18b9798933d0d15b3cc0, type: 3}
+      propertyPath: maxHealth
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 8590732545549563795, guid: e85c3aef8e0c18b9798933d0d15b3cc0, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

@@ -4554,9 +4554,9 @@ MonoBehaviour:
   prefab: {fileID: 9024613344294053570, guid: 5d2f9e71bb583dd06835b33395b64417, type: 3}
   radius: 25
   animals: []
-  maxLimit: 2
-  fastestSpawnDelay: 0.5
-  slowestSpawnDelay: 3
+  maxLimit: 3
+  fastestSpawnDelay: 30
+  slowestSpawnDelay: 120
 --- !u!1001 &238811350
 PrefabInstance:
   m_ObjectHideFlags: 0
