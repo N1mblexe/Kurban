@@ -11,6 +11,7 @@ public class Teleporter : MonoBehaviour
             CharacterController controller = other.gameObject.GetComponent<CharacterController>();
             controller.enabled = false;
 
+            InventoryManager.Instance.FreeInventory();
             other.transform.position = teleportPoint.transform.position;
 
             controller.enabled = true;
