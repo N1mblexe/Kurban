@@ -7,6 +7,7 @@ public class AnimalManager : MonoBehaviour
     [SerializeField] private GameObject prefab;
     [SerializeField] private float radius;
     [SerializeField] private List<AnimalWalk> animals;
+    public List<AnimalWalk> getAnimals() { return animals; }
     
     [Header("Dynamic Spawn Settings")]
     [SerializeField] private int maxLimit = 10;      

@@ -9,7 +9,6 @@ public interface IAnimalState
     void ExitState();
 }
 
-// 2. THE MAIN CONTROLLER
 [RequireComponent(typeof(NavMeshAgent))]
 public class AnimalWalk : MonoBehaviour
 {
@@ -32,6 +31,7 @@ public class AnimalWalk : MonoBehaviour
     private IAnimalState currentState;
     public AnimalIdleState IdleState { get; private set; }
     public AnimalWalkState WalkState { get; private set; }
+    public AnimalGoToTargetState GoToTargetState { get; private set; }
 
     private void Awake()
     {
@@ -45,6 +45,8 @@ public class AnimalWalk : MonoBehaviour
     {
         IdleState = new AnimalIdleState(this);
         WalkState = new AnimalWalkState(this);
+        GoToTargetState = new AnimalGoToTargetState(this);
+
         ChangeState(IdleState);
     }
 
@@ -72,6 +74,12 @@ public class AnimalWalk : MonoBehaviour
     public void Step()
     {
         // Şimdilik boş. NavMesh kendisi yürüyor.
+    }
+
+    public void GoToLocation(Vector3 targetPosition)
+    {
+        GoToTargetState.SetTarget(targetPosition);
+        ChangeState(GoToTargetState);
     }
 }
 
@@ -175,5 +183,48 @@ public class AnimalWalkState : IAnimalState
 
             animal.agent.SetDestination(moveBackPoint);
         }
+    }
+}
+
+// --- GO TO TARGET STATE ---
+public class AnimalGoToTargetState : IAnimalState
+{
+    private AnimalWalk animal;
+    private Vector3 targetPosition;
+
+    public AnimalGoToTargetState(AnimalWalk animalController)
+    {
+        animal = animalController;
+    }
+
+    // Hedefi belirlemek için kullanacağız
+    public void SetTarget(Vector3 target)
+    {
+        targetPosition = target;
+    }
+
+    public void EnterState()
+    {
+        animal.agent.isStopped = false;
+        animal.agent.SetDestination(targetPosition);
+
+        if (animal.customAnimator != null)
+        {
+            animal.customAnimator.Play(animal.walkAnimName, true);
+        }
+    }
+
+    public void UpdateState()
+    {
+        // Hedefe ulaştıysa Idle (bekleme) durumuna geri dön
+        if (!animal.agent.pathPending && animal.agent.remainingDistance <= animal.agent.stoppingDistance)
+        {
+            animal.ChangeState(animal.IdleState);
+        }
+    }
+
+    public void ExitState()
+    {
+        // Gerekirse hedefe ulaştığında yapılacak temizlik işlemleri
     }
 }
