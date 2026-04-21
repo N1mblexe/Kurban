@@ -4,27 +4,44 @@ using UnityEngine;
 
 public class AnimalManager : MonoBehaviour
 {
+    public class Data
+    {
+        public AnimalFSM animalFSM;
+        public bool huntStatus;
+
+        public Data(AnimalFSM animalFSM)
+        {
+            this.animalFSM = animalFSM;
+            huntStatus = false;
+        }
+    }
     [SerializeField] private GameObject prefab;
     [SerializeField] private float radius;
-    [SerializeField] private List<AnimalWalk> animals;
-    public List<AnimalWalk> getAnimals() { return animals; }
+    [SerializeField] private List<Data> animals;
+    public List<Data> getAnimals() { return animals; }
     
     [Header("Dynamic Spawn Settings")]
     [SerializeField] private int maxLimit = 10;      
     [SerializeField] private float fastestSpawnDelay = 0.5f; 
     [SerializeField] private float slowestSpawnDelay = 3.0f; 
 
-    public AnimalWalk getRandomAnimal()
+    public AnimalFSM getNextHunt()
     {
         if (animals == null || animals.Count == 0)
             return null;
             
-        return animals[Random.Range(0 , animals.Count)];
+        foreach(var animal in animals)
+        {
+            if(!animal.huntStatus)
+                return animal.animalFSM;
+        }
+
+        return null;;
     }
 
     void Awake()
     {
-        animals = new List<AnimalWalk>();
+        animals = new List<Data>();
     }
 
     void Start()
@@ -58,7 +75,7 @@ public class AnimalManager : MonoBehaviour
     {
         for (int i = animals.Count - 1; i >= 0; i--)
         {
-            if (animals[i] == null)
+            if (animals[i].animalFSM == null)
             {
                 animals.RemoveAt(i);
             }
@@ -67,7 +84,7 @@ public class AnimalManager : MonoBehaviour
 
     void SpawnAnimal()
     {
-        AnimalWalk temp = Instantiate(prefab).GetComponent<AnimalWalk>();
+        AnimalFSM temp = Instantiate(prefab).GetComponent<AnimalFSM>();
         Vector2 randomCirclePoint = Random.insideUnitCircle * radius;
         
         Vector3 randomPoint = new Vector3(
@@ -85,7 +102,7 @@ public class AnimalManager : MonoBehaviour
         }
         
         temp.centerRadius = radius;
-        animals.Add(temp);
+        animals.Add(new Data(temp));
     }
 
     void OnDrawGizmos()

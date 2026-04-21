@@ -5,7 +5,7 @@ public class PlayerInventory : BehaviourInventory
 {
 
     public static PlayerInventory Instance { get; private set; }
-    public PlayerInventory(Backpack pack) : base(pack)
+    private void Awake()
     {
         if (Instance == null)  
             Instance = this;

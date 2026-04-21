@@ -90,10 +90,6 @@ public class BaseInventory
 public class BehaviourInventory : MonoBehaviour
 {
     [SerializeField] public Backpack currBackpack;
-    public BehaviourInventory(Backpack pack)
-    {
-        currBackpack = pack;
-    }
     public Backpack getCurrentBackpack()
     {
         return currBackpack;

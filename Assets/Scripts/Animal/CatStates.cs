@@ -1,0 +1,146 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.AI;
+
+namespace States.Cat
+{
+    public class WanderState : AnimalBaseState<CatFSM>
+    {
+        public WanderState(CatFSM machine) : base(machine) { }
+
+        public override void OnEnter()
+        {
+            AnimalFSM nextHunt = machine.animalManager.getNextHunt();
+
+            if (nextHunt == null)
+            {
+                machine.StartCoroutine(SearchHunt());
+                return;
+            }
+
+            machine.target = nextHunt.gameObject;
+            machine.ChangeState(machine.goToTargetState);
+        }
+
+        private IEnumerator SearchHunt()
+        {
+            yield return new WaitForSeconds(machine.wanderTime);
+            OnEnter();
+        }
+    }
+
+    public class GoToTargetState : AnimalBaseState<CatFSM>
+    {
+        public GoToTargetState(CatFSM machine) : base(machine) { }
+
+        public override void OnUpdate()
+        {
+            if (machine.target == null)
+            {
+                machine.ChangeState(machine.wanderState);
+                return;
+            }
+
+            machine.agent.SetDestination(machine.target.transform.position);
+
+            if (HasReachedTarget(machine.agent))
+            {
+                if (machine.target.CompareTag("Storage"))
+                {
+                    machine.ChangeState(machine.storeMeatState);
+                }
+                else if (machine.target.CompareTag("Animal"))
+                {
+                    machine.ChangeState(machine.huntState);
+                }
+                else { Debug.Log($"Nereye geldim ben aq... buraya geldin aq :{machine.target.name}"); }
+            }
+        }
+
+        bool HasReachedTarget(NavMeshAgent agent)
+        {
+            if (!agent.pathPending)
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                    if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                        return true;
+
+            return false;
+        }
+    }
+
+    public class HuntState : AnimalBaseState<CatFSM>
+    {
+        public HuntState(CatFSM machine) : base(machine) { }
+
+        public override void OnEnter()
+        {
+            machine.StartCoroutine(HuntProcess());
+        }
+        
+        private IEnumerator HuntProcess()
+        {
+            float weight = 0f;
+            if (machine.target != null)
+            {
+                SliceableObject slicable = machine.target.GetComponentInChildren<SliceableObject>();
+                if (slicable != null)
+                    weight = slicable.CurrentVolume * machine.meatMultipler;
+                else
+                    Debug.Log("Ya slicableobject bulamıyom");
+            }
+
+            Backpack backpack = machine.inventory.getCurrentBackpack();
+
+            if (machine.inventory != null && backpack != null)
+                backpack.InsertItem(weight);
+
+
+            if (machine.target != null)
+            {
+                machine.meshRenderer.enabled = false;
+                machine.huntEffect.transform.position = machine.target.transform.position;
+                machine.huntEffect.gameObject.SetActive(true);
+
+                Object.Destroy(machine.target);
+                machine.target = null;
+            }
+
+            yield return new WaitForSeconds(machine.huntTime);
+
+            machine.huntEffect.gameObject.SetActive(false);
+            machine.transform.position = machine.huntEffect.transform.position;
+            machine.mouthMeat.SetActive(true);
+            machine.meshRenderer.enabled = true;
+
+            machine.target = machine.storage.gameObject;
+            machine.ChangeState(machine.goToTargetState);
+        }
+    }
+
+    public class StoreMeatState : AnimalBaseState<CatFSM>
+    {
+        public StoreMeatState(CatFSM machine) : base(machine) { }
+
+        public override void OnEnter()
+        {
+            machine.StartCoroutine(StoreProcess());
+        }
+        private IEnumerator StoreProcess()
+        {
+            while (machine.inventory.getCurrentBackpack().weight > 0)
+            {
+                float meatToStore = machine.inventory.getCurrentBackpack().weight;
+                float successfullyStored = machine.storage.Fill(meatToStore);
+                machine.inventory.RemoveMeat(successfullyStored);
+
+                if (machine.inventory.getCurrentBackpack().weight <= 0)
+                    machine.mouthMeat.SetActive(false);
+
+                if (machine.inventory.getCurrentBackpack().weight > 0)
+                    yield return new WaitForSeconds(1f);
+            }
+
+            machine.ChangeState(machine.wanderState);
+        }
+    }
+}

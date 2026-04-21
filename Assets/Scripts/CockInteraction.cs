@@ -19,7 +19,7 @@ public class CockInteraction : MonoBehaviour , IInteractable
             return;
 
         StartCoroutine(StartCooldown());
-        List<AnimalWalk> animals = manager.getAnimals();
+        List<AnimalManager.Data> animals = manager.getAnimals();
 
         audioSource.PlayOneShot(cockSound);
 
@@ -28,9 +28,8 @@ public class CockInteraction : MonoBehaviour , IInteractable
             Vector2 randomCircle = Random.insideUnitCircle * gatherRadius;
             Vector3 targetPos = transform.position + new Vector3(randomCircle.x, 0, randomCircle.y);
 
-            animal.GoToLocation(targetPos);
+            animal.animalFSM.GoToLocation(targetPos);
         }
-
     }
 
     private IEnumerator StartCooldown()
