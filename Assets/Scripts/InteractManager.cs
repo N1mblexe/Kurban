@@ -1,14 +1,18 @@
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+
+/// <summary>
+/// Oyuncunun dünyadaki objelerle etkileşimini (Raycast ile) yönetir.
+/// </summary>
 public class InteractManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerCamera;
-
     [SerializeField] private TextMeshProUGUI infoTextUI;
 
     private InputManager inputManager;
     private GameObject currentHoveredObject;
+    private IInteractable currentInteractable; // Performans için arayüzü önbellekte tutuyoruz
     private Outline currentOutline;
 
     void Awake()
@@ -17,6 +21,7 @@ public class InteractManager : MonoBehaviour
         {
             playerCamera = Camera.main.gameObject;
         }
+        
         inputManager = GetComponent<InputManager>();
 
         if (infoTextUI != null)
@@ -27,51 +32,68 @@ public class InteractManager : MonoBehaviour
 
     void Update()
     {
-        GameObject target = GetHoveringInteractable();
+        // 1. Baktığımız objeyi bul
+        GameObject target = GetHoveringObject(out IInteractable interactable);
 
+        // 2. Eğer hedef değiştiyse veya boşa bakıyorsak eski efektleri temizle
         if (currentHoveredObject != null && currentHoveredObject != target)
         {
             ClearCurrentEffects();
         }
 
+        // 3. Yeni bir hedefe bakmaya başladıysak efektleri aktif et
         if (target != null && target != currentHoveredObject)
         {
             currentHoveredObject = target;
+            currentInteractable = interactable; // Arayüzü kaydet
             ActivateEffects(target);
         }
 
+        // 4. Hedefe bakmaya devam ediyorsak OnHover'ı çağır (GetComponent kullanmadan!)
+        if(currentHoveredObject != null && currentInteractable != null)
+        {
+            currentInteractable.OnHover();
+        }
+
+        // 5. Etkileşim tuşuna basıldıysa (örn: E tuşu)
         if (inputManager != null && inputManager.InteractInput)
         {
-            if (currentHoveredObject != null)
+            HandleInteraction();
+            inputManager.InteractInput = false;
+        }
+    }
+
+    private void HandleInteraction()
+    {
+        if (currentHoveredObject == null) return;
+
+        // Eğer kesilebilir (dilimlenebilir) bir objeyse envanter mantığını çalıştır
+        if (currentHoveredObject.TryGetComponent(out SliceableObject sliceable))
+        {
+            float volume = sliceable.CurrentVolume;
+
+            if (volume > PlayerInventory.Instance.GetMaxItemSize())
             {
-                if (currentHoveredObject.TryGetComponent(out SliceableObject sliceable))
+                ShakeHUDVolume();
+            }
+            else
+            {
+                bool isPickedUp = PlayerInventory.Instance.TryPickupItem(currentHoveredObject, volume);
+
+                if (isPickedUp)
                 {
-                    float volume = sliceable.CurrentVolume;
-
-                    if (volume > PlayerInventory.Instance.GetMaxItemSize())
-                    {
-                        ShakeHUDVolume();
-                    }
-                    else
-                    {
-                        bool isPickedUp = PlayerInventory.Instance.TryPickupItem(currentHoveredObject, volume);
-
-                        if (isPickedUp)
-                        {
-                            ClearCurrentEffects();
-                        }
-                        else
-                        {
-                            InventoryUI.Instance.ShakeWeightUI();
-                        }
-                    }
+                    ClearCurrentEffects();
                 }
                 else
                 {
-                    currentHoveredObject.GetComponent<IInteractable>().Interact();
+                    InventoryUI.Instance.ShakeWeightUI();
                 }
             }
-            inputManager.InteractInput = false;
+        }
+        else if (currentInteractable != null)
+        {
+            // Normal bir interactable obje ise (örn: Storage) Interact metodunu çağır
+            currentInteractable.Interact();
         }
     }
 
@@ -105,17 +127,21 @@ public class InteractManager : MonoBehaviour
         }
 
         currentHoveredObject = null;
+        currentInteractable = null; // Arayüzü sıfırla
         currentOutline = null;
     }
 
-    GameObject GetHoveringInteractable()
+    /// <summary>
+    /// Raycast göndererek bakılan objeyi ve IInteractable arayüzünü döndürür.
+    /// </summary>
+    private GameObject GetHoveringObject(out IInteractable interactable)
     {
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-        RaycastHit hit;
+        interactable = null;
 
-        if (Physics.Raycast(ray, out hit, 3))
+        if (Physics.Raycast(ray, out RaycastHit hit, 3))
         {
-            if (hit.collider.TryGetComponent(out IInteractable interactable))
+            if (hit.collider.TryGetComponent(out interactable))
             {
                 return hit.collider.gameObject;
             }
@@ -133,9 +159,7 @@ public class InteractManager : MonoBehaviour
             infoTextUI.rectTransform.DOShakePosition(0.4f, new Vector3(15f, 0, 0), 20);
 
             Sequence colorSeq = DOTween.Sequence();
-            
             colorSeq.Append(infoTextUI.DOColor(Color.red, 0.1f)); 
-            
             colorSeq.Append(infoTextUI.DOColor(Color.white, 0.3f));
         }
     }
