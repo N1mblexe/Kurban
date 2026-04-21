@@ -30,19 +30,8 @@ public class SliceableObject : MonoBehaviour
     private void Awake()
     {
         health = GetComponent<Health>();
-        if (health != null)
-        {
-            health.OnDeathWithCutInfo += HandleDeath;
-        }
     }
 
-    private void OnDestroy()
-    {
-        if (health != null)
-        {
-            health.OnDeathWithCutInfo -= HandleDeath;
-        }
-    }
 
     private void Start()
     {
