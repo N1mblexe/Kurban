@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
+using System.Collections;
 
 public class BackpackShop : MonoBehaviour, IInteractable
 {
@@ -76,8 +77,21 @@ public class BackpackShop : MonoBehaviour, IInteractable
             .SetLoops(-1, LoopType.Yoyo);
     }
 
+    static float cooldown = 3f;
+    static bool onCooldown = false;
+
+    IEnumerator CooldownThread()
+    {
+        yield return new WaitForSeconds(cooldown);
+        onCooldown = false;
+    }
+
+
     public void Interact()
     {
+        if(onCooldown) 
+            return;
+
         // Tüm çantalar satıldıysa
         if (currentBackpack >= backpacks.Count)
         {
@@ -89,6 +103,9 @@ public class BackpackShop : MonoBehaviour, IInteractable
 
         if (EconomyManager.Instance.TrySpendGold(data.price))
         {
+            onCooldown = true;
+            StartCoroutine(CooldownThread());
+            
             Backpack upgradedBackpack = new Backpack(data.newCapacity, 0, data.newMaxVolumePerItem);
             InventoryManager.Instance.UpdateBackpack(upgradedBackpack);
 

@@ -3,7 +3,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Shop : MonoBehaviour, IInteractable
+public class Shop : MonoBehaviour
 {
     private EconomyManager economyManager;
     private InventoryManager inventoryManager;
@@ -36,31 +36,6 @@ public class Shop : MonoBehaviour, IInteractable
         m_Stack = new Stack<GameObject>();
         m_MoneyStack = new Stack<GameObject>();
     }
-
-    public void Interact()
-    {
-        float totalWeight = InventoryManager.Instance.FreeInventory();
-
-        if (totalWeight <= 0)
-        {
-            Debug.Log("Satacak bir şeyin yok!");
-            return;
-        }
-
-        float basePrice = EconomyManager.Instance.currentIslandBasePrice;
-        float knifeMult = EconomyManager.Instance.currentKnifeMultiplier;
-        
-        float earnedGold = totalWeight * basePrice * knifeMult;
-
-        Backpack currBackpack = InventoryManager.Instance.getCurrentBackpack();
-
-        EconomyManager.Instance.AddGold(earnedGold);
-        InventoryUI.Instance.UpdateWeightDisplay(currBackpack.weight, currBackpack.capacity);
-
-        Debug.Log($"{totalWeight} kg et satıldı. Kazanç: {earnedGold} Altın!");
-        PlaySaleEffect(this.gameObject);
-    }
-
     void PlaySaleEffect(GameObject obj)
     {
         obj.transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f);

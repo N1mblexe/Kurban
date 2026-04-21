@@ -110,6 +110,7 @@ public class InventoryManager : MonoBehaviour
     {
         float weight = currBackpack.weight;
         currBackpack.weight = 0;
+        InventoryUI.Instance.UpdateWeightDisplay(currBackpack.weight , currBackpack.capacity);
         return weight;
     }
 

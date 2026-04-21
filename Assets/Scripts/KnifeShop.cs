@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
+using System.Collections;
 
 public class KnifeShop : MonoBehaviour, IInteractable
 {
@@ -73,8 +74,20 @@ public class KnifeShop : MonoBehaviour, IInteractable
             .SetLoops(-1, LoopType.Yoyo);
     }
 
+    static float cooldown = 3f;
+    static bool onCooldown = false;
+
+    IEnumerator CooldownThread()
+    {
+        yield return new WaitForSeconds(cooldown);
+        onCooldown = false;
+    }
+
     public void Interact()
     {
+        if(onCooldown) 
+            return;
+
         if (currentWeapon >= weapons.Count)
         {
             Debug.Log("Dükkandaki tüm bıçaklar tükendi!");
@@ -83,6 +96,9 @@ public class KnifeShop : MonoBehaviour, IInteractable
 
         if (EconomyManager.Instance.TrySpendGold(weapons[currentWeapon].price))
         {
+            onCooldown = true;
+            StartCoroutine(CooldownThread());
+            
             KnifeController.Instance.EquipKnife(weapons[currentWeapon].stats);
             EconomyManager.Instance.currentKnifeMultiplier = weapons[currentWeapon].stats.economyMultiplier;
 

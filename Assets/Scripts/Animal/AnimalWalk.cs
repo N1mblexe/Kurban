@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-// 1. THE STATE INTERFACE
 public interface IAnimalState
 {
     void EnterState();
@@ -28,10 +27,10 @@ public class AnimalWalk : MonoBehaviour
 
     [HideInInspector] public NavMeshAgent agent;
 
-    private IAnimalState currentState;
-    public AnimalIdleState IdleState { get; private set; }
-    public AnimalWalkState WalkState { get; private set; }
-    public AnimalGoToTargetState GoToTargetState { get; private set; }
+    protected IAnimalState currentState;
+    public AnimalIdleState IdleState { get; protected set; }
+    public AnimalWalkState WalkState { get; protected set; }
+    public AnimalGoToTargetState GoToTargetState { get; protected set; }
 
     private void Awake()
     {
@@ -69,13 +68,6 @@ public class AnimalWalk : MonoBehaviour
         currentState.EnterState();
     }
 
-    // Step fonksiyonunun içini boşalttık. 
-    // Unity'nin kendi Event'i arayıp hata vermemesi için metodun ismi kalabilir ama içi boş olmalı.
-    public void Step()
-    {
-        // Şimdilik boş. NavMesh kendisi yürüyor.
-    }
-
     public void GoToLocation(Vector3 targetPosition)
     {
         GoToTargetState.SetTarget(targetPosition);
@@ -83,9 +75,6 @@ public class AnimalWalk : MonoBehaviour
     }
 }
 
-// 3. CONCRETE STATES
-
-// --- IDLE STATE ---
 public class AnimalIdleState : IAnimalState
 {
     private AnimalWalk animal;
