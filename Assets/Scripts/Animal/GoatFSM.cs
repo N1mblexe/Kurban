@@ -14,7 +14,7 @@ public class GoatFSM : AnimalWalk
     [SerializeField] private float knockPower = 10f;
     void Awake()
     {
-        player = PlayerInventory.Instance.gameObject.transform;
+        player = InventoryUI.Instance.gameObject.transform;
         agent = GetComponent<NavMeshAgent>();
 
         agent.updatePosition = agent.updateRotation = true;
@@ -29,7 +29,7 @@ public class GoatFSM : AnimalWalk
         IdleState = new AnimalIdleState(this);
         WalkState = new AnimalWalkState(this);
         GoToTargetState = new AnimalGoToTargetState(this);
-        chargeState = new GoatChargeState(this, PlayerInventory.Instance.gameObject);
+        chargeState = new GoatChargeState(this, InventoryUI.Instance.gameObject);
 
         ChangeState(IdleState);
     }

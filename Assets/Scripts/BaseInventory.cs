@@ -39,9 +39,61 @@ public class Backpack
     }
 }
 
-public class BaseInventory : MonoBehaviour
+[System.Serializable]
+public class BaseInventory
 {
-    [SerializeField] protected Backpack currBackpack;
+    [SerializeField] public Backpack currBackpack;
+    public BaseInventory(Backpack pack)
+    {
+        currBackpack = pack;
+    }
+
+    static public BaseInventory CatInventory()
+    {
+        return new BaseInventory(new Backpack(20 , 0 , 100f));
+    }
+
+    public Backpack getCurrentBackpack()
+    {
+        return currBackpack;
+    }
+
+    public float GetMaxItemSize() { return currBackpack.capacity; }
+
+    public void UpdateBackpack(Backpack newBackpack)
+    {
+        float currWeight = currBackpack.weight;
+        currBackpack = newBackpack;
+        currBackpack.weight = currWeight;
+    }
+
+    public float FreeInventory()
+    {
+        float weight = currBackpack.weight;
+        currBackpack.weight = 0;
+        return weight;
+    }
+
+    public bool RemoveMeat(float amount)
+    {
+        if (amount <= currBackpack.weight)
+        {
+            currBackpack.weight -= amount;
+            return true;
+        }
+
+        return false;
+    }
+}
+
+
+public class BehaviourInventory : MonoBehaviour
+{
+    [SerializeField] public Backpack currBackpack;
+    public BehaviourInventory(Backpack pack)
+    {
+        currBackpack = pack;
+    }
     public Backpack getCurrentBackpack()
     {
         return currBackpack;

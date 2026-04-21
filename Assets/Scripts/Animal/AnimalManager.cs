@@ -14,6 +14,14 @@ public class AnimalManager : MonoBehaviour
     [SerializeField] private float fastestSpawnDelay = 0.5f; 
     [SerializeField] private float slowestSpawnDelay = 3.0f; 
 
+    public AnimalWalk getRandomAnimal()
+    {
+        if (animals == null || animals.Count == 0)
+            return null;
+            
+        return animals[Random.Range(0 , animals.Count)];
+    }
+
     void Awake()
     {
         animals = new List<AnimalWalk>();

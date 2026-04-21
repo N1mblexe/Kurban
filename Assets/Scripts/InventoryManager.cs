@@ -1,16 +1,16 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class PlayerInventory : BaseInventory
+public class PlayerInventory : BehaviourInventory
 {
+
     public static PlayerInventory Instance { get; private set; }
-
-
-    private void Awake()
+    public PlayerInventory(Backpack pack) : base(pack)
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)  
+            Instance = this;
     }
+
 
     public new void UpdateBackpack(Backpack newBackpack)
     {
@@ -49,7 +49,7 @@ public class PlayerInventory : BaseInventory
 
             itemObject.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
             {
-                Destroy(itemObject);
+                Object.Destroy(itemObject);
             });
 
             return true;
