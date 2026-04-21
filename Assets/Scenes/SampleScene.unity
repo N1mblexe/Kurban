@@ -4553,7 +4553,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 9024613344294053570, guid: 5d2f9e71bb583dd06835b33395b64417, type: 3}
   radius: 25
-  animals: []
   maxLimit: 3
   fastestSpawnDelay: 30
   slowestSpawnDelay: 120
@@ -5506,7 +5505,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: 5ebb07a5e2326df92b11b2b6907f6893, type: 3}
   radius: 22
-  animals: []
   maxLimit: 10
   fastestSpawnDelay: 0.5
   slowestSpawnDelay: 3
@@ -8623,7 +8621,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: dd0da6a544a8da3d99cd29f60a30a8ff, type: 3}
   radius: 22
-  animals: []
   maxLimit: 20
   fastestSpawnDelay: 0.5
   slowestSpawnDelay: 5
@@ -20163,7 +20160,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: 27b7aa9173d3f8b6498b98977a31eec5, type: 3}
   radius: 22
-  animals: []
   maxLimit: 10
   fastestSpawnDelay: 0.5
   slowestSpawnDelay: 3
@@ -21944,23 +21940,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389b2fb625abc9812b928cddb79a75af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CatAI
-  customAnimator: {fileID: 0}
-  idleAnimName: idle
-  walkAnimName: cusdeve
-  centerObj: {fileID: 0}
-  centerRadius: 0
-  wanderRadius: 5
-  minIdleTime: 2
-  maxIdleTime: 5
-  agent: {fileID: 0}
   target: {fileID: 0}
-  storage: {fileID: 574919488}
-  huntEffect: {fileID: 0}
-  inventory: {fileID: 0}
-  meshRenderer: {fileID: 0}
-  huntTime: 2
   mouthMeat: {fileID: 1691269594}
+  storage: {fileID: 574919488}
   animalManager: {fileID: 1714719469}
+  huntEffect: {fileID: 0}
+  inventory:
+    currBackpack:
+      capacity: 0
+      weight: 0
+      maxVolumePerItem: 0
+  meshRenderer: {fileID: 0}
+  meatMultipler: 5
+  huntTime: 2
+  wanderTime: 3
+  agent: {fileID: 0}
 --- !u!195 &1079488197
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -33828,7 +33822,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: dd0da6a544a8da3d99cd29f60a30a8ff, type: 3}
   radius: 22
-  animals: []
   maxLimit: 40
   fastestSpawnDelay: 0.5
   slowestSpawnDelay: 5
@@ -36397,7 +36390,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: 27b7aa9173d3f8b6498b98977a31eec5, type: 3}
   radius: 22
-  animals: []
   maxLimit: 30
   fastestSpawnDelay: 0.5
   slowestSpawnDelay: 3
@@ -41395,7 +41387,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: a0598efe615e5675497007a32dbfcd0c, type: 3}
   radius: 22
-  animals: []
   maxLimit: 10
   fastestSpawnDelay: 0.5
   slowestSpawnDelay: 3

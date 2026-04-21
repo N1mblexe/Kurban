@@ -2,8 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-
-public class GoatFSM : AnimalWalk
+public class GoatFSM : AnimalFSM
 {
     private Transform player;
     private GoatChargeState chargeState;
@@ -37,7 +36,7 @@ public class GoatFSM : AnimalWalk
     void Update()
     {
         if (currentState != null)
-            currentState.UpdateState();
+            currentState.OnUpdate();
 
         if (canCharge && Vector3.Distance(transform.position, player.position) < chargeDistance)
         {
@@ -51,15 +50,15 @@ public class GoatFSM : AnimalWalk
     [SerializeField] private float defaultSpeed;
     [SerializeField] private float defaultAcceleration;
 
-    public void ChangeState(IAnimalState newState)
+    public new void ChangeState(IState newState)
     {
         if (currentState != null)
         {
-            currentState.ExitState();
+            currentState.OnExit();
         }
 
         currentState = newState;
-        currentState.EnterState();
+        currentState.OnEnter();
 
         if(currentState == GoToTargetState || currentState == chargeState)
         {
@@ -97,50 +96,3 @@ public class GoatFSM : AnimalWalk
     }
 }
 
-public class GoatChargeState : IAnimalState
-{
-    private AnimalWalk animal;
-    private float chargeDelay = 2;
-    private GameObject player;
-    private float overChargeDistance = 2;
-
-    public GoatChargeState(AnimalWalk controller, GameObject player)
-    {
-        this.animal = controller;
-        this.player = player;
-        this.chargeDelay = 2f;
-
-    }
-
-
-    public void EnterState()
-    {
-
-        if (animal.customAnimator != null)
-        {
-            animal.customAnimator.Play(animal.idleAnimName, true);
-        }
-
-        animal.StartCoroutine(StartCharging());
-    }
-
-    private IEnumerator StartCharging()
-    {
-        yield return new WaitForSeconds(chargeDelay);
-
-        Vector3 chargePosition = player.transform.position + (player.transform.position - animal.transform.position).normalized * overChargeDistance;
-
-        animal.GoToLocation(chargePosition);
-    }
-
-    public void UpdateState()
-    {
-        Vector3 chargePosition = new Vector3(player.transform.position.x, animal.transform.position.y, player.transform.position.z);
-        animal.gameObject.transform.LookAt(chargePosition);
-
-    }
-
-    public void ExitState()
-    {
-    }
-}
