@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class Shop : MonoBehaviour
 {
     private EconomyManager economyManager;
-    private InventoryManager inventoryManager;
+    private PlayerInventory inventoryManager;
 
     [SerializeField] private float capacity = 1000f;
     [SerializeField] private float weight = 0f;
@@ -51,7 +51,7 @@ public class Shop : MonoBehaviour
                 economyManager = other.gameObject.GetComponent<EconomyManager>();
             
             if(inventoryManager == null)
-                inventoryManager = other.gameObject.GetComponent<InventoryManager>();
+                inventoryManager = other.gameObject.GetComponent<PlayerInventory>();
 
             StartStoringMeat();
             StartCollectingMoney(); 

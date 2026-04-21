@@ -107,11 +107,11 @@ public class BackpackShop : MonoBehaviour, IInteractable
             StartCoroutine(CooldownThread());
             
             Backpack upgradedBackpack = new Backpack(data.newCapacity, 0, data.newMaxVolumePerItem);
-            InventoryManager.Instance.UpdateBackpack(upgradedBackpack);
+            PlayerInventory.Instance.UpdateBackpack(upgradedBackpack);
 
             Debug.Log($"{data.backpackName} satın alındı! Yeni Kapasite: {data.newCapacity} kg");
 
-            float currentWeight = InventoryManager.Instance.FreeInventory(); 
+            float currentWeight = PlayerInventory.Instance.FreeInventory(); 
 
             AnimationSequence();
         }

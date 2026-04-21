@@ -150,5 +150,6 @@ MonoBehaviour:
   horizontalTiltMultiplier: 0.3
   isOriginalBody: 1
   minVolumeToSlice: 5
-  manager: {fileID: 0}
   liveTime: 10
+  spawnScaleDuration: 0.5
+  manager: {fileID: 0}

@@ -178,8 +178,8 @@ public class AnimalWalkState : IAnimalState
 // --- GO TO TARGET STATE ---
 public class AnimalGoToTargetState : IAnimalState
 {
-    private AnimalWalk animal;
-    private Vector3 targetPosition;
+    protected AnimalWalk animal;
+    protected Vector3 targetPosition;
 
     public AnimalGoToTargetState(AnimalWalk animalController)
     {
@@ -187,6 +187,11 @@ public class AnimalGoToTargetState : IAnimalState
     }
 
     // Hedefi belirlemek için kullanacağız
+    public void SetTarget(Transform target)
+    {
+        targetPosition = target.position;
+    }
+
     public void SetTarget(Vector3 target)
     {
         targetPosition = target;
