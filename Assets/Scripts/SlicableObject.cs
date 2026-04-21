@@ -46,19 +46,16 @@ public class SliceableObject : MonoBehaviour
 
     private void Start()
     {
-        // 1. ÖNCE HACMİ HESAPLA (Boyut henüz sıfırlanmadığı için doğru hesaplayacak)
         CalculateVolume();
 
         if (isOriginalBody)
         {
-            // 2. HACİM HESAPLANDIKTAN SONRA BOYUTU SIFIRLA VE BÜYÜT
             Vector3 originalScale = transform.localScale;
             transform.localScale = Vector3.zero;
             transform.DOScale(originalScale, spawnScaleDuration).SetEase(Ease.OutBack);
         }
         else
         {
-            // Orijinal beden değilse (kesilen parçaysa) belli bir süre sonra yok ol
             StartCoroutine(DieAfterTime(liveTime));
         }
     }

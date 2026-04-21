@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2998865279424654010}
   m_Layer: 0
   m_Name: Holder_Sheep
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,6 +214,10 @@ PrefabInstance:
     - target: {fileID: 8967714763868876073, guid: e85c3aef8e0c18b9798933d0d15b3cc0, type: 3}
       propertyPath: m_Name
       value: Sheep
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967714763868876073, guid: e85c3aef8e0c18b9798933d0d15b3cc0, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

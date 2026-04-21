@@ -48,13 +48,13 @@ public class InteractManager : MonoBehaviour
                 {
                     float volume = sliceable.CurrentVolume;
 
-                    if (volume > InventoryManager.Instance.GetMaxItemSize())
+                    if (volume > PlayerInventory.Instance.GetMaxItemSize())
                     {
                         ShakeHUDVolume();
                     }
                     else
                     {
-                        bool isPickedUp = InventoryManager.Instance.TryPickupItem(currentHoveredObject, volume);
+                        bool isPickedUp = PlayerInventory.Instance.TryPickupItem(currentHoveredObject, volume);
 
                         if (isPickedUp)
                         {

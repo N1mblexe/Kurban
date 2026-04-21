@@ -70,7 +70,11 @@ PrefabInstance:
       objectReference: {fileID: -3262967287132389491, guid: 5699d801eb61033839c4c22fce4ff7e1, type: 3}
     - target: {fileID: 919132149155446097, guid: e62e0186653dd4593a0d1f0028ef5c50, type: 3}
       propertyPath: m_Name
-      value: DEVE
+      value: Camel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e62e0186653dd4593a0d1f0028ef5c50, type: 3}
+      propertyPath: m_TagString
+      value: Animal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -142,5 +146,6 @@ MonoBehaviour:
   horizontalTiltMultiplier: 0.3
   isOriginalBody: 1
   minVolumeToSlice: 5
-  manager: {fileID: 0}
   liveTime: 10
+  spawnScaleDuration: 0.5
+  manager: {fileID: 0}
