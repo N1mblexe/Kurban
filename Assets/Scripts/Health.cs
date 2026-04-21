@@ -6,8 +6,6 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
     private float currentHealth;
-
-    public event Action<Vector3, Vector3> OnDeathWithCutInfo;
     private bool isDead = false;
 
     private Renderer rend;

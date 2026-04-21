@@ -34,14 +34,9 @@ public class KnifeController : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
-    [SerializeField] private int comboCounter = 0;
     [SerializeField] private ParticleSystem defaultSlash;
 
     private float nextAttackTime = 0f;
-    private Vector3 defaultPosition;
-    private Quaternion defaultRotation;
-    private bool isAttacking = false;
-    private float attackTimer = 0f;
 
     private void Awake()
     {
@@ -61,15 +56,6 @@ public class KnifeController : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        if (knifeModel != null)
-        {
-            defaultPosition = knifeModel.localPosition;
-            defaultRotation = knifeModel.localRotation;
-        }
-    }
-
     private void Update()
     {
         HandleAttackInput();
@@ -77,9 +63,6 @@ public class KnifeController : MonoBehaviour
 
         EquipKnife(currentStats);
     }
-
-    enum AnimState { idle, slash1}
-    AnimState state = AnimState.idle;
     private void HandleAnimation()
     {
         animator.Play("Slash1");
@@ -113,8 +96,6 @@ public class KnifeController : MonoBehaviour
 
     private void PerformAttack()
     {
-        isAttacking = true;
-        attackTimer = 0f;
 
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         RaycastHit hit;

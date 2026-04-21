@@ -16,7 +16,7 @@ public class GoatChargeState : IState
 
     }
 
-    public void EnterState()
+    public void OnEnter()
     {
 
         if (animal.customAnimator != null)
@@ -36,7 +36,7 @@ public class GoatChargeState : IState
         animal.GoToLocation(chargePosition);
     }
 
-    public void UpdateState()
+    public void OnUpdate()
     {
         Vector3 chargePosition = new Vector3(player.transform.position.x, animal.transform.position.y, player.transform.position.z);
         animal.gameObject.transform.LookAt(chargePosition);

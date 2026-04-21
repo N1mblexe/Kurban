@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,6 +15,7 @@ namespace States.Cat
 
             if (nextHunt == null)
             {
+                machine.animator.Play(machine.idleAnimName);
                 machine.StartCoroutine(SearchHunt());
                 return;
             }
@@ -32,6 +34,11 @@ namespace States.Cat
     public class GoToTargetState : AnimalBaseState<CatFSM>
     {
         public GoToTargetState(CatFSM machine) : base(machine) { }
+
+        public override void OnEnter()
+        {
+            machine.animator.Play(machine.walkAnimName, true);
+        }
 
         public override void OnUpdate()
         {
@@ -75,8 +82,10 @@ namespace States.Cat
         public override void OnEnter()
         {
             machine.StartCoroutine(HuntProcess());
+            machine.animator.Play(machine.idleAnimName);
+
         }
-        
+
         private IEnumerator HuntProcess()
         {
             float weight = 0f;
@@ -94,20 +103,35 @@ namespace States.Cat
             if (machine.inventory != null && backpack != null)
                 backpack.InsertItem(weight);
 
+            GameObject effectObj = machine.huntEffect.gameObject;
+            Vector3 defaultScale = effectObj.transform.localScale;
 
             if (machine.target != null)
             {
-                machine.meshRenderer.enabled = false;
-                machine.huntEffect.transform.position = machine.target.transform.position;
-                machine.huntEffect.gameObject.SetActive(true);
+                NavMeshAgent agent = machine.target.GetComponent<NavMeshAgent>();
+                agent.ResetPath();
+                agent.enabled = false;
 
+                machine.transform.DOJump(machine.target.transform.position, 3, 1, .5f);
+
+                effectObj.transform.position = machine.target.transform.position;
+                effectObj.SetActive(true);
+                effectObj.transform.localScale = Vector3.zero;
+                effectObj.transform.DOScale(defaultScale, .6f).SetEase(Ease.OutBack);
+
+                machine.meshRenderer.enabled = false;
                 Object.Destroy(machine.target);
                 machine.target = null;
             }
 
             yield return new WaitForSeconds(machine.huntTime);
 
-            machine.huntEffect.gameObject.SetActive(false);
+            effectObj.transform.DOScale(Vector3.zero, .6f).OnComplete(() =>
+            {
+                effectObj.SetActive(false);
+                effectObj.transform.localScale = defaultScale;
+            });
+
             machine.transform.position = machine.huntEffect.transform.position;
             machine.mouthMeat.SetActive(true);
             machine.meshRenderer.enabled = true;
@@ -140,7 +164,17 @@ namespace States.Cat
                     yield return new WaitForSeconds(1f);
             }
 
-            machine.ChangeState(machine.wanderState);
+            AnimalFSM nextHunt = machine.animalManager.getNextHunt();
+            if (nextHunt != null)
+            {
+                machine.target = nextHunt.gameObject;
+                machine.ChangeState(machine.goToTargetState);
+            }
+            else
+            {
+                machine.ChangeState(machine.wanderState);
+            }
+
         }
     }
 }

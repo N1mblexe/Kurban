@@ -28,20 +28,24 @@ public class CatFSM : FSM
 
     public NavMeshAgent agent;
 
+    [Header("Animation Info")]
+    public TransformAnimator animator;
+    public string idleAnimName = "idle";
+    public string walkAnimName = "cusdeve";
+
 
     public override void OnAwake()
     {
         inventory = BaseInventory.CatInventory();
 
         agent = GetComponent<NavMeshAgent>();
-        meshRenderer = GetComponent<MeshRenderer>();
 
         agent.updatePosition = true;
         agent.updateRotation = true;
     }
 
     public override void OnStart()
-    {   
+    {
         wanderState = new WanderState(this);
         huntState = new HuntState(this);
         storeMeatState = new StoreMeatState(this);
