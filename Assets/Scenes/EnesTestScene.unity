@@ -26087,6 +26087,8 @@ MonoBehaviour:
   sprintSpeed: 8
   jumpHeight: 2
   gravity: -19.62
+  mass: 3
+  impactDamping: 5
 --- !u!114 &1356776894
 MonoBehaviour:
   m_ObjectHideFlags: 0
