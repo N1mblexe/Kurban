@@ -25,14 +25,14 @@ public class SliceableObject : MonoBehaviour
 
     public float CurrentVolume { get; private set; }
     private Health health;
-    
-    public AnimalManager manager; 
+
+    public AnimalManager manager;
 
     private void Awake()
     {
         health = GetComponent<Health>();
 
-        if(stealer_ufo)
+        if (stealer_ufo)
             InitUFO();
     }
 
@@ -49,7 +49,7 @@ public class SliceableObject : MonoBehaviour
         }
         else
         {
-            if(stealer_ufo)
+            if (stealer_ufo)
             {
                 StartCoroutine(UfoStealProcess());
             }
@@ -89,7 +89,7 @@ public class SliceableObject : MonoBehaviour
             Transform parent = transform.parent;
             if (parent.TryGetComponent(out Animator anim)) anim.enabled = false;
             if (parent.TryGetComponent(out NavMeshAgent agent)) agent.enabled = false;
-            
+
             Vector3 worldPos = transform.position;
             Quaternion worldRot = transform.rotation;
 
@@ -115,7 +115,7 @@ public class SliceableObject : MonoBehaviour
             if (isOriginalBody)
             {
                 //TimeController.Instance.ModifyTimeWithEffects(0.05f, 0.2f, 0.1f);
-                
+
             }
 
             Vector3 pushDirection = Vector3.Cross(Camera.main.transform.forward, sliceLine).normalized;
@@ -153,7 +153,7 @@ public class SliceableObject : MonoBehaviour
         {
             newSliceable = piece.AddComponent<SliceableObject>();
         }
-        
+
         if (!piece.TryGetComponent(out Health newHealth))
         {
             newHealth = piece.AddComponent<Health>();
@@ -219,7 +219,9 @@ public class SliceableObject : MonoBehaviour
     [SerializeField] GameObject ufoPrefab;
     [SerializeField] GameObject ufoObject;
 
-    
+    private bool isUfoActive = false;
+
+
     private void InitUFO()
     {
         ufoObject = Instantiate(ufoPrefab);
@@ -234,7 +236,7 @@ public class SliceableObject : MonoBehaviour
     {
         ufoObject.SetActive(true);
         KillIdleAnimation();
-        
+
         ufoObject.transform.position = spawnPosition;
         ufoObject.transform.localScale = Vector3.zero;
 
@@ -244,19 +246,26 @@ public class SliceableObject : MonoBehaviour
         entranceSequence.OnComplete(PlayIdleAnimation);
     }
 
-    public void PlayExitAnimation()
+    public void PlayExitAnimation(bool destroyUfoAfter = false)
     {
         KillIdleAnimation();
 
         DG.Tweening.Sequence exitSequence = DOTween.Sequence();
         exitSequence.Append(ufoObject.transform.DOMove(spawnPosition, animationDuration).SetEase(Ease.InBack));
         exitSequence.Join(ufoObject.transform.DOScale(Vector3.zero, animationDuration).SetEase(Ease.InBack));
-    }
 
+        if (destroyUfoAfter)
+        {
+            exitSequence.OnComplete(() =>
+            {
+                if (ufoObject != null) Destroy(ufoObject);
+            });
+        }
+    }
     public void PlayIdleAnimation()
     {
         KillIdleAnimation();
-        
+
         idleTween = ufoObject.transform.DOMoveY(targetPosition.y + floatHeight, floatDuration)
             .SetLoops(-1, LoopType.Yoyo)
             .SetEase(Ease.InOutSine);
@@ -276,10 +285,11 @@ public class SliceableObject : MonoBehaviour
 
         if (ufoObject == null || this == null) yield break;
 
+        isUfoActive = true;
+
         PlayEntranceAnimation();
         yield return new WaitForSeconds(animationDuration);
 
-        
         if (TryGetComponent(out Rigidbody rb))
         {
             rb.isKinematic = true;
@@ -287,20 +297,31 @@ public class SliceableObject : MonoBehaviour
         }
         if (TryGetComponent(out Collider col))
         {
-            col.enabled = false; 
+            col.enabled = false;
         }
 
-        float suckDuration = 1.5f; 
+        float suckDuration = 1.5f;
 
         transform.DOMove(ufoObject.transform.position, suckDuration).SetEase(Ease.InBack);
         transform.DOScale(Vector3.zero, suckDuration).SetEase(Ease.InBack);
 
         yield return new WaitForSeconds(suckDuration);
 
-        PlayExitAnimation();
+        PlayExitAnimation(destroyUfoAfter: false);
 
         yield return new WaitForSeconds(animationDuration);
 
+        isUfoActive = false;
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (isUfoActive && ufoObject != null)
+        {
+            ufoObject.transform.SetParent(null);
+
+            PlayExitAnimation(destroyUfoAfter: true);
+        }
     }
 }
