@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class Storage : MonoBehaviour, IInteractable
@@ -13,6 +14,20 @@ public class Storage : MonoBehaviour, IInteractable
     [Header("Animations")]
     [SerializeField] private float animationTime;
     [SerializeField] private Vector3 defaultScale;
+    [SerializeField] private Transform body;
+
+    [SerializeField] private TextMeshProUGUI displayText;
+
+    void UpdateText()
+    {
+        if(displayText == null)
+            return;
+
+        displayText.text = ((int)weight).ToString() + "kg";
+        
+        if(weight == 0)
+            displayText.text = "EMPTY";
+    }
 
     [Header("Other")]
     [SerializeField] private bool canInteract = true;
@@ -22,13 +37,24 @@ public class Storage : MonoBehaviour, IInteractable
         if (player == null)
             player = InventoryUI.Instance.gameObject;
 
-        defaultScale = transform.localScale;
+        defaultScale = body.localScale;
     }
 
     [SerializeField] private bool place = false;
 
     public void OnHover()
     {
+    }
+
+    public void OnHoverEnter()
+    {
+        OpenAnimation();
+        UpdateText();
+    }
+
+    public void OnHoverExit()
+    {
+        CloseAnimation();
     }
     private IEnumerator StartCooldown()
     {
@@ -38,8 +64,8 @@ public class Storage : MonoBehaviour, IInteractable
     }
 
     [SerializeField] private Vector3 punchAmount = new Vector3(-0.1f, -0.1f, -0.1f);
-    [SerializeField] private int vibrato = 5; 
-    [SerializeField] private float elasticity = 0.5f; 
+    [SerializeField] private int vibrato = 5;
+    [SerializeField] private float elasticity = 0.5f;
 
     public void Interact()
     {
@@ -48,7 +74,8 @@ public class Storage : MonoBehaviour, IInteractable
 
         StartCoroutine(StartCooldown());
 
-        transform.DOPunchScale(punchAmount, animationTime, vibrato, elasticity);
+        if (!DOTween.IsTweening(transform)) 
+            body.transform.DOPunchScale(punchAmount, animationTime, vibrato, elasticity);
 
         PlayerInventory playerInv = PlayerInventory.Instance;
         if (playerInv == null) return;
@@ -96,6 +123,8 @@ public class Storage : MonoBehaviour, IInteractable
                 Debug.Log("Depo tamamen boş!");
             }
         }
+
+        UpdateText();
     }
     public float Fill(float amount)
     {
@@ -111,8 +140,26 @@ public class Storage : MonoBehaviour, IInteractable
         }
 
         weight += amount;
+        UpdateText();
         return amount;
     }
 
-    [SerializeField] private Transform openPosition , closePosition; 
+    [SerializeField] private Transform openPosition, closePosition;
+    [SerializeField] private Transform top;
+
+    void OpenAnimation()
+    {
+        top.transform.DOMove(openPosition.position, animationTime);
+        top.transform.DORotate(openPosition.eulerAngles , animationTime);
+
+        if (DOTween.IsTweening(body)) return;
+
+        body.transform.DOPunchScale(punchAmount, animationTime, vibrato, elasticity);
+
+    }
+    void CloseAnimation()
+    {
+        top.transform.DOMove(closePosition.position , animationTime);
+        top.transform.DORotate(closePosition.eulerAngles , animationTime);
+    }
 }
