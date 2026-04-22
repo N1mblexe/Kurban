@@ -132,14 +132,13 @@ public class KnifeShop : MonoBehaviour, IInteractable
             {
                 Debug.Log("Son bıçak satın alındı. Dükkan boş.");
                 holder.SetActive(false);
-                return; // price_text zaten yukarıda SetActive(false) olmuştu, kapalı kalacak.
+                return; 
             }
 
             // Yeni silahı aç
             weapons[currentWeapon].shopPrefab.SetActive(true);
             holder.transform.DOScale(originalHolderScale, 0.3f).SetEase(Ease.OutBack);
             
-            // Fiyat yazısını güncelle, TEKRAR AKTİF ET ve büyüt (Hata buradaydı)
             price_text.text = weapons[currentWeapon].price.ToString();
             price_text.gameObject.SetActive(true); 
             price_text.gameObject.transform.DOScale(originalTextScale, 0.3f).SetEase(Ease.OutBack);

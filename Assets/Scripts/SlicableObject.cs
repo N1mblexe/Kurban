@@ -1,7 +1,8 @@
 using System;
 using System.Collections;
 using DG.Tweening;
-using Hanzzz.MeshSlicerFree; 
+using Hanzzz.MeshSlicerFree;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -30,6 +31,9 @@ public class SliceableObject : MonoBehaviour
     private void Awake()
     {
         health = GetComponent<Health>();
+
+        if(stealer_ufo)
+            InitUFO();
     }
 
 
@@ -45,7 +49,14 @@ public class SliceableObject : MonoBehaviour
         }
         else
         {
-            StartCoroutine(DieAfterTime(liveTime));
+            if(stealer_ufo)
+            {
+                StartCoroutine(UfoStealProcess());
+            }
+            else
+            {
+                StartCoroutine(DieAfterTime(liveTime));
+            }
         }
     }
 
@@ -176,7 +187,7 @@ public class SliceableObject : MonoBehaviour
         float waitDuration = time / 2f;
         float shrinkDuration = time / 2f;
 
-        Sequence dieSequence = DOTween.Sequence();
+        DG.Tweening.Sequence dieSequence = DOTween.Sequence();
 
         dieSequence.AppendInterval(waitDuration);
         dieSequence.Append(transform.DOScale(Vector3.zero, shrinkDuration).SetEase(Ease.InQuad));
@@ -186,5 +197,110 @@ public class SliceableObject : MonoBehaviour
         });
 
         yield return null;
+    }
+
+
+
+    [Header("Ufo")]
+    [SerializeField] private bool stealer_ufo = false;
+
+    //UFO part
+    public float animationDuration = 1.5f;
+    public float spawnHeightOffset = 10f;
+    public float floatHeight = 0.5f;
+    public float floatDuration = 2f;
+    public float idleOffset = 4;
+
+    private Vector3 originalScale;
+    private Vector3 targetPosition;
+    private Vector3 spawnPosition;
+    private Tween idleTween;
+
+    [SerializeField] GameObject ufoPrefab;
+    [SerializeField] GameObject ufoObject;
+
+    
+    private void InitUFO()
+    {
+        ufoObject = Instantiate(ufoPrefab);
+        ufoObject.SetActive(false);
+
+        originalScale = ufoObject.transform.localScale;
+        targetPosition = transform.position + Vector3.up * idleOffset;
+        spawnPosition = targetPosition + Vector3.up * spawnHeightOffset;
+    }
+
+    public void PlayEntranceAnimation()
+    {
+        ufoObject.SetActive(true);
+        KillIdleAnimation();
+        
+        ufoObject.transform.position = spawnPosition;
+        ufoObject.transform.localScale = Vector3.zero;
+
+        DG.Tweening.Sequence entranceSequence = DOTween.Sequence();
+        entranceSequence.Append(ufoObject.transform.DOMove(targetPosition, animationDuration).SetEase(Ease.OutBack));
+        entranceSequence.Join(ufoObject.transform.DOScale(originalScale, animationDuration).SetEase(Ease.OutBack));
+        entranceSequence.OnComplete(PlayIdleAnimation);
+    }
+
+    public void PlayExitAnimation()
+    {
+        KillIdleAnimation();
+
+        DG.Tweening.Sequence exitSequence = DOTween.Sequence();
+        exitSequence.Append(ufoObject.transform.DOMove(spawnPosition, animationDuration).SetEase(Ease.InBack));
+        exitSequence.Join(ufoObject.transform.DOScale(Vector3.zero, animationDuration).SetEase(Ease.InBack));
+    }
+
+    public void PlayIdleAnimation()
+    {
+        KillIdleAnimation();
+        
+        idleTween = ufoObject.transform.DOMoveY(targetPosition.y + floatHeight, floatDuration)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetEase(Ease.InOutSine);
+    }
+
+    private void KillIdleAnimation()
+    {
+        if (idleTween != null && idleTween.IsActive())
+        {
+            idleTween.Kill();
+        }
+    }
+
+    IEnumerator UfoStealProcess()
+    {
+        yield return new WaitForSeconds(liveTime / 2f);
+
+        if (ufoObject == null || this == null) yield break;
+
+        PlayEntranceAnimation();
+        yield return new WaitForSeconds(animationDuration);
+
+        
+        if (TryGetComponent(out Rigidbody rb))
+        {
+            rb.isKinematic = true;
+            rb.useGravity = false;
+        }
+        if (TryGetComponent(out Collider col))
+        {
+            col.enabled = false; 
+        }
+
+        float suckDuration = 1.5f; 
+
+        transform.DOMove(ufoObject.transform.position, suckDuration).SetEase(Ease.InBack);
+        transform.DOScale(Vector3.zero, suckDuration).SetEase(Ease.InBack);
+
+        yield return new WaitForSeconds(suckDuration);
+
+        PlayExitAnimation();
+
+        yield return new WaitForSeconds(animationDuration);
+
+        Destroy(gameObject);
     }
 }

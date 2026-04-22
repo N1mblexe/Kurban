@@ -171,6 +171,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 267827246148365482}
     m_Modifications:
+    - target: {fileID: 3208645526662131751, guid: 7ea1c5a3739c8190baf22ce0f9b43c42, type: 3}
+      propertyPath: ufoPrefab
+      value: 
+      objectReference: {fileID: 1385839470778333524, guid: 39de1a9cf4d2ad00aa2ebddaec3a7532, type: 3}
+    - target: {fileID: 3208645526662131751, guid: 7ea1c5a3739c8190baf22ce0f9b43c42, type: 3}
+      propertyPath: stealer_ufo
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8590732545549563795, guid: 7ea1c5a3739c8190baf22ce0f9b43c42, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
