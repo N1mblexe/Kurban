@@ -103,6 +103,8 @@ public class KnifeShop : MonoBehaviour, IInteractable
             EconomyManager.Instance.currentKnifeMultiplier = weapons[currentWeapon].stats.economyMultiplier;
 
             AnimationSequence();
+
+            PlayBuyEffect();
         }
         else
         {
@@ -142,5 +144,13 @@ public class KnifeShop : MonoBehaviour, IInteractable
             price_text.gameObject.SetActive(true); 
             price_text.gameObject.transform.DOScale(originalTextScale, 0.3f).SetEase(Ease.OutBack);
         });
+    }
+
+    [SerializeField] private ParticleSystem buyEffect;
+
+
+    private void PlayBuyEffect()
+    {
+        buyEffect.Play();
     }
 }

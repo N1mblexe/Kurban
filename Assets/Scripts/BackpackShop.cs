@@ -3,6 +3,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class BackpackShop : MonoBehaviour, IInteractable
 {
@@ -114,6 +115,8 @@ public class BackpackShop : MonoBehaviour, IInteractable
             float currentWeight = PlayerInventory.Instance.FreeInventory(); 
 
             AnimationSequence();
+
+            PlayBuyEffect();
         }
         else
         {
@@ -155,5 +158,12 @@ public class BackpackShop : MonoBehaviour, IInteractable
                 price_text.gameObject.transform.DOScale(originalTextScale, 0.3f).SetEase(Ease.OutBack);
             }
         });
+    }
+
+    [SerializeField] private ParticleSystem buyEffect;
+
+    private void PlayBuyEffect()
+    {
+        buyEffect.Play();
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -16,7 +17,7 @@ public class WeaponStats
     public float economyMultiplier = 1.0f;
     public float minSliceVolume = 0.5f;
     public int visualIndex = 0;
-    public ParticleSystem slashEffect;
+    public GameObject slashEffect;
 }
 
 public class KnifeController : MonoBehaviour
@@ -34,7 +35,9 @@ public class KnifeController : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
-    [SerializeField] private ParticleSystem defaultSlash;
+    [SerializeField] private GameObject defaultSlash;
+    [SerializeField] private ParticleSystem confettiEffect;
+    [SerializeField] private ParticleSystem distortionRing;
 
     private float nextAttackTime = 0f;
 
@@ -105,11 +108,32 @@ public class KnifeController : MonoBehaviour
             if (hit.collider.TryGetComponent(out Health health))
             {
                 health.TakeDamage(currentStats.damage, hit.point, knifeModel.transform.eulerAngles);
+                if(health.IsDead())
+                {
+                    PlayDieEffect(hit.point - knifeModel.transform.up * 2 , knifeModel.transform.eulerAngles);
+                }
                 CameraEffects.Instance.TriggerShake(.05f , .25f);
                 Debug.Log($"Hasar Verildi! Kalan Can: {health.MaxHealth}");
             }
         }
+    }
 
+    private void PlayDieEffect(Vector3 diePosition , Vector3 angle)
+    {
+        confettiEffect.Stop();
+        distortionRing.Stop();
+
+        confettiEffect.transform.position = diePosition;
+        confettiEffect.transform.eulerAngles = angle;
+
+        distortionRing.transform.position = diePosition;
+
+        distortionRing.Play();
+        confettiEffect.Play();
+    }
+    private void PlaySlashEffect()
+    {
+        
     }
 
 }

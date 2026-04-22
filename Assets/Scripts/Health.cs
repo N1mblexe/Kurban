@@ -30,6 +30,8 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    public bool IsDead() { return isDead; }
+
     public void TakeDamage(float damage, Vector3 hitPoint, Vector3 mouseDirection)
     {
         if (isDead)

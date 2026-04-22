@@ -103,7 +103,8 @@ public class SliceableObject : MonoBehaviour
         {
             if (isOriginalBody)
             {
-                TimeController.Instance.ModifyTimeWithEffects(0.05f, 0.2f, 0.1f);
+                //TimeController.Instance.ModifyTimeWithEffects(0.05f, 0.2f, 0.1f);
+                
             }
 
             Vector3 pushDirection = Vector3.Cross(Camera.main.transform.forward, sliceLine).normalized;
