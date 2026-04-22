@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class Storage : MonoBehaviour, IInteractable
@@ -11,6 +12,7 @@ public class Storage : MonoBehaviour, IInteractable
 
     [Header("Animations")]
     [SerializeField] private float animationTime;
+    [SerializeField] private Vector3 defaultScale;
 
     [Header("Other")]
     [SerializeField] private bool canInteract = true;
@@ -20,43 +22,13 @@ public class Storage : MonoBehaviour, IInteractable
         if (player == null)
             player = InventoryUI.Instance.gameObject;
 
-        actionGet = new Action(() => get());
-        actionPut = new Action(() => put());
+        defaultScale = transform.localScale;
     }
 
-
-    [SerializeField] private GameObject capFront, capBack;
-    [SerializeField] [Range(0, 1)] float angle = .4f;
-    [SerializeField] private bool xAxis = false;
-
-    private Action currentAction;
-    private Action actionPut;
-    private Action actionGet;
+    [SerializeField] private bool place = false;
 
     public void OnHover()
     {
-        Vector3 normalizedDistance = (transform.position - player.transform.position).normalized;
-
-        float distance = (xAxis) ? normalizedDistance.x : normalizedDistance.z;
-
-        if (distance > angle)
-        {
-            capFront.SetActive(false);
-            capBack.SetActive(true);
-            currentAction = actionGet;
-        }
-        else if (distance < -angle)
-        {
-            capFront.SetActive(true);
-            capBack.SetActive(false);
-            currentAction = actionPut;
-        }
-        else
-        {
-            capFront.SetActive(true);
-            capBack.SetActive(true);
-            currentAction = null;
-        }
     }
     private IEnumerator StartCooldown()
     {
@@ -65,6 +37,10 @@ public class Storage : MonoBehaviour, IInteractable
         canInteract = true;
     }
 
+    [SerializeField] private Vector3 punchAmount = new Vector3(-0.1f, -0.1f, -0.1f);
+    [SerializeField] private int vibrato = 5; 
+    [SerializeField] private float elasticity = 0.5f; 
+
     public void Interact()
     {
         if (!canInteract)
@@ -72,24 +48,55 @@ public class Storage : MonoBehaviour, IInteractable
 
         StartCoroutine(StartCooldown());
 
-        if(currentAction != null)
+        transform.DOPunchScale(punchAmount, animationTime, vibrato, elasticity);
+
+        PlayerInventory playerInv = PlayerInventory.Instance;
+        if (playerInv == null) return;
+
+        if (place)
         {
-            currentAction.Invoke();
+            float playerMeat = playerInv.currBackpack.weight;
+
+            if (playerMeat > 0)
+            {
+                float placedAmount = Fill(playerMeat);
+
+                if (placedAmount > 0)
+                {
+                    playerInv.RemoveMeat(placedAmount);
+                    Debug.Log($"Depoya {placedAmount} birim eklendi. Depo: {weight}/{capacity}");
+                }
+                else
+                {
+                    Debug.Log("Depo tamamen dolu!");
+                }
+            }
+            else
+            {
+                Debug.Log("Çantanda depoya koyacak bir şey yok!");
+            }
+        }
+        else
+        {
+            if (weight > 0)
+            {
+                float takenAmount = playerInv.AddMeat(weight);
+                if (takenAmount > 0)
+                {
+                    weight -= takenAmount;
+                    Debug.Log($"Depodan {takenAmount} birim alındı. Depo: {weight}/{capacity}");
+                }
+                else
+                {
+                    Debug.Log("Çantan tamamen dolu, daha fazla alamazsın!");
+                }
+            }
+            else
+            {
+                Debug.Log("Depo tamamen boş!");
+            }
         }
     }
-
-    public float put()
-    {
-        print("put");
-        return 0;
-    }
-
-    public float get()
-    {
-        print("get");
-        return 0;
-    }
-
     public float Fill(float amount)
     {
         if (weight >= capacity)
@@ -106,4 +113,6 @@ public class Storage : MonoBehaviour, IInteractable
         weight += amount;
         return amount;
     }
+
+    [SerializeField] private Transform openPosition , closePosition; 
 }

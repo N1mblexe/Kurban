@@ -121,4 +121,17 @@ public class BehaviourInventory : MonoBehaviour
 
         return false;
     }
+
+    public float AddMeat(float amount)
+    {
+        if(amount + currBackpack.weight <= currBackpack.capacity)
+        {
+            currBackpack.weight += amount;
+            return amount;
+        }
+
+        currBackpack.weight = currBackpack.capacity;
+
+        return currBackpack.capacity - currBackpack.weight;
+    }
 }
