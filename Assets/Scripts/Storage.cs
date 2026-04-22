@@ -21,13 +21,14 @@ public class Storage : MonoBehaviour, IInteractable
     {
         if (player == null)
             player = InventoryUI.Instance.gameObject;
+
+        defaultScale = transform.localScale;
     }
 
     [SerializeField] private bool place = false;
 
     public void OnHover()
     {
-        transform.DOScale(transform.localScale , animationTime).SetEase(Ease.InOutBack);        
     }
     private IEnumerator StartCooldown()
     {
@@ -36,6 +37,10 @@ public class Storage : MonoBehaviour, IInteractable
         canInteract = true;
     }
 
+    [SerializeField] private Vector3 punchAmount = new Vector3(-0.1f, -0.1f, -0.1f);
+    [SerializeField] private int vibrato = 5; 
+    [SerializeField] private float elasticity = 0.5f; 
+
     public void Interact()
     {
         if (!canInteract)
@@ -43,7 +48,7 @@ public class Storage : MonoBehaviour, IInteractable
 
         StartCoroutine(StartCooldown());
 
-        transform.DOScale(transform.localScale , animationTime).SetEase(Ease.InOutBack);        
+        transform.DOPunchScale(punchAmount, animationTime, vibrato, elasticity);
 
         PlayerInventory playerInv = PlayerInventory.Instance;
         if (playerInv == null) return;
@@ -108,4 +113,6 @@ public class Storage : MonoBehaviour, IInteractable
         weight += amount;
         return amount;
     }
+
+    [SerializeField] private Transform openPosition , closePosition; 
 }
