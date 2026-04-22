@@ -20,12 +20,12 @@ public class Storage : MonoBehaviour, IInteractable
 
     void UpdateText()
     {
-        if(displayText == null)
+        if (displayText == null)
             return;
 
         displayText.text = ((int)weight).ToString() + "kg";
-        
-        if(weight == 0)
+
+        if (weight == 0)
             displayText.text = "EMPTY";
     }
 
@@ -34,10 +34,14 @@ public class Storage : MonoBehaviour, IInteractable
 
     void Awake()
     {
+        defaultScale = body.localScale;
+    }
+
+    private void Start()
+    {
         if (player == null)
             player = InventoryUI.Instance.gameObject;
 
-        defaultScale = body.localScale;
     }
 
     [SerializeField] private bool place = false;
@@ -74,7 +78,7 @@ public class Storage : MonoBehaviour, IInteractable
 
         StartCoroutine(StartCooldown());
 
-        if (!DOTween.IsTweening(transform)) 
+        if (!DOTween.IsTweening(transform))
             body.transform.DOPunchScale(punchAmount, animationTime, vibrato, elasticity);
 
         PlayerInventory playerInv = PlayerInventory.Instance;
@@ -150,7 +154,7 @@ public class Storage : MonoBehaviour, IInteractable
     void OpenAnimation()
     {
         top.transform.DOMove(openPosition.position, animationTime);
-        top.transform.DORotate(openPosition.eulerAngles , animationTime);
+        top.transform.DORotate(openPosition.eulerAngles, animationTime);
 
         if (DOTween.IsTweening(body)) return;
 
@@ -159,7 +163,7 @@ public class Storage : MonoBehaviour, IInteractable
     }
     void CloseAnimation()
     {
-        top.transform.DOMove(closePosition.position , animationTime);
-        top.transform.DORotate(closePosition.eulerAngles , animationTime);
+        top.transform.DOMove(closePosition.position, animationTime);
+        top.transform.DORotate(closePosition.eulerAngles, animationTime);
     }
 }

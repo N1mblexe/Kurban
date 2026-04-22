@@ -57311,7 +57311,7 @@ MonoBehaviour:
   canInteract: 1
   place: 0
   punchAmount: {x: -0.2, y: -0.2, z: -0.2}
-  vibrato: 5
+  vibrato: 10
   elasticity: 0.5
   openPosition: {fileID: 4895137}
   closePosition: {fileID: 1277652918}
