@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -8,15 +9,19 @@ public class InventoryUI : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI weightText;
 
+    [HideInInspector]public Image cantaFillImage;
+
     private void Awake()
     {
         Instance = this;
     }
 
+
     // Ağırlık her değiştiğinde bu metod çağrılır
     public void UpdateWeightDisplay(float current, float max)
     {
         weightText.text = $"{current:F1} / {max:F1} kg";
+        cantaFillImage.fillAmount = current / max;
     }
 
     // Çanta tamamen dolduğunda tetiklenecek sarsıntı

@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 5710561422366943656}
   - component: {fileID: 314500851801656958}
   - component: {fileID: 8167249500954490829}
+  - component: {fileID: 6778050531788144685}
   m_Layer: 5
   m_Name: DefaultUI
   m_TagString: Untagged
@@ -243,6 +244,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6778050531788144685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079897030905814554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 182788e4ac4b46d4fbb23ac13937a37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesUiCont
+  cantaFillImage: {fileID: 7874159899482507521}
+  goldAnim: {fileID: 2942357336953685617}
 --- !u!1 &1541220999558318928
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +328,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.417
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -329,6 +344,7 @@ GameObject:
   - component: {fileID: 6660794145942620259}
   - component: {fileID: 6612294378539438571}
   - component: {fileID: 886251415332348749}
+  - component: {fileID: 2942357336953685617}
   m_Layer: 5
   m_Name: Gold_Image
   m_TagString: Untagged
@@ -393,6 +409,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &2942357336953685617
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909515368971572331}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2304e754f3c279047b638d2cbe59bcd3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3625570942200023943
 GameObject:
   m_ObjectHideFlags: 0
