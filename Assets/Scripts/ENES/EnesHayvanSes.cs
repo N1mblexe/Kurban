@@ -12,12 +12,12 @@ public class EnesHayvanSes : MonoBehaviour
     private void Start()
     {
 
-        if (sesler == null)
+        if (sesler.Length == 0)
         {
             gameObject.GetComponent<EnesHayvanSes>().enabled = false;
         }
 
-        seslendirgec.GetComponent<AudioSource>();
+        seslendirgec = GetComponent<AudioSource>();
         beklemeSuresi = Random.Range(minBeklemeSuresi, maxBeklemeSuresi);
     }
 
@@ -28,6 +28,7 @@ public class EnesHayvanSes : MonoBehaviour
         if(sayac>= beklemeSuresi)
         {
             SesCikart();
+            sayac = 0;
         }
     }
 

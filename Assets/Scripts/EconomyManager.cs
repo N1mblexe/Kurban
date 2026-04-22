@@ -14,7 +14,7 @@ public class EconomyManager : MonoBehaviour
     public float currentKnifeMultiplier = 1.0f;
     public float currentIslandBasePrice = 10f;
 
-    [HideInInspector] public Animator goldAnim;
+    public Animator goldAnim;
 
     private void Awake()
     {
@@ -36,12 +36,13 @@ public class EconomyManager : MonoBehaviour
     {
         currentGold += amount;
         UpdateGoldUI();
+        goldAnim.SetTrigger("a");
     }
 
     void UpdateGoldUI()
     {
         if (goldTextUI != null) goldTextUI.text = currentGold.ToString("F0") + " G";
-        goldAnim.SetTrigger("a");
+        
     }
     public bool TrySpendGold(float amount)
     {
