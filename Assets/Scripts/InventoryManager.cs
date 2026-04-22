@@ -69,4 +69,14 @@ public class PlayerInventory : BehaviourInventory
 
     }
 
+    public new float AddMeat(float amount)
+    {
+        float output = base.AddMeat(amount);
+
+        if(output != 0)
+            InventoryUI.Instance.UpdateWeightDisplay(currBackpack.weight , currBackpack.capacity);
+
+        return output;
+    }
+
 }
