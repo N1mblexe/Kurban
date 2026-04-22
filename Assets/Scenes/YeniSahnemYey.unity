@@ -4553,7 +4553,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 9024613344294053570, guid: 5d2f9e71bb583dd06835b33395b64417, type: 3}
   radius: 25
-  animals: []
   maxLimit: 3
   fastestSpawnDelay: 30
   slowestSpawnDelay: 120
@@ -5506,7 +5505,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: 5ebb07a5e2326df92b11b2b6907f6893, type: 3}
   radius: 22
-  animals: []
   maxLimit: 10
   fastestSpawnDelay: 0.5
   slowestSpawnDelay: 3
@@ -8623,7 +8621,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: dd0da6a544a8da3d99cd29f60a30a8ff, type: 3}
   radius: 22
-  animals: []
   maxLimit: 20
   fastestSpawnDelay: 0.5
   slowestSpawnDelay: 5
@@ -11242,6 +11239,10 @@ MonoBehaviour:
   weight: 0
   animationTime: 1
   canInteract: 1
+  capFront: {fileID: 0}
+  capBack: {fileID: 0}
+  angle: 0.4
+  xAxis: 0
 --- !u!65 &574919489
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20163,7 +20164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: 27b7aa9173d3f8b6498b98977a31eec5, type: 3}
   radius: 22
-  animals: []
   maxLimit: 10
   fastestSpawnDelay: 0.5
   slowestSpawnDelay: 3
@@ -21944,23 +21944,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389b2fb625abc9812b928cddb79a75af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CatAI
-  customAnimator: {fileID: 0}
+  target: {fileID: 0}
+  mouthMeat: {fileID: 1691269594}
+  storage: {fileID: 574919488}
+  animalManager: {fileID: 1714719469}
+  huntEffect: {fileID: 0}
+  inventory:
+    currBackpack:
+      capacity: 0
+      weight: 0
+      maxVolumePerItem: 0
+  meshRenderer: {fileID: 0}
+  meatMultipler: 5
+  huntTime: 2
+  wanderTime: 3
+  agent: {fileID: 0}
+  animator: {fileID: 0}
   idleAnimName: idle
   walkAnimName: cusdeve
-  centerObj: {fileID: 0}
-  centerRadius: 0
-  wanderRadius: 5
-  minIdleTime: 2
-  maxIdleTime: 5
-  agent: {fileID: 0}
-  target: {fileID: 0}
-  storage: {fileID: 574919488}
-  huntEffect: {fileID: 0}
-  inventory: {fileID: 0}
-  meshRenderer: {fileID: 0}
-  huntTime: 2
-  mouthMeat: {fileID: 1691269594}
-  animalManager: {fileID: 1714719469}
 --- !u!195 &1079488197
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -33828,7 +33829,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: dd0da6a544a8da3d99cd29f60a30a8ff, type: 3}
   radius: 22
-  animals: []
   maxLimit: 40
   fastestSpawnDelay: 0.5
   slowestSpawnDelay: 5
@@ -36397,7 +36397,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: 27b7aa9173d3f8b6498b98977a31eec5, type: 3}
   radius: 22
-  animals: []
   maxLimit: 30
   fastestSpawnDelay: 0.5
   slowestSpawnDelay: 3
@@ -41395,7 +41394,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
   prefab: {fileID: 1541857744054102045, guid: a0598efe615e5675497007a32dbfcd0c, type: 3}
   radius: 22
-  animals: []
   maxLimit: 10
   fastestSpawnDelay: 0.5
   slowestSpawnDelay: 3
@@ -42434,6 +42432,25 @@ Transform:
   - {fileID: 43314241}
   m_Father: {fileID: 1100780922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &18819801333064151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 795180204933987181}
+  - component: {fileID: 4370417689413039304}
+  - component: {fileID: 1964168612375478274}
+  - component: {fileID: 901763720927927435}
+  m_Layer: 0
+  m_Name: KediEti
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &158881211092725567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42495,6 +42512,43 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46b6c628743dd8f06a8d8a71463ed6f3, type: 3}
+--- !u!4 &795180204933987181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18819801333064151}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.5888696, y: 0.37517864, z: -1.886458}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &901763720927927435
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18819801333064151}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8288282572576767661, guid: 633ea9c1c3d2fff4cbf506359d099eda, type: 3}
 --- !u!1001 &1721998256022546059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42592,6 +42646,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0091295679b26a21e953a441c5190158, type: 3}
+--- !u!23 &1964168612375478274
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18819801333064151}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 03ddc7e460b33402eb7640fab3881ac9, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &3638091150037723177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42661,6 +42764,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70b98d29f42299f42b0d4039bd9aa873, type: 3}
+--- !u!33 &4370417689413039304
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18819801333064151}
+  m_Mesh: {fileID: -8288282572576767661, guid: 633ea9c1c3d2fff4cbf506359d099eda, type: 3}
 --- !u!1001 &5368452412970245948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42807,3 +42918,4 @@ SceneRoots:
   - {fileID: 1720054013}
   - {fileID: 574919492}
   - {fileID: 1079488201}
+  - {fileID: 795180204933987181}
