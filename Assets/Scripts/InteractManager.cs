@@ -38,6 +38,7 @@ public class InteractManager : MonoBehaviour
         // 2. Eğer hedef değiştiyse veya boşa bakıyorsak eski efektleri temizle
         if (currentHoveredObject != null && currentHoveredObject != target)
         {
+            currentHoveredObject.GetComponent<IInteractable>().OnHoverExit();
             ClearCurrentEffects();
         }
 
@@ -45,7 +46,8 @@ public class InteractManager : MonoBehaviour
         if (target != null && target != currentHoveredObject)
         {
             currentHoveredObject = target;
-            currentInteractable = interactable; // Arayüzü kaydet
+            currentInteractable = interactable; 
+            currentInteractable.OnHoverEnter();
             ActivateEffects(target);
         }
 
