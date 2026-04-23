@@ -11242,6 +11242,8 @@ MonoBehaviour:
   weight: 0
   animationTime: 1
   defaultScale: {x: 0, y: 0, z: 0}
+  body: {fileID: 0}
+  displayText: {fileID: 0}
   canInteract: 1
   place: 0
   punchAmount: {x: -0.1, y: -0.1, z: -0.1}
@@ -11249,6 +11251,7 @@ MonoBehaviour:
   elasticity: 0.5
   openPosition: {fileID: 0}
   closePosition: {fileID: 0}
+  top: {fileID: 0}
 --- !u!65 &574919489
 BoxCollider:
   m_ObjectHideFlags: 0
