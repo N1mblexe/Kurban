@@ -64,6 +64,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e62e0186653dd4593a0d1f0028ef5c50, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e62e0186653dd4593a0d1f0028ef5c50, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 7806100501455280664, guid: 5699d801eb61033839c4c22fce4ff7e1, type: 3}
     - target: {fileID: -5754084199372789682, guid: e62e0186653dd4593a0d1f0028ef5c50, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -149,3 +157,11 @@ MonoBehaviour:
   liveTime: 10
   spawnScaleDuration: 0.5
   manager: {fileID: 0}
+  stealer_ufo: 0
+  animationDuration: 1.5
+  spawnHeightOffset: 10
+  floatHeight: 0.5
+  floatDuration: 2
+  idleOffset: 4
+  ufoPrefab: {fileID: 0}
+  ufoObject: {fileID: 0}
