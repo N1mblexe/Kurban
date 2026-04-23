@@ -4,6 +4,11 @@ public class SteamAch : MonoBehaviour
 {
     public static SteamAch instance;
 
+    [Header("Piramit")]
+    public GameObject ufo_pirtamit;
+    
+
+
     private void Awake()
     {
         instance = this;
@@ -12,11 +17,17 @@ public class SteamAch : MonoBehaviour
     private void Start()
     {
         UnlockAchievement("ILK_GIRIS");
+        SteamUserStats.GetAchievement("PIRAMIT", out bool isUnlocked);
+        if (isUnlocked)
+        {
+            PiramitInsaEt();
+        }
+
     }
 
     //Basarimlar
     // GOAT
-    // PIRAMIT (ben yaparim)
+    // PIRAMIT 
     // ILK_GIRIS (ben yaparim)
     // YANAR_DAG
     // HOROZ
@@ -43,11 +54,24 @@ public class SteamAch : MonoBehaviour
             // sunucuya al dioz
             SteamUserStats.StoreStats();
 
+            if(achievementID == "PIRAMIT")
+            {
+                PiramitInsaEt();
+            }
+
             Debug.Log(achievementID + " baþarýyla kazanýldý!");
         }
         else
         {
             Debug.Log("Zaten vardý yarram");
         }
+    }
+
+
+
+    public void PiramitInsaEt()
+    {
+        // burda piramiti olusturcam
+        
     }
 }
