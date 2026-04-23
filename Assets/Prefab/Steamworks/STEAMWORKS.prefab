@@ -57,3 +57,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6400d0e922ddcea4ca3f39364be07ea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SteamAch
+  ufo_pirtamit: {fileID: 7626398611644305370, guid: 6a3c5c1c57b726c40ba53fc05411c72e, type: 3}

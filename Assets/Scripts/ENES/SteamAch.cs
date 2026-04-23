@@ -22,7 +22,7 @@ public class SteamAch : MonoBehaviour
         {
             PiramitInsaEt();
         }
-
+        
     }
 
     //Basarimlar
@@ -72,6 +72,6 @@ public class SteamAch : MonoBehaviour
     public void PiramitInsaEt()
     {
         // burda piramiti olusturcam
-        
+        Instantiate(ufo_pirtamit, Vector3.zero, Quaternion.identity);
     }
 }
