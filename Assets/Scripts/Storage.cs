@@ -77,13 +77,14 @@ public class Storage : MonoBehaviour, IInteractable
 
         StartCoroutine(StartCooldown());
 
-        if (!DOTween.IsTweening(transform))
+        if (!DOTween.IsTweening(body))
             body.transform.DOPunchScale(punchAmount, animationTime, vibrato, elasticity);
 
         PlayerInventory playerInv = PlayerInventory.Instance;
         if (playerInv == null) return;
 
         HandleInteraction(playerInv.getCurrentBackpack(), place);
+        InventoryUI.Instance.UpdateWeightDisplay(playerInv.getCurrentBackpack().weight, playerInv.getCurrentBackpack().capacity);
         UpdateText();
     }
 
@@ -148,7 +149,7 @@ public class Storage : MonoBehaviour, IInteractable
         }
 
         weight += amount;
-        if (!DOTween.IsTweening(transform))
+        if (!DOTween.IsTweening(body))
             body.transform.DOPunchScale(punchAmount / 2, animationTime, vibrato, elasticity);
         UpdateText();
         return amount;

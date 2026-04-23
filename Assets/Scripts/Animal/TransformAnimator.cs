@@ -15,6 +15,14 @@ public class TransformAnimator : MonoBehaviour
         public List<Animation> animations;
     }
 
+    private void OnDestroy()
+    {
+        if (animator != null)
+        {
+            animator.CleanUp();
+        }
+    }
+
     [System.Serializable]
     public class Animation
     {
@@ -53,12 +61,14 @@ public class TransformAnimator : MonoBehaviour
 
         public List<Animation> animations = new List<Animation>();
 
-        private Sequence currentSequence;
-        
-        // Objenin ilk baştaki konumunu tutacak değişkenler
+        private Dictionary<string, Sequence> sequencePool = new Dictionary<string, Sequence>();
+        private Sequence activeSequence;
+
         private Vector3 startLocalPosition;
         private Vector3 startLocalRotation;
         private bool isStartTransformCached = false;
+
+
 
         public void LoadFromJson(string jsonText)
         {
@@ -70,6 +80,11 @@ public class TransformAnimator : MonoBehaviour
                 {
                     animations.Clear();
                     animations.AddRange(database.animations);
+
+                    // Clear the pool if we load new data
+                    foreach (var seq in sequencePool.Values) { seq.Kill(); }
+                    sequencePool.Clear();
+
                     Debug.Log($"[TransformAnimator] {animations.Count} adet animasyon JSON'dan başarıyla yüklendi.");
                 }
             }
@@ -79,10 +94,30 @@ public class TransformAnimator : MonoBehaviour
             }
         }
 
+        public void CleanUp()
+        {
+            activeSequence?.Kill();
+
+            foreach (var seq in sequencePool.Values)
+            {
+                seq.Kill();
+            }
+            sequencePool.Clear();
+        }
 
         public void PlayAnimation(Animation animation, bool loop = false)
         {
             if (body == null) return;
+
+            activeSequence?.Pause();
+
+            if (sequencePool.TryGetValue(animation.name, out Sequence cachedSequence))
+            {
+                activeSequence = cachedSequence;
+
+                activeSequence.Restart();
+                return;
+            }
 
             if (applyRelative && !isStartTransformCached)
             {
@@ -91,42 +126,38 @@ public class TransformAnimator : MonoBehaviour
                 isStartTransformCached = true;
             }
 
-            // Relative ayarı açıksa base koordinatları kullan, kapalıysa sıfırdan başla
             Vector3 basePos = applyRelative ? startLocalPosition : Vector3.zero;
             Vector3 baseRot = applyRelative ? startLocalRotation : Vector3.zero;
 
-            currentSequence?.Kill();
-            currentSequence = DOTween.Sequence();
+            Sequence newSequence = DOTween.Sequence();
 
-            // 1. POZİSYONLARI EKLE
+            newSequence.SetAutoKill(false);
+
+            // POZİSYONLARI EKLE
             for (int i = 0; i < animation.position.Count; i++)
             {
                 var frame = animation.position[i];
                 float startTime = (i == 0) ? 0f : animation.position[i - 1].timeStamp;
                 float duration = frame.timeStamp - startTime;
 
-                // Frame değerine objenin başlangıç offsetini ekle
                 Vector3 targetPos = frame.value + basePos;
-
                 Tween posTween = body.transform.DOLocalMove(targetPos, duration).SetEase(Ease.Linear);
-                currentSequence.Insert(startTime, posTween);
+                newSequence.Insert(startTime, posTween);
             }
 
-            // 2. ROTASYONLARI EKLE
+            // ROTASYONLARI EKLE
             for (int i = 0; i < animation.rotation.Count; i++)
             {
                 var frame = animation.rotation[i];
                 float startTime = (i == 0) ? 0f : animation.rotation[i - 1].timeStamp;
                 float duration = frame.timeStamp - startTime;
 
-                // Frame değerine objenin başlangıç offsetini ekle
                 Vector3 targetRot = frame.value + baseRot;
-
                 Tween rotTween = body.transform.DOLocalRotate(targetRot, duration).SetEase(Ease.Linear);
-                currentSequence.Insert(startTime, rotTween);
+                newSequence.Insert(startTime, rotTween);
             }
 
-            // --- 3. EVENTLERİ EKLE ---
+            // EVENTLERİ EKLE 
             GameObject targetObject = eventTarget != null ? eventTarget : body;
 
             for (int i = 0; i < animation.events.Count; i++)
@@ -134,15 +165,17 @@ public class TransformAnimator : MonoBehaviour
                 var animEvent = animation.events[i];
                 string funcName = animEvent.functionName;
 
-                currentSequence.InsertCallback(animEvent.timeStamp, () =>
+                newSequence.InsertCallback(animEvent.timeStamp, () =>
                 {
                     targetObject.SendMessage(funcName, SendMessageOptions.DontRequireReceiver);
                 });
             }
 
-            if (loop) currentSequence.SetLoops(-1, LoopType.Restart);
+            if (loop) newSequence.SetLoops(-1, LoopType.Restart);
 
-            currentSequence.Play();
+            sequencePool.Add(animation.name, newSequence);
+            activeSequence = newSequence;
+            activeSequence.Play();
         }
 
         public void PlayAnimation(string animName, bool loop = false)
@@ -165,7 +198,7 @@ public class TransformAnimator : MonoBehaviour
     [SerializeField] bool playAnim = false;
     [SerializeField] string animName = "cusdeve";
 
-    void Start()
+    void Awake()
     {
         if (jsonFile != null)
         {

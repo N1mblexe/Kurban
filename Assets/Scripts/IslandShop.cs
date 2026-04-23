@@ -25,6 +25,7 @@ public class IslandShop : MonoBehaviour, IInteractable
     [SerializeField] private Renderer shopRenderer;
     [SerializeField] private Color affordableColor = Color.green;
     [SerializeField] private Color expensiveColor = Color.red;
+    private bool? wasAffordable = null; 
 
     private Material shopMaterial;
 
@@ -32,7 +33,7 @@ public class IslandShop : MonoBehaviour, IInteractable
     [Tooltip("Altındaki objelerin sırayla açılacağı ana obje")]
     [SerializeField] private GameObject parent;
     [SerializeField] private float animDuration = 0.5f;
-    [SerializeField] private float delayBetween = 0.1f; 
+    [SerializeField] private float delayBetween = 0.1f;
 
     private void Start()
     {
@@ -50,14 +51,19 @@ public class IslandShop : MonoBehaviour, IInteractable
     }
 
     private void UpdateVisualStatus()
+{
+    if (shopMaterial == null) return;
+
+    bool canAfford = EconomyManager.Instance.currentGold >= price;
+
+    if (wasAffordable == null || canAfford != wasAffordable)
     {
-        if (shopMaterial == null) return;
-
-        bool canAfford = EconomyManager.Instance.currentGold >= price;
-
+        wasAffordable = canAfford; 
+        
         Color targetColor = canAfford ? affordableColor : expensiveColor;
         shopMaterial.DOColor(targetColor, 0.5f);
     }
+}
 
     public void Interact()
     {
@@ -88,7 +94,7 @@ public class IslandShop : MonoBehaviour, IInteractable
         transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.3f).OnComplete(() =>
         {
             if (barrierToDestroy != null) barrierToDestroy.SetActive(false);
-            
+
             gameObject.SetActive(false);
 
             if (parent != null)
@@ -119,20 +125,20 @@ public class IslandShop : MonoBehaviour, IInteractable
         {
             Transform child = children[i];
             Vector3 originalScale = child.localScale;
-            child.localScale = Vector3.zero;
+            child.localScale = new Vector3(0.001f, 0.001f, 0.001f);
 
             child.gameObject.SetActive(true);
 
             // Animasyonu değişkene ata
             var tween = child.DOScale(originalScale, animDuration)
                              .SetDelay(i * delayBetween)
-                             .SetEase(Ease.OutBack); 
+                             .SetEase(Ease.OutBack);
 
             if (i == children.Count - 1)
             {
-                tween.OnComplete(() => 
+                tween.OnComplete(() =>
                 {
-                    if (teleporterToActivate != null) 
+                    if (teleporterToActivate != null)
                     {
                         teleporterToActivate.SetActive(true);
                     }

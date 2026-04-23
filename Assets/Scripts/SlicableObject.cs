@@ -199,7 +199,7 @@ public class SliceableObject : MonoBehaviour
         yield return null;
     }
 
-
+    
 
     [Header("Ufo")]
     [SerializeField] private bool stealer_ufo = false;
@@ -322,6 +322,10 @@ public class SliceableObject : MonoBehaviour
             ufoObject.transform.SetParent(null);
 
             PlayExitAnimation(destroyUfoAfter: true);
+        }
+        else
+        {
+            transform.DOKill();
         }
     }
 }
