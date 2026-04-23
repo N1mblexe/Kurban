@@ -5,18 +5,18 @@ using UnityEngine.AI;
 
 public class CatFSM : FSM
 {
-    public GameObject target;
+    [SerializeField] public GameObject target;
     public GameObject mouthMeat;
-    public Storage storage;
+    [SerializeField] public Storage storage;
 
     public AnimalManager animalManager;
 
     public ParticleSystem huntEffect;
-    public BaseInventory inventory;
+    [SerializeField] public BaseInventory inventory;
     public MeshRenderer meshRenderer;
 
     [Header("Stats")]
-    public float meatMultipler = 5;
+    public float meatMultipler = 1;
     public float huntTime;
     public float wanderTime = 3f;
 

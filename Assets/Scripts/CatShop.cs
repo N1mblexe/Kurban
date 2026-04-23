@@ -23,7 +23,7 @@ public class CatShop : MonoBehaviour, IInteractable
     private bool canInteract = true;
 
     [Header("Animation")]
-    
+
     [SerializeField] private Vector3 punchAmount = new Vector3(-0.1f, -0.1f, -0.1f);
     [SerializeField] private int vibrato = 5;
     [SerializeField] private float elasticity = 0.5f;
@@ -33,7 +33,7 @@ public class CatShop : MonoBehaviour, IInteractable
     void Start()
     {
         cats = new List<CatFSM>();
-        if(catPrices == null)
+        if (catPrices == null)
             catPrices = new List<float>();
 
         UpdatePriceText();
@@ -48,15 +48,15 @@ public class CatShop : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if(!canInteract)
+        if (!canInteract)
             return;
 
-        if(catPrices.Count < currentLevel)
+        if (catPrices.Count < currentLevel)
             return;
 
         StartCoroutine(InteractionCooldown());
-        
-        if(EconomyManager.Instance.TrySpendGold(catPrices[currentLevel]))
+
+        if (EconomyManager.Instance.TrySpendGold(catPrices[currentLevel]))
         {
             SpawnCat();
             currentLevel++;
@@ -64,40 +64,54 @@ public class CatShop : MonoBehaviour, IInteractable
 
             buyEffect.Play();
 
-            if(!DOTween.IsTweening(transform))
+            if (!DOTween.IsTweening(transform))
                 animationBody.transform.DOPunchScale(punchAmount, animationTime, vibrato, elasticity);
         }
     }
 
     private void SpawnCat()
     {
-        if(catPrefab == null)
+        if (catPrefab == null)
         {
             Debug.LogError("No cat assigned. AKA Missing prefab");
             return;
         }
 
         GameObject spawningCat = Instantiate(catPrefab);
-        
-        spawningCat.transform.position = transform.position + spawnOffset;
+        Vector3 targetSpawnPos = transform.position + spawnOffset;
+
+        UnityEngine.AI.NavMeshHit hit;
+        if (UnityEngine.AI.NavMesh.SamplePosition(targetSpawnPos, out hit, 2.0f, UnityEngine.AI.NavMesh.AllAreas))
+        {
+            targetSpawnPos = hit.position;
+        }
+
+        UnityEngine.AI.NavMeshAgent agent = spawningCat.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (agent != null)
+        {
+            agent.Warp(targetSpawnPos);
+        }
+        else
+        {
+            spawningCat.transform.position = targetSpawnPos;
+        }
 
         CatFSM fsm = spawningCat.GetComponent<CatFSM>();
-
         fsm.animalManager = targetManager;
         fsm.storage = targetStorage;
-        
+
         cats.Add(fsm);
     }
 
     private void UpdatePriceText()
     {
-        if(currentLevel == maxLevel)
+        if (currentLevel == maxLevel)
         {
             priceText.text = " ";
             return;
         }
 
-        priceText.text = catPrices[currentLevel].ToString(); 
+        priceText.text = catPrices[currentLevel].ToString();
     }
 
 

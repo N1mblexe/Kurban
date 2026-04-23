@@ -144,6 +144,8 @@ public class Storage : MonoBehaviour, IInteractable
         }
 
         weight += amount;
+        if (!DOTween.IsTweening(transform))
+            body.transform.DOPunchScale(punchAmount / 2, animationTime, vibrato, elasticity);
         UpdateText();
         return amount;
     }

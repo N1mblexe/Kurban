@@ -50,7 +50,7 @@ public class BaseInventory
 
     static public BaseInventory CatInventory()
     {
-        return new BaseInventory(new Backpack(20 , 0 , 100f));
+        return new BaseInventory(new Backpack(100 , 0 , 100f));
     }
 
     public Backpack getCurrentBackpack()
