@@ -1,4 +1,3 @@
-using System.Collections;
 using States.Cat;
 using UnityEngine;
 using UnityEngine.AI;

@@ -11,6 +11,8 @@ public class Storage : MonoBehaviour, IInteractable
     [SerializeField] private float capacity;
     [SerializeField] private float weight;
 
+    public float getWeightRatio() { return weight / capacity; }
+
     [Header("Animations")]
     [SerializeField] private float animationTime;
     [SerializeField] private Vector3 defaultScale;
@@ -45,10 +47,7 @@ public class Storage : MonoBehaviour, IInteractable
     }
 
     [SerializeField] private bool place = false;
-
-    public void OnHover()
-    {
-    }
+    public bool getPlaceStatus() { return place; }
 
     public void OnHoverEnter()
     {
@@ -84,9 +83,15 @@ public class Storage : MonoBehaviour, IInteractable
         PlayerInventory playerInv = PlayerInventory.Instance;
         if (playerInv == null) return;
 
-        if (place)
+        HandleInteraction(playerInv.getCurrentBackpack(), place);
+        UpdateText();
+    }
+
+    public void HandleInteraction(Backpack backpack, bool state)
+    {
+        if (state)
         {
-            float playerMeat = playerInv.currBackpack.weight;
+            float playerMeat = backpack.weight;
 
             if (playerMeat > 0)
             {
@@ -94,7 +99,7 @@ public class Storage : MonoBehaviour, IInteractable
 
                 if (placedAmount > 0)
                 {
-                    playerInv.RemoveMeat(placedAmount);
+                    backpack.RemoveMeat(placedAmount);
                     Debug.Log($"Depoya {placedAmount} birim eklendi. Depo: {weight}/{capacity}");
                 }
                 else
@@ -111,7 +116,7 @@ public class Storage : MonoBehaviour, IInteractable
         {
             if (weight > 0)
             {
-                float takenAmount = playerInv.AddMeat(weight);
+                float takenAmount = backpack.AddMeat(weight);
                 if (takenAmount > 0)
                 {
                     weight -= takenAmount;
@@ -127,9 +132,8 @@ public class Storage : MonoBehaviour, IInteractable
                 Debug.Log("Depo tamamen boş!");
             }
         }
-
-        UpdateText();
     }
+
     public float Fill(float amount)
     {
         if (weight >= capacity)

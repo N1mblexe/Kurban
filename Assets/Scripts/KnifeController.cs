@@ -12,7 +12,7 @@ public class WeaponStats
 {
     public float damage = 1f;
     public float attackRange = 4f;
-    public float attackSpeed = .7f;
+    public float attackSpeed = .1f;
 
     public float economyMultiplier = 1.0f;
     public float minSliceVolume = 0.5f;
@@ -53,7 +53,7 @@ public class KnifeController : MonoBehaviour
         {
             currentStats.damage = 1;
             currentStats.attackRange = 4;
-            currentStats.attackSpeed = 1.1f;
+            currentStats.attackSpeed = 1.7f;
             currentStats.minSliceVolume = .1f;
             currentStats.slashEffect = defaultSlash;
         }

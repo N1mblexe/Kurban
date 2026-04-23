@@ -37,6 +37,30 @@ public class Backpack
         weight += size;
         return true;
     }
+
+    public bool RemoveMeat(float amount)
+    {
+        if (amount <= weight)
+        {
+            weight -= amount;
+            return true;
+        }
+
+        return false;
+    }
+
+    public float AddMeat(float amount)
+    {
+        if(amount + weight <= capacity)
+        {
+            weight += amount;
+            return amount;
+        }
+
+        weight = capacity;
+
+        return capacity - weight;
+    }
 }
 
 [System.Serializable]
@@ -76,13 +100,7 @@ public class BaseInventory
 
     public bool RemoveMeat(float amount)
     {
-        if (amount <= currBackpack.weight)
-        {
-            currBackpack.weight -= amount;
-            return true;
-        }
-
-        return false;
+        return currBackpack.RemoveMeat(amount);
     }
 }
 
@@ -113,25 +131,11 @@ public class BehaviourInventory : MonoBehaviour
 
     public bool RemoveMeat(float amount)
     {
-        if (amount <= currBackpack.weight)
-        {
-            currBackpack.weight -= amount;
-            return true;
-        }
-
-        return false;
+        return currBackpack.RemoveMeat(amount);
     }
 
     public float AddMeat(float amount)
     {
-        if(amount + currBackpack.weight <= currBackpack.capacity)
-        {
-            currBackpack.weight += amount;
-            return amount;
-        }
-
-        currBackpack.weight = currBackpack.capacity;
-
-        return currBackpack.capacity - currBackpack.weight;
+        return currBackpack.AddMeat(amount);
     }
 }
