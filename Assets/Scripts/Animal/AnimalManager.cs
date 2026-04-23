@@ -33,7 +33,10 @@ public class AnimalManager : MonoBehaviour
         foreach(var animal in animals)
         {
             if(!animal.huntStatus)
+            {
+                animal.huntStatus = true;
                 return animal.animalFSM;
+            }
         }
 
         return null;;
