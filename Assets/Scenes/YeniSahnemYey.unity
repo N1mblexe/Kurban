@@ -904,7 +904,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34358241}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.269999, z: 2.2200031}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -913,7 +913,7 @@ Transform:
   - {fileID: 1449774639}
   - {fileID: 1124369735}
   m_Father: {fileID: 390194202}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &34358243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -926,7 +926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!1001 &37391307
 PrefabInstance:
@@ -5775,7 +5775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269545210}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.25, z: 2.1799908}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5784,7 +5784,7 @@ Transform:
   - {fileID: 1769404367}
   - {fileID: 2004803258}
   m_Father: {fileID: 946189220}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &269545212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5797,7 +5797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!4 &274489123 stripped
 Transform:
@@ -8621,7 +8621,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378616783}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.0299988, z: 2.240002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8630,7 +8630,7 @@ Transform:
   - {fileID: 1633547527}
   - {fileID: 932454596}
   m_Father: {fileID: 842415444}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &378616785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8643,7 +8643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!4 &379473238 stripped
 Transform:
@@ -8888,7 +8888,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390194201}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.1599998, z: 2.2499962}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8897,7 +8897,7 @@ Transform:
   - {fileID: 1707464788}
   - {fileID: 34358242}
   m_Father: {fileID: 1795067121}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &390194203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8910,7 +8910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!1 &390984775
 GameObject:
@@ -19333,7 +19333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842415443}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.1600013, z: 2.2499998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19342,7 +19342,7 @@ Transform:
   - {fileID: 9798631}
   - {fileID: 378616784}
   m_Father: {fileID: 2060220277}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &842415445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19355,7 +19355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!1 &842830971
 GameObject:
@@ -19382,7 +19382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842830971}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.1299992, z: 2.1800005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19391,7 +19391,7 @@ Transform:
   - {fileID: 1168784452}
   - {fileID: 1538110155}
   m_Father: {fileID: 932454596}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &842830973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19404,7 +19404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!1001 &843156327
 PrefabInstance:
@@ -21055,7 +21055,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932454595}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.1400013, z: 2.2799985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21064,7 +21064,7 @@ Transform:
   - {fileID: 78732053}
   - {fileID: 842830972}
   m_Father: {fileID: 378616784}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &932454597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21077,7 +21077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!1 &940450215
 GameObject:
@@ -21147,7 +21147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946189219}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.2099972, z: 2.0700097}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21156,7 +21156,7 @@ Transform:
   - {fileID: 286941528}
   - {fileID: 269545211}
   m_Father: {fileID: 1124369735}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &946189221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21169,7 +21169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!1001 &946525503
 PrefabInstance:
@@ -25267,7 +25267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124369734}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.2200012, z: 2.2899947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -25276,7 +25276,7 @@ Transform:
   - {fileID: 789970284}
   - {fileID: 946189220}
   m_Father: {fileID: 34358242}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1124369736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25289,7 +25289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!4 &1124488880 stripped
 Transform:
@@ -26633,7 +26633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172011433}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.2000003, z: 2.0099864}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26641,7 +26641,7 @@ Transform:
   - {fileID: 1157711956}
   - {fileID: 1682573557}
   m_Father: {fileID: 2004803258}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1172011435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26654,7 +26654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!4 &1172300177 stripped
 Transform:
@@ -30126,7 +30126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322415475}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.25, z: 2.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30135,7 +30135,7 @@ Transform:
   - {fileID: 1307586960}
   - {fileID: 1411160326}
   m_Father: {fileID: 1903265963}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1322415477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30148,7 +30148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!4 &1322697722 stripped
 Transform:
@@ -31190,7 +31190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377626223}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.13, z: 2.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31199,7 +31199,7 @@ Transform:
   - {fileID: 472985900}
   - {fileID: 1635303799}
   m_Father: {fileID: 2099471653}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1377626225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31212,7 +31212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!4 &1380098953 stripped
 Transform:
@@ -31911,7 +31911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411160325}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.19, z: 2.080002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31920,7 +31920,7 @@ Transform:
   - {fileID: 2099317605}
   - {fileID: 1691330399}
   m_Father: {fileID: 1322415476}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1411160327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31933,7 +31933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!4 &1415828974 stripped
 Transform:
@@ -34216,7 +34216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538110154}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.1200008, z: 2.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34225,7 +34225,7 @@ Transform:
   - {fileID: 1921502363}
   - {fileID: 1795067121}
   m_Father: {fileID: 842830972}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1538110156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34238,7 +34238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!1001 &1543033227
 PrefabInstance:
@@ -35737,7 +35737,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635303798}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.25, z: 2.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35746,7 +35746,7 @@ Transform:
   - {fileID: 743768603}
   - {fileID: 1903265963}
   m_Father: {fileID: 1377626224}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1635303800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35759,7 +35759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!1001 &1639959357
 PrefabInstance:
@@ -37389,7 +37389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691330398}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.0900002, z: 2.4099996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37398,7 +37398,7 @@ Transform:
   - {fileID: 2031292892}
   - {fileID: 2060220277}
   m_Father: {fileID: 1411160326}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1691330400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37411,7 +37411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!1001 &1691689510
 PrefabInstance:
@@ -39624,7 +39624,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795067120}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.1999984, z: 2.3400025}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -39633,7 +39633,7 @@ Transform:
   - {fileID: 1999814236}
   - {fileID: 390194202}
   m_Father: {fileID: 1538110155}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1795067122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39646,7 +39646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!1001 &1796519102
 PrefabInstance:
@@ -42103,7 +42103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903265962}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.04, z: 2.4100018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -42112,7 +42112,7 @@ Transform:
   - {fileID: 2125859102}
   - {fileID: 1322415476}
   m_Father: {fileID: 1635303799}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1903265964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42125,7 +42125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!4 &1905168815 stripped
 Transform:
@@ -44249,7 +44249,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004803257}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.2399979, z: 2.270012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -44258,7 +44258,7 @@ Transform:
   - {fileID: 214691554}
   - {fileID: 1172011434}
   m_Father: {fileID: 269545211}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2004803259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44271,7 +44271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!1001 &2009098266
 PrefabInstance:
@@ -45482,7 +45482,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2060220276}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.0299997, z: 2.4300005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45491,7 +45491,7 @@ Transform:
   - {fileID: 761669530}
   - {fileID: 842415444}
   m_Father: {fileID: 1691330399}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2060220278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45504,7 +45504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!4 &2060423788 stripped
 Transform:
@@ -46443,7 +46443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099471652}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.31, z: 2.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -46452,7 +46452,7 @@ Transform:
   - {fileID: 1967714348}
   - {fileID: 1377626224}
   m_Father: {fileID: 4235030517754638136}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2099471654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46465,7 +46465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
+  hedefAci: 180
   donmeHizi: 90
 --- !u!4 &2099685868 stripped
 Transform:
@@ -48168,8 +48168,8 @@ Transform:
   m_GameObject: {fileID: 2140967565007719312}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6679208, y: 18.17, z: -68.06}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: -0.6679208, y: 14.59, z: -70.29}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2201655718851272818}
@@ -48369,7 +48369,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4235030517754638136}
-  - component: {fileID: 4235030517754638137}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole
   m_TagString: Untagged
@@ -48472,20 +48471,6 @@ Transform:
   - {fileID: 2099471653}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &4235030517754638137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3570801990466565506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
-  hedefAci: 0
-  donmeHizi: 90
 --- !u!33 &4370417689413039304
 MeshFilter:
   m_ObjectHideFlags: 0
