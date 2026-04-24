@@ -20,6 +20,7 @@ public class EconomyManager : MonoBehaviour
     {
         Instance = this;
         UpdateGoldUI();
+        DOTween.SetTweensCapacity(12000, 700);
     }
 
     void Update()

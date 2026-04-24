@@ -10,7 +10,6 @@ public class CatShop : MonoBehaviour, IInteractable
     [SerializeField] private Storage targetStorage;
 
     [SerializeField] private int currentLevel = 0;
-    [SerializeField] private int maxLevel = 5;
     [SerializeField] private GameObject catPrefab;
     [SerializeField] private Vector3 spawnOffset;
 
@@ -51,7 +50,7 @@ public class CatShop : MonoBehaviour, IInteractable
         if (!canInteract)
             return;
 
-        if (catPrices.Count < currentLevel)
+        if (catPrices.Count <= currentLevel)
             return;
 
         StartCoroutine(InteractionCooldown());
@@ -105,7 +104,7 @@ public class CatShop : MonoBehaviour, IInteractable
 
     private void UpdatePriceText()
     {
-        if (currentLevel == maxLevel)
+        if (currentLevel >= catPrices.Count)
         {
             priceText.text = " ";
             return;

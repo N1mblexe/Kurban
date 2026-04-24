@@ -166,24 +166,7 @@
           }
         }
       ],
-      "events": [
-        {
-          "timeStamp": 0.167,
-          "functionName": "Step"
-        },
-        {
-          "timeStamp": 0.417,
-          "functionName": "Step"
-        },
-        {
-          "timeStamp": 0.583,
-          "functionName": "Step"
-        },
-        {
-          "timeStamp": 0.833,
-          "functionName": "Step"
-        }
-      ]
+      "events": []
     },
     {
       "name": "idle",
