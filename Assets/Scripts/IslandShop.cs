@@ -14,10 +14,6 @@ public class IslandShop : MonoBehaviour, IInteractable
     [Header("Ekonomi Etkisi")]
     public float newIslandBasePrice = 18f;
 
-    [Header("Dünya Etkileşimi")]
-    [Tooltip("Satın alınca yok olacak obje (Örn: Yolu kapatan kapı veya duvar)")]
-    public GameObject barrierToDestroy;
-
     [Tooltip("Açılma animasyonu bittikten EN SONRA aktif olacak obje (Örn: Teleporter)")]
     public GameObject teleporterToActivate;
 
@@ -27,6 +23,8 @@ public class IslandShop : MonoBehaviour, IInteractable
     [SerializeField] private Renderer shopRenderer;
     [SerializeField] private Color affordableColor = Color.green;
     [SerializeField] private Color expensiveColor = Color.red;
+    [SerializeField] private float defaultAlpha;
+    [SerializeField] private Transform islandAnimalShower;
     private bool? wasAffordable = null;
 
     private Material shopMaterial;
@@ -43,7 +41,14 @@ public class IslandShop : MonoBehaviour, IInteractable
         if (shopRenderer != null)
         {
             shopMaterial = shopRenderer.material;
+            defaultAlpha = shopMaterial.color.a;
         }
+
+        islandAnimalShower.DORotate(new Vector3(0, 360, 0), 5, RotateMode.FastBeyond360)
+    .SetLoops(-1, LoopType.Incremental)
+    .SetEase(Ease.Linear);
+
+        defaultScale = transform.localScale;
     }
 
     private void Update()
@@ -64,6 +69,7 @@ public class IslandShop : MonoBehaviour, IInteractable
             wasAffordable = canAfford;
 
             Color targetColor = canAfford ? affordableColor : expensiveColor;
+            targetColor.a = defaultAlpha;
             shopMaterial.DOColor(targetColor, 0.5f);
         }
     }
@@ -90,12 +96,27 @@ public class IslandShop : MonoBehaviour, IInteractable
         }
     }
 
+    private Vector3 defaultScale;
+    private Tweener hover;
+
+    public void OnHoverEnter()
+    {
+        if(hover != null)
+            DOTween.Kill(hover);
+        hover = transform.DOPunchScale(new Vector3(-0.1f , -0.1f , -0.1f) , 0.4f);
+    }
+
+    public void OnHoverExit()
+    {
+        if(hover != null)
+            DOTween.Kill(hover);
+        hover = transform.DOScale(defaultScale , 0.4f);
+    }
+
     void PlayUnlockEffect()
     {
         transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.3f).OnComplete(() =>
         {
-            if (barrierToDestroy != null) barrierToDestroy.SetActive(false);
-
             gameObject.SetActive(false);
 
             if (parent != null)

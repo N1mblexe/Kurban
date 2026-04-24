@@ -62,7 +62,7 @@ public class EconomyManager : MonoBehaviour
         //remove this when building
         if(Input.GetKeyDown(KeyCode.K))
         {
-            AddGold(5000);
+            AddGold(50000);
         }
     }
 

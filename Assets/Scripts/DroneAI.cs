@@ -14,7 +14,7 @@ public class DroneAI : FSM
     void Awake()
     {
         if (backpack == null)
-            backpack = new Backpack(1000, 0, float.MaxValue);
+            backpack = new Backpack(50, 0, float.MaxValue);
     }
 
 

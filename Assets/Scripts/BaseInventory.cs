@@ -57,9 +57,10 @@ public class Backpack
             return amount;
         }
 
+        float added = capacity - weight;
         weight = capacity;
 
-        return capacity - weight;
+        return added;
     }
 }
 
