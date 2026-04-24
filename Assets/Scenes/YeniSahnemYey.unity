@@ -888,6 +888,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 34358242}
+  - component: {fileID: 34358243}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (16)
   m_TagString: Untagged
@@ -903,7 +904,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34358241}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.269999, z: 2.2200031}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -912,7 +913,21 @@ Transform:
   - {fileID: 1449774639}
   - {fileID: 1124369735}
   m_Father: {fileID: 390194202}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &34358243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34358241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!1001 &37391307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5744,6 +5759,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 269545211}
+  - component: {fileID: 269545212}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (19)
   m_TagString: Untagged
@@ -5759,7 +5775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269545210}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.25, z: 2.1799908}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5768,7 +5784,21 @@ Transform:
   - {fileID: 1769404367}
   - {fileID: 2004803258}
   m_Father: {fileID: 946189220}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &269545212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269545210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!4 &274489123 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4130356467425764, guid: 8a62d9bc4749e424691a3175352b2826, type: 3}
@@ -8575,6 +8605,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 378616784}
+  - component: {fileID: 378616785}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (10)
   m_TagString: Untagged
@@ -8590,7 +8621,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378616783}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.0299988, z: 2.240002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8599,7 +8630,21 @@ Transform:
   - {fileID: 1633547527}
   - {fileID: 932454596}
   m_Father: {fileID: 842415444}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &378616785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378616783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!4 &379473238 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 697902395016963850, guid: 444369c3227a49e4ab9eed6d85709006, type: 3}
@@ -8827,6 +8872,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 390194202}
+  - component: {fileID: 390194203}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (15)
   m_TagString: Untagged
@@ -8842,7 +8888,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390194201}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.1599998, z: 2.2499962}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8851,7 +8897,21 @@ Transform:
   - {fileID: 1707464788}
   - {fileID: 34358242}
   m_Father: {fileID: 1795067121}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &390194203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390194201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!1 &390984775
 GameObject:
   m_ObjectHideFlags: 0
@@ -19257,6 +19317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 842415444}
+  - component: {fileID: 842415445}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (9)
   m_TagString: Untagged
@@ -19272,7 +19333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842415443}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.1600013, z: 2.2499998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19281,7 +19342,21 @@ Transform:
   - {fileID: 9798631}
   - {fileID: 378616784}
   m_Father: {fileID: 2060220277}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &842415445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842415443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!1 &842830971
 GameObject:
   m_ObjectHideFlags: 0
@@ -19291,6 +19366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 842830972}
+  - component: {fileID: 842830973}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (12)
   m_TagString: Untagged
@@ -19306,7 +19382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842830971}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.1299992, z: 2.1800005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19315,7 +19391,21 @@ Transform:
   - {fileID: 1168784452}
   - {fileID: 1538110155}
   m_Father: {fileID: 932454596}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &842830973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842830971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!1001 &843156327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20949,6 +21039,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 932454596}
+  - component: {fileID: 932454597}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (11)
   m_TagString: Untagged
@@ -20964,7 +21055,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932454595}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.1400013, z: 2.2799985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20973,7 +21064,21 @@ Transform:
   - {fileID: 78732053}
   - {fileID: 842830972}
   m_Father: {fileID: 378616784}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &932454597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932454595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!1 &940450215
 GameObject:
   m_ObjectHideFlags: 0
@@ -21026,6 +21131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 946189220}
+  - component: {fileID: 946189221}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (18)
   m_TagString: Untagged
@@ -21041,7 +21147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946189219}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.2099972, z: 2.0700097}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21050,7 +21156,21 @@ Transform:
   - {fileID: 286941528}
   - {fileID: 269545211}
   m_Father: {fileID: 1124369735}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &946189221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946189219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!1001 &946525503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25131,6 +25251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1124369735}
+  - component: {fileID: 1124369736}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (17)
   m_TagString: Untagged
@@ -25146,7 +25267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124369734}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.2200012, z: 2.2899947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -25155,7 +25276,21 @@ Transform:
   - {fileID: 789970284}
   - {fileID: 946189220}
   m_Father: {fileID: 34358242}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &1124369736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124369734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!4 &1124488880 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000013980202802, guid: 44f06f083d27f4a75bdf4b52d745f453, type: 3}
@@ -26482,6 +26617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1172011434}
+  - component: {fileID: 1172011435}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (21)
   m_TagString: Untagged
@@ -26497,7 +26633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172011433}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.2000003, z: 2.0099864}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26505,7 +26641,21 @@ Transform:
   - {fileID: 1157711956}
   - {fileID: 1682573557}
   m_Father: {fileID: 2004803258}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &1172011435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172011433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!4 &1172300177 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1618409282137984046, guid: 89f4396468914f54a98d197382f2df77, type: 3}
@@ -29960,6 +30110,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1322415476}
+  - component: {fileID: 1322415477}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (5)
   m_TagString: Untagged
@@ -29975,7 +30126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322415475}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.25, z: 2.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -29984,7 +30135,21 @@ Transform:
   - {fileID: 1307586960}
   - {fileID: 1411160326}
   m_Father: {fileID: 1903265963}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &1322415477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322415475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!4 &1322697722 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000013980202802, guid: 44f06f083d27f4a75bdf4b52d745f453, type: 3}
@@ -31009,6 +31174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1377626224}
+  - component: {fileID: 1377626225}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (2)
   m_TagString: Untagged
@@ -31024,7 +31190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377626223}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.13, z: 2.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31033,7 +31199,21 @@ Transform:
   - {fileID: 472985900}
   - {fileID: 1635303799}
   m_Father: {fileID: 2099471653}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &1377626225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377626223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!4 &1380098953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: adc69be7f5bb17c41a4afb99576d3409, type: 3}
@@ -31715,6 +31895,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1411160326}
+  - component: {fileID: 1411160327}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (6)
   m_TagString: Untagged
@@ -31730,7 +31911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411160325}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.19, z: 2.080002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31739,7 +31920,21 @@ Transform:
   - {fileID: 2099317605}
   - {fileID: 1691330399}
   m_Father: {fileID: 1322415476}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &1411160327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411160325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!4 &1415828974 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5561588769742648202, guid: 4fe9598fdb7f94a43a90edcfd8ab193e, type: 3}
@@ -34005,6 +34200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1538110155}
+  - component: {fileID: 1538110156}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (13)
   m_TagString: Untagged
@@ -34020,7 +34216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538110154}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.1200008, z: 2.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34029,7 +34225,21 @@ Transform:
   - {fileID: 1921502363}
   - {fileID: 1795067121}
   m_Father: {fileID: 842830972}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &1538110156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538110154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!1001 &1543033227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35511,6 +35721,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1635303799}
+  - component: {fileID: 1635303800}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (3)
   m_TagString: Untagged
@@ -35526,7 +35737,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635303798}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.25, z: 2.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35535,7 +35746,21 @@ Transform:
   - {fileID: 743768603}
   - {fileID: 1903265963}
   m_Father: {fileID: 1377626224}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &1635303800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635303798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!1001 &1639959357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37148,6 +37373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1691330399}
+  - component: {fileID: 1691330400}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (7)
   m_TagString: Untagged
@@ -37163,7 +37389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691330398}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.0900002, z: 2.4099996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37172,7 +37398,21 @@ Transform:
   - {fileID: 2031292892}
   - {fileID: 2060220277}
   m_Father: {fileID: 1411160326}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &1691330400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691330398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!1001 &1691689510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39368,6 +39608,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1795067121}
+  - component: {fileID: 1795067122}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (14)
   m_TagString: Untagged
@@ -39383,7 +39624,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795067120}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.1999984, z: 2.3400025}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -39392,7 +39633,21 @@ Transform:
   - {fileID: 1999814236}
   - {fileID: 390194202}
   m_Father: {fileID: 1538110155}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &1795067122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795067120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!1001 &1796519102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41832,6 +42087,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1903265963}
+  - component: {fileID: 1903265964}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (4)
   m_TagString: Untagged
@@ -41847,7 +42103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903265962}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.04, z: 2.4100018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -41856,7 +42112,21 @@ Transform:
   - {fileID: 2125859102}
   - {fileID: 1322415476}
   m_Father: {fileID: 1635303799}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &1903265964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903265962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!4 &1905168815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000014246037622, guid: 214b8a6ba0c92a9449f27b489959e15d, type: 3}
@@ -43963,6 +44233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2004803258}
+  - component: {fileID: 2004803259}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (20)
   m_TagString: Untagged
@@ -43978,7 +44249,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004803257}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.2399979, z: 2.270012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -43987,7 +44258,21 @@ Transform:
   - {fileID: 214691554}
   - {fileID: 1172011434}
   m_Father: {fileID: 269545211}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &2004803259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004803257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!1001 &2009098266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45181,6 +45466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2060220277}
+  - component: {fileID: 2060220278}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (8)
   m_TagString: Untagged
@@ -45196,7 +45482,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2060220276}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.0299997, z: 2.4300005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45205,7 +45491,21 @@ Transform:
   - {fileID: 761669530}
   - {fileID: 842415444}
   m_Father: {fileID: 1691330399}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &2060220278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060220276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!4 &2060423788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: adc69be7f5bb17c41a4afb99576d3409, type: 3}
@@ -46127,6 +46427,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2099471653}
+  - component: {fileID: 2099471654}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole (1)
   m_TagString: Untagged
@@ -46142,7 +46443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099471652}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.31, z: 2.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -46151,7 +46452,21 @@ Transform:
   - {fileID: 1967714348}
   - {fileID: 1377626224}
   m_Father: {fileID: 4235030517754638136}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &2099471654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099471652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!4 &2099685868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 441380, guid: 1093da2b134a65e44b0cb16f24de4b22, type: 3}
@@ -48054,6 +48369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4235030517754638136}
+  - component: {fileID: 4235030517754638137}
   m_Layer: 0
   m_Name: Scifi_Floor_Manhole
   m_TagString: Untagged
@@ -48156,6 +48472,20 @@ Transform:
   - {fileID: 2099471653}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &4235030517754638137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3570801990466565506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d9704807d54c4e971c1bbeb6044d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnesMerdivenCont
+  hedefAci: 0
+  donmeHizi: 90
 --- !u!33 &4370417689413039304
 MeshFilter:
   m_ObjectHideFlags: 0

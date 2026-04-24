@@ -2,26 +2,19 @@ using UnityEngine;
 
 public class EnesMerdivenCont : MonoBehaviour
 {
-    public float nereyeDoncen = 180f;
-    public bool artiYon = true;
-    private float sayac;
-    public float rotSpeed;
-    // Update is called once per frame
+    public float hedefAci = 180f; // Dönmek istediðin hedef (Y ekseni)
+    public float donmeHizi = 90f; // Saniyede kaç derece döneceði
+
     void Update()
     {
-        if(transform.rotation.y != nereyeDoncen)
-        {
-            sayac += rotSpeed * Time.deltaTime;
+        // 1. Hedef yönü bir Quaternion (rotasyon verisi) olarak tanýmlýyoruz
+        Quaternion hedefRotasyon = Quaternion.Euler(0, hedefAci, 0);
 
-            if (artiYon)
-            {
-                
-                transform.Rotate(0,sayac,0);
-            }
-            else
-            {
-                transform.Rotate(0, -sayac, 0);
-            }
-        }    
+        // 2. Mevcut rotasyondan hedefe doðru, belirlenen hýzla yumuþak bir geçiþ yapýyoruz
+        transform.rotation = Quaternion.RotateTowards(
+            transform.rotation,
+            hedefRotasyon,
+            donmeHizi * Time.deltaTime
+        );
     }
 }
