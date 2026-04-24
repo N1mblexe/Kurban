@@ -3625,6 +3625,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1621398136}
     m_Modifications:
     - target: {fileID: 2283264225263607978, guid: 4a61c45c55ce9b404bd6198dba55f253, type: 3}
+      propertyPath: islandIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283264225263607978, guid: 4a61c45c55ce9b404bd6198dba55f253, type: 3}
       propertyPath: targetManager
       value: 
       objectReference: {fileID: 300253801}
@@ -5824,6 +5828,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IslandShop
   islandName: Cow
   price: 4000
+  isFree: 0
+  islandIndex: 2
   newIslandBasePrice: 20
   barrierToDestroy: {fileID: 0}
   teleporterToActivate: {fileID: 300253800}
@@ -18762,6 +18768,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IslandShop
   islandName: Chicken
   price: 0
+  isFree: 1
+  islandIndex: 0
   newIslandBasePrice: 12
   barrierToDestroy: {fileID: 0}
   teleporterToActivate: {fileID: 1714719464}
@@ -32630,6 +32638,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2144539820}
     m_Modifications:
     - target: {fileID: 2283264225263607978, guid: 4a61c45c55ce9b404bd6198dba55f253, type: 3}
+      propertyPath: islandIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283264225263607978, guid: 4a61c45c55ce9b404bd6198dba55f253, type: 3}
       propertyPath: targetManager
       value: 
       objectReference: {fileID: 1854481373}
@@ -45118,6 +45130,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 794676134}
     m_Modifications:
     - target: {fileID: 2283264225263607978, guid: 4a61c45c55ce9b404bd6198dba55f253, type: 3}
+      propertyPath: islandIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283264225263607978, guid: 4a61c45c55ce9b404bd6198dba55f253, type: 3}
       propertyPath: targetManager
       value: 
       objectReference: {fileID: 2099827457}
@@ -49197,6 +49213,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IslandShop
   islandName: Sheep
   price: 1000
+  isFree: 0
+  islandIndex: 1
   newIslandBasePrice: 15
   barrierToDestroy: {fileID: 0}
   teleporterToActivate: {fileID: 1854481372}
@@ -59091,6 +59109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IslandShop
   islandName: Sheep
   price: 7000
+  isFree: 0
+  islandIndex: 3
   newIslandBasePrice: 25
   barrierToDestroy: {fileID: 0}
   teleporterToActivate: {fileID: 2099827456}
@@ -61229,6 +61249,274 @@ PrefabInstance:
       propertyPath: goldTextUI
       value: 
       objectReference: {fileID: 1165554667}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: catBasePrice
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: maxLevelCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: packBasePrice
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: knifeBasePrice
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: packGrowthRate
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: knifeGrowthRate
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: playerMeatPerMin
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: catPrices.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: packPrices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: knifePrices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: targetMinutesPerIsland
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: islandPrices.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'packPrices.Array.data[0]'
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'packPrices.Array.data[1]'
+      value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'packPrices.Array.data[2]'
+      value: 16000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'packPrices.Array.data[3]'
+      value: 86
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'packPrices.Array.data[4]'
+      value: 104
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'packPrices.Array.data[5]'
+      value: 124
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'packPrices.Array.data[6]'
+      value: 149
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'packPrices.Array.data[7]'
+      value: 179
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'packPrices.Array.data[8]'
+      value: 215
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'packPrices.Array.data[9]'
+      value: 258
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'knifePrices.Array.data[0]'
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'knifePrices.Array.data[1]'
+      value: 1200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'knifePrices.Array.data[2]'
+      value: 4800
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'knifePrices.Array.data[3]'
+      value: 274
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'knifePrices.Array.data[4]'
+      value: 384
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'knifePrices.Array.data[5]'
+      value: 538
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'knifePrices.Array.data[6]'
+      value: 753
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'knifePrices.Array.data[7]'
+      value: 1054
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'knifePrices.Array.data[8]'
+      value: 1476
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'knifePrices.Array.data[9]'
+      value: 2066
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'islandPrices.Array.data[0]'
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'islandPrices.Array.data[1]'
+      value: 1620
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'islandPrices.Array.data[2]'
+      value: 5832
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'islandPrices.Array.data[3]'
+      value: 20995
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'islandPrices.Array.data[4]'
+      value: 75583
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: catPrices.Array.data[0].values.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: catPrices.Array.data[1].values.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: catPrices.Array.data[2].values.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: catPrices.Array.data[3].values.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: catPrices.Array.data[4].values.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[0].values.Array.data[0]'
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[0].values.Array.data[1]'
+      value: 1250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[0].values.Array.data[2]'
+      value: 3125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[0].values.Array.data[3]'
+      value: 7812
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[0].values.Array.data[4]'
+      value: 19531
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[1].values.Array.data[0]'
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[1].values.Array.data[1]'
+      value: 3750
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[1].values.Array.data[2]'
+      value: 9375
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[1].values.Array.data[3]'
+      value: 23438
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[1].values.Array.data[4]'
+      value: 58594
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[2].values.Array.data[0]'
+      value: 4500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[2].values.Array.data[1]'
+      value: 11250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[2].values.Array.data[2]'
+      value: 28125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[2].values.Array.data[3]'
+      value: 70312
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[2].values.Array.data[4]'
+      value: 175781
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[3].values.Array.data[0]'
+      value: 13500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[3].values.Array.data[1]'
+      value: 33750
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[3].values.Array.data[2]'
+      value: 84375
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[3].values.Array.data[3]'
+      value: 210938
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[3].values.Array.data[4]'
+      value: 527344
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[4].values.Array.data[0]'
+      value: 40500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[4].values.Array.data[1]'
+      value: 101250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[4].values.Array.data[2]'
+      value: 253125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[4].values.Array.data[3]'
+      value: 632812
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437092038021255274, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
+      propertyPath: 'catPrices.Array.data[4].values.Array.data[4]'
+      value: 1582031
+      objectReference: {fileID: 0}
     - target: {fileID: 5445083296933350947, guid: 211c88f7c513f694699f1b91d162d82c, type: 3}
       propertyPath: weightText
       value: 

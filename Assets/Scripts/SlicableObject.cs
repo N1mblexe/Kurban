@@ -23,6 +23,9 @@ public class SliceableObject : MonoBehaviour
     [Header("Animasyon Ayarları")]
     [SerializeField] private float spawnScaleDuration = 0.5f; // Büyüme süresi
 
+
+    [Header("Volume")]
+    [SerializeField] private float volumeMultipler = 1;
     public float CurrentVolume { get; private set; }
     private Health health;
 
@@ -65,7 +68,7 @@ public class SliceableObject : MonoBehaviour
         Renderer rend = GetComponent<Renderer>();
         if (rend != null)
         {
-            CurrentVolume = rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z;
+            CurrentVolume = rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z * volumeMultipler;
         }
         else
         {
@@ -170,6 +173,7 @@ public class SliceableObject : MonoBehaviour
         newSliceable.separationForce = this.separationForce;
         newSliceable.horizontalTiltMultiplier = this.horizontalTiltMultiplier;
         newSliceable.minVolumeToSlice = this.minVolumeToSlice;
+        newSliceable.volumeMultipler = this.volumeMultipler;
 
         if (piece.TryGetComponent(out Animator animator)) animator.enabled = false;
 

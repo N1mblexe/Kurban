@@ -226,7 +226,7 @@ MonoBehaviour:
       weight: 0
       maxVolumePerItem: 0
   meshRenderer: {fileID: 6211623433774149139}
-  meatMultipler: 5
+  meatMultipler: 1
   huntTime: 2
   wanderTime: 3
   agent: {fileID: 0}

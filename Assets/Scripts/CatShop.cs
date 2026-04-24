@@ -14,7 +14,8 @@ public class CatShop : MonoBehaviour, IInteractable
     [SerializeField] private Vector3 spawnOffset;
 
     [SerializeField] List<CatFSM> cats;
-    [SerializeField] private List<float> catPrices;
+    [SerializeField] private List<int> catPrices;
+    [SerializeField] private IslandType islandIndex;
 
     [SerializeField] private TextMeshProUGUI priceText;
 
@@ -32,8 +33,8 @@ public class CatShop : MonoBehaviour, IInteractable
     void Start()
     {
         cats = new List<CatFSM>();
-        if (catPrices == null)
-            catPrices = new List<float>();
+        
+        catPrices = EconomyManager.Instance.catPrices[islandIndex.GetHashCode()].values;
 
         UpdatePriceText();
     }

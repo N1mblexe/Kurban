@@ -153,7 +153,16 @@ MonoBehaviour:
   separationForce: 150
   horizontalTiltMultiplier: 0.3
   isOriginalBody: 1
-  minVolumeToSlice: 5
+  minVolumeToSlice: 0.1
   liveTime: 10
   spawnScaleDuration: 0.5
+  volumeMultipler: 5
   manager: {fileID: 0}
+  stealer_ufo: 0
+  animationDuration: 1.5
+  spawnHeightOffset: 10
+  floatHeight: 0.5
+  floatDuration: 2
+  idleOffset: 4
+  ufoPrefab: {fileID: 0}
+  ufoObject: {fileID: 0}

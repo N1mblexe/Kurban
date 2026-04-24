@@ -118,9 +118,8 @@ public class Shop : MonoBehaviour
             }
 
             // Para hesabı
-            float basePrice = EconomyManager.Instance.currentIslandBasePrice;
             float knifeMult = EconomyManager.Instance.currentKnifeMultiplier;
-            float earnAmount = demandedWeight * basePrice * knifeMult;
+            float earnAmount = demandedWeight * knifeMult;
 
             accumulatedMoney += earnAmount;
 
@@ -186,7 +185,7 @@ public class Shop : MonoBehaviour
                 money.transform.DOMove(targetPos, moveDuration);
                 money.transform.DOScale(Vector3.zero, moveDuration); 
                 
-                float collectAmount = weightPerMeat * EconomyManager.Instance.currentIslandBasePrice * EconomyManager.Instance.currentKnifeMultiplier;
+                float collectAmount = weightPerMeat * EconomyManager.Instance.currentKnifeMultiplier;
                 
                 if (m_MoneyStack.Count == 0)
                     collectAmount = accumulatedMoney;
@@ -227,9 +226,8 @@ public class Shop : MonoBehaviour
 
         weight -= weightPerMeat; // 1 parça eti rezerve et
 
-        float basePrice = EconomyManager.Instance.currentIslandBasePrice;
         float knifeMult = EconomyManager.Instance.currentKnifeMultiplier;
-        float earnAmount = weightPerMeat * basePrice * knifeMult;
+        float earnAmount = weightPerMeat * knifeMult;
 
         // 1. Eti müşteriye ver (Animasyonlu)
         if (m_Stack.Count > 0)

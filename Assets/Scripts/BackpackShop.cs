@@ -38,6 +38,9 @@ public class BackpackShop : MonoBehaviour, IInteractable
 
     private void Start()
     {
+        for(int i = 0; i < backpacks.Count ; i++)
+            backpacks[i].price = EconomyManager.Instance.packPrices[i];
+            
         if (price_text != null)
         {
             originalTextScale = price_text.gameObject.transform.localScale;

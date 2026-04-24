@@ -8,6 +8,8 @@ public class IslandShop : MonoBehaviour, IInteractable
     [Header("Ada Bilgileri")]
     public string islandName = "Sisli Orman";
     public float price = 5000f;
+    public bool isFree = false;
+    public IslandType islandIndex;
 
     [Header("Ekonomi Etkisi")]
     public float newIslandBasePrice = 18f;
@@ -25,7 +27,7 @@ public class IslandShop : MonoBehaviour, IInteractable
     [SerializeField] private Renderer shopRenderer;
     [SerializeField] private Color affordableColor = Color.green;
     [SerializeField] private Color expensiveColor = Color.red;
-    private bool? wasAffordable = null; 
+    private bool? wasAffordable = null;
 
     private Material shopMaterial;
 
@@ -37,6 +39,7 @@ public class IslandShop : MonoBehaviour, IInteractable
 
     private void Start()
     {
+        price = (isFree) ? 0 : EconomyManager.Instance.islandPrices[islandIndex.GetHashCode()];
         if (shopRenderer != null)
         {
             shopMaterial = shopRenderer.material;
@@ -51,19 +54,19 @@ public class IslandShop : MonoBehaviour, IInteractable
     }
 
     private void UpdateVisualStatus()
-{
-    if (shopMaterial == null) return;
-
-    bool canAfford = EconomyManager.Instance.currentGold >= price;
-
-    if (wasAffordable == null || canAfford != wasAffordable)
     {
-        wasAffordable = canAfford; 
-        
-        Color targetColor = canAfford ? affordableColor : expensiveColor;
-        shopMaterial.DOColor(targetColor, 0.5f);
+        if (shopMaterial == null) return;
+
+        bool canAfford = EconomyManager.Instance.currentGold >= price;
+
+        if (wasAffordable == null || canAfford != wasAffordable)
+        {
+            wasAffordable = canAfford;
+
+            Color targetColor = canAfford ? affordableColor : expensiveColor;
+            shopMaterial.DOColor(targetColor, 0.5f);
+        }
     }
-}
 
     public void Interact()
     {
@@ -75,8 +78,6 @@ public class IslandShop : MonoBehaviour, IInteractable
 
         if (EconomyManager.Instance.TrySpendGold(price))
         {
-            EconomyManager.Instance.currentIslandBasePrice = newIslandBasePrice;
-
             isBought = true;
             Debug.Log($"{islandName} kilidi açıldı! Yeni kg fiyatı: {newIslandBasePrice} Gold");
 
