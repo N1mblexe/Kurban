@@ -2,16 +2,36 @@ using UnityEngine;
 
 public class CameraEffects : MonoBehaviour
 {
+    // Hangi sesin çalınacağını belirlemek için bir kategori oluşturduk
+    public enum SoundActionType { Walk, Sprint, Jump, Land }
+
+    [System.Serializable]
+    public struct SurfaceAudioSet
+    {
+        public string surfaceTag;
+        public AudioClip[] footstepSounds;
+        public AudioClip[] sprintSounds;
+        public AudioClip[] jumpSounds; // Zemine özel zıplama sesleri
+        public AudioClip[] landSounds; // Zemine özel yere inme sesleri
+    }
+
     public static CameraEffects Instance;
 
     [Header("Referanslar")]
     [SerializeField] private Camera playerCamera;
     [SerializeField] private AudioSource footstepAudioSource;
-    [SerializeField] private AudioClip[] footstepSounds;
-    
     private MovementManager movement;
     private InputManager inputManager;
-    private FpsLook fpsLook; 
+    private FpsLook fpsLook;
+
+    [Header("Zemin Ses Havuzları")]
+    public SurfaceAudioSet[] surfaceAudioSets;
+
+    [Header("Varsayılan Sesler (Tanımsız Zeminler İçin)")]
+    public AudioClip[] defaultFootstepSounds;
+    public AudioClip[] defaultSprintSounds;
+    public AudioClip[] defaultJumpSounds;
+    public AudioClip[] defaultLandSounds;
 
     [Header("Head Bobbing")]
     [SerializeField] private float bobFrequency = 14f;
@@ -20,14 +40,18 @@ public class CameraEffects : MonoBehaviour
     private float bobTimer = 0f;
     private float bobIntensity = 0f;
     private float groundedBuffer = 0f;
+    private bool wasGrounded;
 
     [Header("Dynamic FOV")]
     [SerializeField] private float baseFOV = 60f;
     [SerializeField] private float sprintFOV = 75f;
     [SerializeField] private float fovSmoothness = 10f;
 
-    [Header("Ayak Sesleri")]
-    [SerializeField] private float stepThreshold = -0.5f; 
+    [Header("Ayak Sesleri Ayarları")]
+    [SerializeField] private float stepThreshold = -0.5f;
+    [SerializeField] private float raycastDistance = 2.5f; // Zıplarken zemini kaçırmamak için biraz artırdık
+    [SerializeField] private LayerMask groundLayer;
+    [Range(0f, 1f)] public float footstepVolume = 0.5f;
     private bool stepTaken = false;
 
     [Header("Leaning")]
@@ -46,7 +70,7 @@ public class CameraEffects : MonoBehaviour
     {
         movement = GetComponent<MovementManager>();
         inputManager = GetComponent<InputManager>();
-        fpsLook = GetComponent<FpsLook>(); 
+        fpsLook = GetComponent<FpsLook>();
         Instance = this;
     }
 
@@ -57,16 +81,34 @@ public class CameraEffects : MonoBehaviour
             cameraDefaultLocalPos = playerCamera.transform.localPosition;
             playerCamera.fieldOfView = baseFOV;
         }
+        wasGrounded = movement.IsGrounded;
     }
 
     private void LateUpdate()
     {
         if (playerCamera == null) return;
 
+        HandleJumpAndLandSounds();
         HandleShake();
         HandleHeadBob();
         HandleDynamicFOV();
         HandleLean();
+    }
+
+    private void HandleJumpAndLandSounds()
+    {
+        // Yere inme kontrolü
+        if (movement.IsGrounded && !wasGrounded)
+        {
+            PlaySurfaceSound(SoundActionType.Land);
+        }
+        // Zıplama/Yerden kesilme kontrolü
+        else if (!movement.IsGrounded && wasGrounded)
+        {
+            PlaySurfaceSound(SoundActionType.Jump);
+        }
+
+        wasGrounded = movement.IsGrounded;
     }
 
     public void TriggerShake(float magnitude, float duration)
@@ -83,8 +125,8 @@ public class CameraEffects : MonoBehaviour
             float fadeOut = shakeTimer / shakeDuration;
             float currentMag = shakeMagnitude * fadeOut;
 
-            shakePosOffset = Random.insideUnitSphere * currentMag;
-            shakeRotOffset = Random.insideUnitSphere * (currentMag * 10f);
+            shakePosOffset = UnityEngine.Random.insideUnitSphere * currentMag;
+            shakeRotOffset = UnityEngine.Random.insideUnitSphere * (currentMag * 10f);
 
             shakeTimer -= Time.deltaTime;
         }
@@ -113,14 +155,16 @@ public class CameraEffects : MonoBehaviour
 
         if (isMoving)
         {
-            float speedMultiplier = inputManager.SprintInput ? 1.5f : 1f;
+            bool isSprinting = inputManager.SprintInput;
+            float speedMultiplier = isSprinting ? 1.5f : 1f;
             bobTimer += Time.deltaTime * bobFrequency * speedMultiplier;
 
             float waveValue = Mathf.Sin(bobTimer);
-            
+
             if (waveValue < stepThreshold && !stepTaken)
             {
-                PlayFootstepSound();
+                SoundActionType currentAction = isSprinting ? SoundActionType.Sprint : SoundActionType.Walk;
+                PlaySurfaceSound(currentAction);
                 stepTaken = true;
             }
             else if (waveValue > 0)
@@ -143,6 +187,7 @@ public class CameraEffects : MonoBehaviour
         ) + shakePosOffset;
     }
 
+    // Diğer handle metodları...
     private void HandleDynamicFOV()
     {
         float targetFOV = inputManager.SprintInput && inputManager.MoveInput.magnitude > 0.1f ? sprintFOV : baseFOV;
@@ -157,17 +202,81 @@ public class CameraEffects : MonoBehaviour
         float currentXRotation = fpsLook != null ? fpsLook.XRotation : playerCamera.transform.localEulerAngles.x;
 
         playerCamera.transform.localRotation = Quaternion.Euler(
-            currentXRotation + shakeRotOffset.x, 
-            shakeRotOffset.y, 
+            currentXRotation + shakeRotOffset.x,
+            shakeRotOffset.y,
             currentLean + shakeRotOffset.z
         );
     }
 
-    private void PlayFootstepSound()
+    // Merkezi Ses Çalma Metodu
+    private void PlaySurfaceSound(SoundActionType actionType)
     {
-        if (footstepSounds == null || footstepSounds.Length == 0 || footstepAudioSource == null) return;
+        if (footstepAudioSource == null) return;
 
-        int index = Random.Range(0, footstepSounds.Length);
-        footstepAudioSource.PlayOneShot(footstepSounds[index]);
+        AudioClip clipToPlay = GetClipFromSurface(actionType);
+
+        if (clipToPlay != null)
+        {
+            footstepAudioSource.PlayOneShot(clipToPlay, footstepVolume);
+        }
+    }
+
+    // Zemine ve Yapılan Harekete Göre Sesi Seçen Metot
+    private AudioClip GetClipFromSurface(SoundActionType actionType)
+    {
+        if (Physics.Raycast(transform.position, Vector3.down * 2, out RaycastHit hit, raycastDistance, groundLayer))
+        {
+            string hitTag = hit.collider.tag;
+
+            foreach (SurfaceAudioSet set in surfaceAudioSets)
+            {
+                Debug.Log(set.surfaceTag + " : " + hitTag);
+
+                if (set.surfaceTag == hitTag)
+                {
+                    AudioClip[] selectedClips = GetClipsFromSet(set, actionType);
+
+                    if (selectedClips != null && selectedClips.Length > 0)
+                    {
+                        return selectedClips[UnityEngine.Random.Range(0, selectedClips.Length)];
+                    }
+                }
+            }
+        }
+
+        // Eğer zemin tag'i bulunamazsa varsayılan ses havuzlarından seç
+        AudioClip[] defaultClips = GetDefaultClips(actionType);
+        if (defaultClips != null && defaultClips.Length > 0)
+        {
+            return defaultClips[UnityEngine.Random.Range(0, defaultClips.Length)];
+        }
+
+        return null;
+    }
+
+    // Seçilen zemin paketinden doğru diziyi çeker
+    private AudioClip[] GetClipsFromSet(SurfaceAudioSet set, SoundActionType actionType)
+    {
+        switch (actionType)
+        {
+            case SoundActionType.Walk: return set.footstepSounds;
+            case SoundActionType.Sprint: return (set.sprintSounds != null && set.sprintSounds.Length > 0) ? set.sprintSounds : set.footstepSounds;
+            case SoundActionType.Jump: return set.jumpSounds;
+            case SoundActionType.Land: return set.landSounds;
+            default: return null;
+        }
+    }
+
+    // Tanımsız zeminler için varsayılan dizileri çeker
+    private AudioClip[] GetDefaultClips(SoundActionType actionType)
+    {
+        switch (actionType)
+        {
+            case SoundActionType.Walk: return defaultFootstepSounds;
+            case SoundActionType.Sprint: return (defaultSprintSounds != null && defaultSprintSounds.Length > 0) ? defaultSprintSounds : defaultFootstepSounds;
+            case SoundActionType.Jump: return defaultJumpSounds;
+            case SoundActionType.Land: return defaultLandSounds;
+            default: return null;
+        }
     }
 }

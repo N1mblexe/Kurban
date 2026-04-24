@@ -7,6 +7,13 @@ TagManager:
   - FxTemporaire
   - Animal
   - Storage
+  - DirtyGround
+  - Grass
+  - Leaves
+  - Mud
+  - Rock
+  - Sand
+  - Wood
   layers:
   - Default
   - TransparentFX
