@@ -89,7 +89,7 @@ public class KnifeController : MonoBehaviour
     {
         if (inputManager.AttackInput && Time.time >= nextAttackTime)
         {
-            //HandleAnimation();
+            HandleAnimation();
             Invoke("PerformAttack", 0.1f);
             nextAttackTime = Time.time + (1f / currentStats.attackSpeed);
         }
